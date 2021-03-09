@@ -1,0 +1,22 @@
+{
+  "name": "wa-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./app/main.js",
+  "scripts": {
+    "start": "node .",
+    "build": "node build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "fs-extra": "^9.1.0",
+    "perf_hooks": "^0.0.1",
+    "qrcode": "^1.4.4",
+    "request-promise": "^4.2.6",
+    "waifu-generator": "^1.1.1",
+    "whatsapp-web.js": "^1.12.5"
+  }
+}
