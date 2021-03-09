@@ -2,7 +2,7 @@ const generateWaifu = require('waifu-generator');
 const {readFileSync} = require('fs')
 
 const handler = {
-    name: 'waifu',
+    name: ['waifu'],
     async exec({ m, MessageMedia, client }) {
 
         const opt = {
@@ -22,8 +22,8 @@ const handler = {
             mentions.push(await client.getContactById(res.id._serialized))
             // message.reply(`Tes @${res.id.user}`, message.from, {mentions: mentions})
         })
-        m.reply(media, m.from, { mentions: mentions }).then(res => {
-            m.reply(text)
+        m.reply(media, m.from).then(res => {
+            client.sendMessage(m.from, text, {mentions: mentions})
         })
         // m.reply(text, m.from, { mentions: mentions, caption: text })
         // client.sendMessage(m.from, media, {caption: text, mentions: mentions})

@@ -16,7 +16,7 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    name: 'wiki',
+    name: ['wiki'],
     help: '#wiki <pencarian>',
     async exec({m, args}) {
 

@@ -2,9 +2,6 @@ const { Client, MessageMedia } = require('whatsapp-web.js');
 const qrcode = require('qrcode');
 const fs = require('fs');
 
-const prefix = '#'
-
-
 
 const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
 let sessionCfg;
@@ -78,19 +75,20 @@ for(const file of commandsFile) {
 // client.sendMessage(m.from, img, { })
 
 client.on('message', message => {
-    if (!message.body.startsWith(prefix) || message.fromMe) return;
+    // if (!message.body.startsWith('#', '!', '/')) return;
 
     let args = message.body.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
     // client.sendMessage(message.from, m, {})
     // message.reply('tes', message.from, {})
-    if (commands.map(e => e.name).includes(command)) {
-        commands.filter(cmd => cmd.name === command)[0].exec({
-            m: message,
-            args: args,
-            client: client,
-            MessageMedia: MessageMedia
-        })
-    };
+    // if (commands.map(e => e.name).includes(command)) {
+    //     commands.filter(cmd => cmd.name === command)[0].exec({
+    //         m: message,
+    //         args: args,
+    //         client: client,
+    //         MessageMedia: MessageMedia
+    //     })
+    // };
+    console.log(commands.map(e => e.name.forEach(res => res)));
 })

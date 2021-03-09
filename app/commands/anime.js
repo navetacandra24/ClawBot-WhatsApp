@@ -9,7 +9,7 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    name: 'anime',
+    name: ['anime'],
     help: ['#anime', '#animelist'],
     async exec({ m, args}) {
         let req = 10;

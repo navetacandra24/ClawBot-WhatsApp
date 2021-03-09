@@ -15,6 +15,7 @@
     "fs-extra": "^9.1.0",
     "perf_hooks": "^0.0.1",
     "qrcode": "^1.4.4",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "waifu-generator": "^1.1.1",
     "whatsapp-web.js": "^1.12.5"

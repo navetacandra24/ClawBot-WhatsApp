@@ -1,5 +1,5 @@
 const handler = {
-    name: 'sticker',
+    name: ['sticker', 'stiker'],
     help: '#stiker (caption)',
     async exec({ m , MessageMedia}) {
         if (m.hasMedia) {
