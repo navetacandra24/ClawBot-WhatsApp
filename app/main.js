@@ -73,7 +73,9 @@ for(const file of commandsFile) {
 
 
 // client.sendMessage(m.from, img, { })
+let commandsName = [];
 
+commands.map(e => e.name.forEach(res => commandsName.push(res)))
 client.on('message', message => {
     // if (!message.body.startsWith('#', '!', '/')) return;
 
@@ -90,5 +92,7 @@ client.on('message', message => {
     //         MessageMedia: MessageMedia
     //     })
     // };
-    console.log(commands.map(e => e.name.forEach(res => res)));
+    if (commandsName.map(e => e.name).includes(command)) {
+        commands.filter(e => e.)
+    }
 })
