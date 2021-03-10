@@ -84,15 +84,12 @@ client.on('message', message => {
 
     // client.sendMessage(message.from, m, {})
     // message.reply('tes', message.from, {})
-    // if (commands.map(e => e.name).includes(command)) {
-    //     commands.filter(cmd => cmd.name === command)[0].exec({
-    //         m: message,
-    //         args: args,
-    //         client: client,
-    //         MessageMedia: MessageMedia
-    //     })
-    // };
-    if (commandsName.map(e => e.name).includes(command)) {
-        commands.filter(e => e.)
-    }
+    if (commands.map(e => e.name).includes(command)) {
+        commands.filter(cmd => cmd.name === command)[0].exec({
+            m: message,
+            args: args,
+            client: client,
+            MessageMedia: MessageMedia
+        })
+    };
 })
