@@ -1,6 +1,6 @@
 const handler = {
     name: ['sticker', 'stiker'],
-    help: '#stiker (caption)',
+    help: '#sticker (caption)',
     async exec({ m , MessageMedia}) {
         if (m.hasMedia) {
             let media = await m.downloadMedia();

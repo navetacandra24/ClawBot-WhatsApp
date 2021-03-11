@@ -2,31 +2,34 @@ const generateWaifu = require('waifu-generator');
 const {readFileSync} = require('fs')
 
 const handler = {
-    name: ['waifu'],
+    name: ['waifu', 'gachawaifu'],
     async exec({ m, MessageMedia, client }) {
 
         const opt = {
             filename: "waifu",
-            path: `./app/`
+            path: `./app/src/`
         };
-
-        await generateWaifu(opt)
-        
-        const file = readFileSync(`${opt.path}${opt.filename}.png`, 'base64')
-        const media = new MessageMedia('image/png', file, undefined);
-
         let mentions = [];
-        let text = ''
-        m.getContact().then(async (res) => {
-            text += `Waifu @${res.id.user}`
-            mentions.push(await client.getContactById(res.id._serialized))
-            // message.reply(`Tes @${res.id.user}`, message.from, {mentions: mentions})
-        })
-        m.reply(media, m.from).then(res => {
-            client.sendMessage(m.from, text, {mentions: mentions})
-        })
-        // m.reply(text, m.from, { mentions: mentions, caption: text })
-        // client.sendMessage(m.from, media, {caption: text, mentions: mentions})
+        let creator = '';
+
+        try {
+
+            await generateWaifu(opt)
+            // m.getContact().then(async (res) => {
+            //     mentions.push(await client.getContactById(res.id._serialized))
+            // })
+            const ct = await m.getContact();
+            mentions.push(await client.getContactById(ct.id._serialized));
+            creator += ct.id.user
+            
+        } catch (err) {
+            m.reply(err)
+        }
+        
+        finally {
+            let media = MessageMedia.fromFilePath(`${__dirname}/../src/waifu.png`)
+            m.reply(media, m.from, {caption: `Waifunya @${creator}.`, mentions: mentions})
+        }
 
     }
 };

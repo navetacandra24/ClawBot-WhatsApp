@@ -1,19 +1,23 @@
 {
-  "name": "wa-bot",
+  "name": "ClawBot",
   "version": "1.0.0",
   "description": "",
   "main": "./app/main.js",
   "scripts": {
     "start": "node .",
-    "manage": "node app/runtime-manager"
+    "manage": "node app/runtime-manager",
+    "test": "node app/helper/help"
   },
   "keywords": [],
-  "author": "",
+  "author": "Naveta Candra",
   "license": "ISC",
   "dependencies": {
+    "cfonts": "^2.9.1",
+    "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.5",
     "fs-extra": "^9.1.0",
     "perf_hooks": "^0.0.1",
+    "puppeteer": "^5.5.0",
     "qrcode": "^1.4.4",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",

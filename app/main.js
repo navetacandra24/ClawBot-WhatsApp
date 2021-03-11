@@ -1,6 +1,7 @@
 const { Client, MessageMedia } = require('whatsapp-web.js');
-const qrcode = require('qrcode');
 const fs = require('fs');
+const chalk = require('chalk');
+const cr = require(`${__dirname}/credit`)
 
 
 const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
@@ -42,7 +43,7 @@ client.on('qr', qr => {
 client.on('authenticated', session => {
     (async () => {
         await client.setDisplayName('ClawBot')
-        await client.setStatus('Im a Bot! 🤖')
+        await client.setStatus('I am Bot 🤖')
         await client.getContacts()
     })();
     fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
@@ -61,35 +62,39 @@ client.on('disconnected', function (r) {
     });
 });
 
-client.on('ready', () => console.log('Bot is ready!'))
+client.on('ready', () => {
+    // console.log('Bot is ready!')
+    cr()
+    console.log(chalk.blue.bold('Bot is now Runing..'));
+})
 
 let commands = [];
+let commandsName = require(`${__dirname}/helper/help`).commandName.join(' ').replace(/#/g, '').split(' ');
 const commandsFile = fs.readdirSync(`${__dirname}/commands/`).filter(files => files.endsWith('.js'));
 for(const file of commandsFile) {
-    const command = require(`${__dirname}/commands/${file}`)
+    const command = require(`${__dirname}/commands/${file}`);
     commands.push(command)
 }
 
-
-
-// client.sendMessage(m.from, img, { })
-let commandsName = [];
-
-commands.map(e => e.name.forEach(res => commandsName.push(res)))
 client.on('message', message => {
-    // if (!message.body.startsWith('#', '!', '/')) return;
+    const msgrecieved = chalk.yellow('[RECEIVED] from ') + chalk.green(`${message.from.split('@')[0].split('-')[0]}\n`) + chalk.cyan(message.body)
+    console.log(msgrecieved);
+    if (!message.body.startsWith('#')/* || !message.body.startsWith('!') || !message.body.startsWith('/')*/) return;
 
-    let args = message.body.slice(prefix.length).split(/ +/);
+
+    let args = message.body.slice(1).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    // client.sendMessage(message.from, m, {})
-    // message.reply('tes', message.from, {})
-    if (commands.map(e => e.name).includes(command)) {
-        commands.filter(cmd => cmd.name === command)[0].exec({
+    if (commandsName.map(e => e).includes(command)) {
+        commands.filter(cmd => cmd.name.includes(command))[0].exec({
             m: message,
             args: args,
             client: client,
             MessageMedia: MessageMedia
         })
     };
+});
+
+process.on('exit', () => {
+    console.clear()
 })
