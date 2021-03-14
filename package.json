@@ -2,7 +2,7 @@
   "name": "ClawBot",
   "version": "1.0.0",
   "description": "",
-  "main": "./app/main.js",
+  "main": "index.js",
   "scripts": {
     "start": "node .",
     "manage": "node app/runtime-manager",
