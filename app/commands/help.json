@@ -1,22 +1,17 @@
 {
     "command": [
         "#anime <jumlah pencarian (max 50 & default 10)>",
-        "#animelist <Jumlah Pencarian (max 50 & default 10)>",
+        "#apakah <pertanyaan>",
+        "#attp <text>",
         "#bcgc <text> (Owner Only)",
         "#bc <text> (Owner Only)",
         "#gtranslate <text> (English to Indo Only)",
         "#help",
-        "#menu",
-        "#?",
         "#kapan <pertanyaan>",
-        "#kapankah <pertanyaan>",
         "#ss <url>",
         "#speed",
-        "#ping",
         "#sticker (caption image)",
-        "#stiker (caption image)",
         "#waifu",
-        "#gachawaifu",
         "#wiki <pencarian>"
     ]
 }

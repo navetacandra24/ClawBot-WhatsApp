@@ -1,5 +1,5 @@
 const handler = {
-    name: ['bc'],
+    name: 'bc',
     async exec({ args, client, m }) {
         
         if (m.from.includes('6285311174928')) {

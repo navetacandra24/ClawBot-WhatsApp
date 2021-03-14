@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 
 const handler = {
-    name: ['gtranslate'],
+    name: 'gtranslate',
     async exec({ m, args }) {
 
         let translated;

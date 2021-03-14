@@ -15,7 +15,7 @@ for (let i = 0; i < commandName.length; i++) {
 }
 
 const handler = {
-    name: ['help', 'menu', '?'],
+    name: 'help',
     async exec({m, client}) {
         const ct = await m.getContact();
         let d = new Date

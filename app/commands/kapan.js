@@ -3,9 +3,9 @@ function pickRandom(list) {
 };
 
 const handler = {
-    name: ['', 'kah'].map(v => 'kapan' + v),
+    name: 'kapan',
     async exec({ m, args, client }) {
-        const pertanyaan = m.body.replace(m.body.charAt(0), '');
+        const pertanyaan = m.body.replace('#', '');
         const jawaban = `${Math.floor(Math.random() * 10)} ${pickRandom(['detik', 'menit', 'jam', 'hari', 'minggu', 'bulan', 'tahun', 'dekade', 'abad'])} lagi ...`
         if (m.mentionedIds) {
             const contact = []

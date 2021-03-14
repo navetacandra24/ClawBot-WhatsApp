@@ -1,7 +1,7 @@
 const { performance } = require('perf_hooks');
 
 const handler = {
-    name: ['speed', 'ping'],
+    name: 'speed',
     help: '#speed',
     async exec({ m }) {
         let old = performance.now();

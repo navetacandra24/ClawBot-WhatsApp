@@ -6,22 +6,27 @@
   "scripts": {
     "start": "node .",
     "manage": "node app/runtime-manager",
-    "test": "node app/helper/help"
+    "test": "node app/test"
   },
   "keywords": [],
   "author": "Naveta Candra",
   "license": "ISC",
   "dependencies": {
+    "canvas": "^2.7.0",
+    "canvas-text-wrapper": "^0.10.2",
     "cfonts": "^2.9.1",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.5",
-    "fs-extra": "^9.1.0",
+    "gifencoder": "^2.0.1",
+    "node-fetch": "^2.6.1",
+    "node-watch": "^0.7.1",
     "perf_hooks": "^0.0.1",
     "puppeteer": "^5.5.0",
     "qrcode": "^1.4.4",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "waifu-generator": "^1.1.1",
+    "webp-converter": "^2.3.3",
     "whatsapp-web.js": "^1.12.5"
   }
 }

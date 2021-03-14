@@ -64,16 +64,18 @@ client.on('disconnected', function (r) {
 
 client.on('ready', () => {
     // console.log('Bot is ready!')
+    console.clear();
     cr()
     console.log(chalk.blue.bold('Bot is now Runing..'));
 })
 
 let commands = [];
-let commandsName = require(`${__dirname}/helper/help`).commandName.join(' ').replace(/#/g, '').split(' ');
+let commandsName = [] //['anime', 'apakah', 'attp', 'bcgc', 'bc', 'gtranslate', 'help', 'kapan', 'ss', 'speed', 'sticker', 'waifu', 'wiki', 'ttp'];
 const commandsFile = fs.readdirSync(`${__dirname}/commands/`).filter(files => files.endsWith('.js'));
 for(const file of commandsFile) {
     const command = require(`${__dirname}/commands/${file}`);
     commands.push(command)
+    commandsName.push(command.name)
 }
 
 client.on('message', message => {
@@ -86,14 +88,22 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
 
     if (commandsName.map(e => e).includes(command)) {
-        commands.filter(cmd => cmd.name.includes(command))[0].exec({
+        // commands.filter(cmd => cmd.name.includes(command))[0].exec({
+        //     m: message,
+        //     args: args,
+        //     client: client,
+        //     MessageMedia: MessageMedia
+        // });
+        commands.filter(cmd => cmd.name == command)[0].exec({
             m: message,
             args: args,
             client: client,
             MessageMedia: MessageMedia
-        })
+        });
     };
 });
+
+console.log(client.info);
 
 process.on('exit', () => {
     console.clear()

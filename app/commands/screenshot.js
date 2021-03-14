@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 const handler = {
-    name: ['ss'],
+    name: 'ss',
     async exec({ m, MessageMedia, args }) {
         let browser = null;
         let url = '';

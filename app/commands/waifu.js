@@ -2,7 +2,7 @@ const generateWaifu = require('waifu-generator');
 const {readFileSync} = require('fs')
 
 const handler = {
-    name: ['waifu', 'gachawaifu'],
+    name: 'waifu',
     async exec({ m, MessageMedia, client }) {
 
         const opt = {
@@ -28,6 +28,7 @@ const handler = {
         
         finally {
             let media = MessageMedia.fromFilePath(`${__dirname}/../src/waifu.png`)
+            // console.log(media);
             m.reply(media, m.from, {caption: `Waifunya @${creator}.`, mentions: mentions})
         }
 

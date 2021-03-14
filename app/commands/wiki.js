@@ -16,13 +16,13 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    name: ['wiki'],
+    name: 'wiki',
     help: '#wiki <pencarian>',
     async exec({m, args}) {
 
         const baseWiki = 'https://id.wikipedia.org/wiki/';
         if (args.join(' ').trim() !== '') {
-            const url = encodeURI(baseWiki + args);
+            const url = baseWiki + encodeURI(args.join(' '));
 
             try {
                 const request = await rp(url);
@@ -39,6 +39,7 @@ const handler = {
 
             } catch (err) {
                 if (err.statusCode === 404) m.reply('Pencarian tidak dapat ditemukan!');
+                // m.reply(err)
             }
         } else {
             m.reply('Mohon isi pencarian!')
