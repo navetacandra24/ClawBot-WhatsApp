@@ -65,6 +65,7 @@ function Run() {
         console.clear();
         cr()
         console.log(chalk.blue.bold('Bot is now Runing..'));
+        console.log(commandsName);
     })
 
     let commands = [];
@@ -73,31 +74,34 @@ function Run() {
     for(const file of commandsFile) {
         const command = require(`${__dirname}/commands/${file}`);
         commands.push(command)
-        commandsName.push(command.name)
+        command.name.forEach(e => {
+            commandsName.push(e)
+        })
     }
 
     client.on('message', message => {
-        // message.
+        const PREFIX = ['/', '#', '!']
         logMSG(message)
-        if (!message.body.startsWith('#')/* || !message.body.startsWith('!') || !message.body.startsWith('/')*/) return;
+        if (!PREFIX.includes(message.body.charAt(0))) return;
 
 
         let args = message.body.slice(1).split(/ +/);
         const command = args.shift().toLowerCase();
 
         if (commandsName.map(e => e).includes(command)) {
+            // console.log(commands.filter(v => v.name.includes(command)));
+            commands.filter(cmd => cmd.name.includes(command))[0].exec({
+                m: message,
+                args: args,
+                client: client,
+                MessageMedia: MessageMedia
+            });
             // commands.filter(cmd => cmd.name.includes(command))[0].exec({
             //     m: message,
             //     args: args,
             //     client: client,
             //     MessageMedia: MessageMedia
             // });
-            commands.filter(cmd => cmd.name == command)[0].exec({
-                m: message,
-                args: args,
-                client: client,
-                MessageMedia: MessageMedia
-            });
         };
     });
 }

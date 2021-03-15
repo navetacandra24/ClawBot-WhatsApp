@@ -13,7 +13,10 @@ const lang = {
 
 
 const handler = {
-    name: 'utranslate',
+    name: ['utranslate'],
+    helper: function () {
+        return this.name.map(v => '#' + v + ' <bahasa asal> <bahasa tujuan> <teks> (Support Inggris & Indonesia only)')
+    },
     async exec({ m, args }) {
 
         let from = args[0]

@@ -1,6 +1,8 @@
 const handler = {
-    name: 'sticker',
-    help: '#sticker (caption)',
+    name: ['sticker', 'stiker'],
+    helper: function () {
+        return this.name.map(v => '#' + v + ' (Support caption only)')
+    },
     async exec({ m , MessageMedia}) {
         if (m.hasMedia) {
             let media = await m.downloadMedia();

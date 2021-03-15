@@ -16,8 +16,10 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    name: 'wiki',
-    help: '#wiki <pencarian>',
+    name: ['wiki'],
+    helper: function () {
+        return this.name.map(v => '#' + v + ' <pencarian>')
+    },
     async exec({m, args}) {
 
         const baseWiki = 'https://id.wikipedia.org/wiki/';

@@ -2,7 +2,10 @@ const generateWaifu = require('waifu-generator');
 const {readFileSync, fstat, unlinkSync} = require('fs')
 
 const handler = {
-    name: 'waifu',
+    name: ['gacha', ''].map(v => v + 'waifu'),
+    helper: function () {
+        return this.name.map(v => '#' + v)
+    },
     async exec({ m, MessageMedia, client }) {
 
         const opt = {

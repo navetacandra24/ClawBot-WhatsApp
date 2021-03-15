@@ -3,7 +3,10 @@ const ttp = require(`${__dirname}/../helper/ttp`);
 const fs = require('fs')
 
 const handler = {
-    name: 'ttp',
+    name: ['ttp'],
+    helper: function () {
+        return this.name.map(v => '#' + v + ' <teks>')
+    },
     async exec({m, args, MessageMedia, client}) {
         await m.reply('Memproses..')
         const text = args.join(' ');

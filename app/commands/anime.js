@@ -9,7 +9,10 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    name: 'anime',
+    name: ['', 'list'].map(v => 'anime' + v),
+    helper: function () {
+        return this.name.map(v => '#' + v + '<limit list (Max 50, Default 10)>')
+    },
     async exec({ m, args}) {
         let req = 10;
         if (args.length >= 1) req = Number(args[0]);

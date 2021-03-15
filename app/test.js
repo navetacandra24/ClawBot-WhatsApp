@@ -1,8 +1,7 @@
-const lang = {
-    indonesia: 'id',
-    indonesian: 'id',
-    inggris: 'en',
-    english: 'en',
+const anjay = {
+    a: 1,
+    b: function () {
+        return this.a
+    }
 }
-
-console.log(lang.indonesia);
+console.log(anjay.b());

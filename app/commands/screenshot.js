@@ -2,7 +2,10 @@ const puppeteer = require('puppeteer');
 const fs = require('fs')
 
 const handler = {
-    name: 'ss',
+    name: ['web', ''].map(v => 'ss' + v),
+    helper: function () {
+        return this.name.map(v => '#' + v + ' <url>')
+    },
     async exec({ m, MessageMedia, args }) {
         let browser = null;
         let url = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0];

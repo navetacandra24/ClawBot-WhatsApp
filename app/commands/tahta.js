@@ -5,7 +5,10 @@ const fs = require('fs')
 const dir = `${__dirname}/../src`
 
 const handler = {
-    name: 'tahta',
+    name: ['tahta', 'harta'],
+    helper: function () {
+        return this.name.map(v => '#' + v + ' <teks>')
+    },
     async exec({ args, m, MessageMedia, client }) {
         if (checkExist()) {
             m.reply('Sedang dalam proses lain!')

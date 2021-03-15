@@ -1,5 +1,8 @@
 const handler = {
-    name: 'bucin',
+    name: ['bucin'],
+    helper: function () {
+        return this.name.map(v => '#' + v)
+    },
     async exec({ m }) {
         m.reply(pickRandom(bucin))
     }
