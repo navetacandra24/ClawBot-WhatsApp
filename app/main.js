@@ -40,6 +40,7 @@ function Run() {
     client.on('qr', qr => {
         console.log(`QR Recieved!`);
         console.log(qr);
+        // qrcode.generate(qr)
     });
 
     client.on('authenticated', session => {

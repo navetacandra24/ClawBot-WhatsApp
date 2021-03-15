@@ -22,7 +22,7 @@ const helper = function (text) {
     ctx.fillRect(0, 0, 512, 512);
 
     ctx.fillStyle = 'black';
-    CanvasTextWrapper(canvas, text, options);
+    CanvasTextWrapper(canvas, decodeURIComponent(text), options);
 
     let base64 = canvas.toDataURL('image/jpeg').replace('data:image/jpeg;base64,', '');
     let data = new Buffer.from(base64, 'base64');

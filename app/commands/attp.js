@@ -5,7 +5,7 @@ const attp = require(`${__dirname}/../helper/attp`)
 const handler = {
     name: 'attp',
     async exec({m, args, MessageMedia, client}) {
-        m.reply('Memproses..')
+        await m.reply('Memproses..')
         const text = args.join(' ');
         await attp(text)
 
@@ -16,8 +16,6 @@ const handler = {
             let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
             await m.reply(media, m.from, {sendMediaAsSticker: true})
             // client.sendMessage(m.from, media, {sendMediaAsSticker: true})
-            fs.unlinkSync(`${__dirname}/../src/attp.gif`)
-            fs.unlinkSync(`${__dirname}/../src/attp.webp`)
         });
     }
 }

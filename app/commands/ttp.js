@@ -5,7 +5,7 @@ const fs = require('fs')
 const handler = {
     name: 'ttp',
     async exec({m, args, MessageMedia, client}) {
-        m.reply('Memproses..')
+        await m.reply('Memproses..')
         const text = args.join(' ');
         await ttp(text)
 
@@ -16,8 +16,6 @@ const handler = {
                 // console.log('Compile is done');
                 let media = MessageMedia.fromFilePath(`${__dirname}/../src/ttp.webp`)
                 await m.reply(media, m.from, { sendMediaAsSticker: true })
-                fs.unlinkSync(`${__dirname}/../src/ttp.jpg`)
-                fs.unlinkSync(`${__dirname}/../src/ttp.webp`)
             })
             .catch(err => {
                 console.log(err);

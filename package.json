@@ -23,7 +23,6 @@
     "node-watch": "^0.7.1",
     "perf_hooks": "^0.0.1",
     "puppeteer": "^5.5.0",
-    "qrcode": "^1.4.4",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "waifu-generator": "^1.1.1",

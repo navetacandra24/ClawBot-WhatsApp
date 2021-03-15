@@ -1,14 +1,15 @@
-const GIFEncoder = require('gifencoder');
 const { createCanvas } = require('canvas');
 const { CanvasTextWrapper } = require('canvas-text-wrapper');
 const fs = require('fs');
-const PATH = `${__dirname}/../src/attp.gif`;
+const GIFEncoder = require('gifencoder');
 
-const helper = function (text) {
+const path = `${__dirname}/../src/attp.gif`;
+
+function helper(text) {
 
     const encoder = new GIFEncoder(512, 512);
 
-    encoder.createReadStream().pipe(fs.createWriteStream(PATH));
+    encoder.createReadStream().pipe(fs.createWriteStream(path));
 
     encoder.start();
     encoder.setRepeat(0);
@@ -16,7 +17,10 @@ const helper = function (text) {
     encoder.setQuality(80);
 
     const canvas = createCanvas(512, 512);
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, 512, 512);
+    
     const options = {
         font: `${canvas.width * (38 / canvas.width)}px Arial`,
         textAlign: 'center',
@@ -27,24 +31,22 @@ const helper = function (text) {
         lineHeight: 80,
     };
 
-    ctx.fillStyle = 'white'; // or 'transparent'
-	ctx.fillRect(0, 0, 512, 512);
-
     const color = [
         'red',
         'lime',
         'yellow',
         'magenta',
         'cyan'
-    ]
+    ];
 
     for (let i = 0; i < color.length; i++) {
         ctx.fillStyle = color[i];
-        CanvasTextWrapper(canvas, text, options);
+        CanvasTextWrapper(canvas, decodeURIComponent(text), options);
         encoder.addFrame(ctx)
     }
+
     encoder.finish()
 
-};
+}
 
 module.exports = helper
