@@ -1,5 +1,5 @@
 const generateWaifu = require('waifu-generator');
-const {readFileSync} = require('fs')
+const {readFileSync, fstat, unlinkSync} = require('fs')
 
 const handler = {
     name: 'waifu',
@@ -29,7 +29,8 @@ const handler = {
         finally {
             let media = MessageMedia.fromFilePath(`${__dirname}/../src/waifu.png`)
             // console.log(media);
-            m.reply(media, m.from, {caption: `Waifunya @${creator}.`, mentions: mentions})
+            await m.reply(media, m.from, { caption: `Waifunya @${creator}.`, mentions: mentions })
+            unlinkSync(`${__dirname}/../src/waifu.png`)
         }
 
     }

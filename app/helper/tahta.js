@@ -7,7 +7,7 @@ function pickRandom(list) {
 };
 
 const helper = function (text) {
-    
+    fs.writeFileSync(`${__dirname}/../tahta-proses.txt`, '')
     const canvas = createCanvas(720, 720);
     const ctx = canvas.getContext('2d')
 

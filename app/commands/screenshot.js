@@ -1,15 +1,16 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs')
 
 const handler = {
     name: 'ss',
     async exec({ m, MessageMedia, args }) {
         let browser = null;
-        let url = '';
-        if (args[0].endsWith('/')) {
-            url += args[0]
-        } else {
-            url += args[0] + '/'
-        }
+        let url = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0];
+        // if (args[0].endsWith('/')) {
+        //     url += args[0]
+        // } else {
+        //     url += args[0] + '/'
+        // }
         
         try {
             browser = await puppeteer.launch({
@@ -37,9 +38,14 @@ const handler = {
                 height: 1280,
                 isLandscape: true
             })
-            await page.goto(`${url}`, { waitUntil: ['domcontentloaded', 'load', 'networkidle2'] });
+            await page.goto(url, {
+                waitUntil: 'domcontentloaded'
+            });
             
-            await page.screenshot({path: `${__dirname}/../src/screenshot.jpg`, type: 'jpeg'})
+            await page.screenshot({
+                path: `${__dirname}/../src/ss.jpg`,
+                type: 'jpeg',
+            })
             
             await browser.close()
         }
@@ -47,8 +53,13 @@ const handler = {
             m.reply(error)
         }
         finally {
-            let media = MessageMedia.fromFilePath(`${__dirname}/../src/screenshot.jpg`);
-            m.reply(media, m.from, {caption: 'Ini screenshotnya.'})
+            if (fs.existsSync(`${__dirname}/../src/ss.jpg`)) {
+                let media = MessageMedia.fromFilePath(`${__dirname}/../src/ss.jpg`);
+                await m.reply(media, m.from, { caption: url })
+                fs.unlinkSync(`${__dirname}/../src/ss.jpg`)
+            } else {
+                m.reply('Tidak dapat menemukan web')
+            }
         }
     }
 }

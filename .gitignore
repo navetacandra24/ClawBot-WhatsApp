@@ -104,5 +104,8 @@ dist
 .tern-port
 
 app/whatsapp-session.json
-app/src/*
+*.jpg
+*.png
+*.gif
+*.webp
 *.bat

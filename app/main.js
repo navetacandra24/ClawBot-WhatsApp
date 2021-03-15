@@ -1,6 +1,7 @@
 const { Client, MessageMedia } = require('whatsapp-web.js');
 const fs = require('fs');
 const chalk = require('chalk');
+const logMSG = require('./log');
 const cr = require(`${__dirname}/credit`)
 
 
@@ -32,7 +33,7 @@ function Run() {
             ],
         },
         session: sessionCfg
-    });
+    })
 
     client.initialize()
 
@@ -80,8 +81,8 @@ function Run() {
     }
 
     client.on('message', message => {
-        const msgrecieved = chalk.yellow('[RECEIVED] from ') + chalk.green(`${message.from.split('@')[0].split('-')[0]}\n`) + chalk.cyan(message.body)
-        console.log(msgrecieved);
+        // message.
+        logMSG(message)
         if (!message.body.startsWith('#')/* || !message.body.startsWith('!') || !message.body.startsWith('/')*/) return;
 
 

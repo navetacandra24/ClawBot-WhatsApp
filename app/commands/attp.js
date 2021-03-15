@@ -12,10 +12,12 @@ const handler = {
         webp.grant_permission();
 
         const result = webp.gwebp(`${__dirname}/../src/attp.gif`, `${__dirname}/../src/attp.webp`, "-q 80", logging = "-v");
-        result.then(e => {
+        result.then(async e => {
             let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
-            m.reply(media, m.from, {sendMediaAsSticker: true})
+            await m.reply(media, m.from, {sendMediaAsSticker: true})
             // client.sendMessage(m.from, media, {sendMediaAsSticker: true})
+            fs.unlinkSync(`${__dirname}/../src/attp.gif`)
+            fs.unlinkSync(`${__dirname}/../src/attp.webp`)
         });
     }
 }
