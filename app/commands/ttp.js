@@ -12,7 +12,7 @@ const handler = {
         webp.grant_permission();
 
         const result = webp.cwebp(`${__dirname}/../src/ttp.jpg`, `${__dirname}/../src/ttp.webp`, '-q 80', logging = '-v')
-            result.then(() => {
+            result.then(async () => {
                 let media = MessageMedia.fromFilePath(`${__dirname}/../src/ttp.webp`)
                 await m.reply(media, m.from, { sendMediaAsSticker: true })
                 setTimeout(() => {
