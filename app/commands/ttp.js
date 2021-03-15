@@ -5,7 +5,7 @@ const fs = require('fs')
 const handler = {
     name: 'ttp',
     async exec({m, args, MessageMedia, client}) {
-        m.reply('Memproses..')
+        await m.reply('Memproses..')
         const text = args.join(' ');
         await ttp(text)
 
@@ -14,12 +14,16 @@ const handler = {
         const result = webp.cwebp(`${__dirname}/../src/ttp.jpg`, `${__dirname}/../src/ttp.webp`, '-q 80', logging = '-v')
             result.then(() => {
                 let media = MessageMedia.fromFilePath(`${__dirname}/../src/ttp.webp`)
-                m.reply(media, m.from, { sendMediaAsSticker: true })
+                await m.reply(media, m.from, { sendMediaAsSticker: true })
+                setTimeout(() => {
+                    fs.unlinkSync(`${__dirname}/../src/ttp.jpg`)
+                    fs.unlinkSync(`${__dirname}/../src/ttp.webp`)
+                }, 500);
             })
             .catch(err => {
                 console.log(err);
                 m.reply(err)
-            });
+            })
     }
 }
 

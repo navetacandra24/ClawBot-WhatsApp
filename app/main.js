@@ -44,11 +44,6 @@ function Run() {
     });
 
     client.on('authenticated', session => {
-        (async () => {
-            await client.setDisplayName('ClawBot')
-            await client.setStatus('I am Bot 🤖')
-            await client.getContacts()
-        })();
         fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
             if (err) {
                 console.log(err);
