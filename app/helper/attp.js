@@ -48,14 +48,7 @@ function maker(text) {
 }
 
 function helper(text) {
-    if (fs.existsSync(path)) {
-        fs.unlinkSync(path)
-        fs.unlinkSync(`${__dirname}/../src/attp.webp`)
-        maker(text)
-    } else {
-        maker(text)
-    }
-
+    maker(text)
 }
 
 module.exports = helper

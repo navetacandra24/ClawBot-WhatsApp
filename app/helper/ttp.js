@@ -31,13 +31,7 @@ function maker(text) {
 
 const helper = function (text) {
 
-    if (fs.existsSync(PATH)) {
-        fs.unlinkSync(PATH)
-        fs.unlinkSync(`${__dirname}/../src/ttp.webp`)
-        maker(text)
-    } else {
-        maker(text)
-    }
+    maker(text)
 
 
 };
