@@ -43,11 +43,7 @@ const handler = {
             month: 'long',
             year: 'numeric'
         });
-        let time = d.toLocaleTimeString(locale, {
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric'
-        });
+        let time = new Date().toLocaleString('id-ID').split(' ')[1].split('.').join(' : ');
         let commandsList = [];
         for (let i = 0; i < commandsName.length; i++) {
             if (i === commandsName.length - 1) {
@@ -61,7 +57,7 @@ const handler = {
 │ Hai, @${creator}!
 │
 │ Tanggal: *${week}, ${date}*
-│ Waktu: *${time.split('.').join(' : ')}*
+│ Waktu: *${time}*
 │ Uptime: *${clockString(process.uptime() * 1000)}*
 ╰────
 ╭─「 Command 」
