@@ -7,27 +7,37 @@ const handler = {
     helper: function () {
         return this.name.map(v => '#' + v + ' <text>')
     },
-    async exec({m, args, MessageMedia, client}) {
-        await m.reply('Memproses..')
-        const text = args.join(' ');
-        await attp(text)
+    async exec({ m, args, MessageMedia, client }) {
+        if (fs.existsSync(`${__dirname}/../attp.txt`)) {
+            m.reply(`Sedang dalam prose lain.. ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​\n*Coba lagi nanti*`)
+        } else {
+            
+            await fs.writeFileSync(`${__dirname}/../attp.txt`, '')
+            await m.reply('Memproses..')
+            const text = args.join(' ');
+            await attp(text)
+        
+            webp.grant_permission();
+        
+            const result = webp.gwebp(`${__dirname}/../src/attp.gif`, `${__dirname}/../src/attp.webp`, "-q 80", logging = "-v");
+            result
+                .then(async e => {
+                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
+                    await m.reply(media, m.from, { sendMediaAsSticker: true })
+                    fs.unlinkSync(`${__dirname}/../attp.txt`)
+                })
+                .catch(err => {
+                    m.reply(err)
+                })
+        }
+    }
+}
 
-        webp.grant_permission();
-
-        const result = webp.gwebp(`${__dirname}/../src/attp.gif`, `${__dirname}/../src/attp.webp`, "-q 80", logging = "-v");
-        result
-            .then(async e => {
-                let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
-                await m.reply(media, m.from, { sendMediaAsSticker: true })
-                // client.sendMessage(m.from, media, {sendMediaAsSticker: true})
-                setTimeout(() => {
-                    fs.unlinkSync(`${__dirname}/../src/attp.gif`)
-                    fs.unlinkSync(`${__dirname}/../src/attp.webp`)
-                }, 500);
-            })
-            .catch(err => {
-                m.reply(err)
-            })
+function checkExist() {
+    if (fs.existsSync(`${__dirname}/../attp.txt`)) {
+        return true
+    } else {
+        return false
     }
 }
 

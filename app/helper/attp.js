@@ -5,8 +5,7 @@ const GIFEncoder = require('gifencoder');
 
 const path = `${__dirname}/../src/attp.gif`;
 
-function helper(text) {
-
+function maker(text) {
     const encoder = new GIFEncoder(512, 512);
 
     encoder.createReadStream().pipe(fs.createWriteStream(path));
@@ -46,6 +45,16 @@ function helper(text) {
     }
 
     encoder.finish()
+}
+
+function helper(text) {
+    if (fs.existsSync(path)) {
+        fs.unlinkSync(path)
+        fs.unlinkSync(`${__dirname}/../src/attp.webp`)
+        maker(text)
+    } else {
+        maker(text)
+    }
 
 }
 

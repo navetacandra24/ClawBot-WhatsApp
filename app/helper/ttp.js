@@ -4,8 +4,7 @@ const { CanvasTextWrapper } = require('canvas-text-wrapper');
 const fs = require('fs');
 const PATH = `${__dirname}/../src/ttp.jpg`;
 
-const helper = function (text) {
-
+function maker(text) {
     const canvas = createCanvas(512, 512);
     const ctx = canvas.getContext('2d');
     const options = {
@@ -28,6 +27,18 @@ const helper = function (text) {
     let data = new Buffer.from(base64, 'base64');
 
     fs.writeFileSync(PATH, data)
+}
+
+const helper = function (text) {
+
+    if (fs.existsSync(PATH)) {
+        fs.unlinkSync(PATH)
+        fs.unlinkSync(`${__dirname}/../src/ttp.webp`)
+        maker(text)
+    } else {
+        maker(text)
+    }
+
 
 };
 

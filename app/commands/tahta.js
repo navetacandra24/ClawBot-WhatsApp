@@ -2,7 +2,7 @@ const tahta = require(`${__dirname}/../helper/tahta`);
 const webp = require('webp-converter');
 const fs = require('fs')
 
-const dir = `${__dirname}/../src`
+const dir = `${__dirname}/../src/tahta.jpg`
 
 const handler = {
     name: ['tahta', 'harta'],
@@ -11,16 +11,16 @@ const handler = {
     },
     async exec({ args, m, MessageMedia, client }) {
         if (checkExist()) {
-            m.reply('Sedang dalam proses lain!')
+            m.reply('Maaf sedang dalam proses lain!')
         } else {
             await m.reply('Memproses..\n*Mohon Tunggu Sebentar..*')
             const text = args.join(' ');
             await tahta(text)
 
 
-            let media = MessageMedia.fromFilePath(`${dir}/tahta.jpg`)
-            await m.reply(media, m.from, { caption: '*© @ClawBot*' })
-            fs.unlinkSync(`${dir}/tahta.jpg`)
+            let media = MessageMedia.fromFilePath(dir)
+            await m.reply(media, m.from, { caption: '*© ClawBot*' })
+            fs.unlinkSync(dir)
             fs.unlinkSync(`${__dirname}/../tahta-proses.txt`)
         }
     }

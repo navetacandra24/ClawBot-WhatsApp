@@ -8,7 +8,7 @@ const handler = {
         return this.name.map(v => '#' + v + ' <pertanyaan>')
     },
     async exec({m, args, client}) {
-        const pertanyaan = m.body.replace('#', '');
+        const pertanyaan = m.body.slice(1);
         const jawaban = pickRandom(['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin']);
         if (m.mentionedIds) {
             const contact = []
