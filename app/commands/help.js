@@ -61,10 +61,10 @@ const handler = {
 │ Uptime: *${clockString(process.uptime() * 1000)}*
 ╰────
 ╭─「 Command 」
-${commandsList.map(v => v)}
+${commandsList.map(v => v).join('').replace(/,/g, '')}
 ╰────`;
         // console.log(message);
-        m.reply(message.replace(/,/g, ''), m.from, {mentions: mentions})
+        m.reply(message, m.from, {mentions: mentions})
     }
 }
 
