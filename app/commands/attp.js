@@ -21,14 +21,18 @@ const handler = {
         
             const result = webp.gwebp(`${__dirname}/../src/attp.gif`, `${__dirname}/../src/attp.webp`, "-q 80", logging = "-v");
             result
-                .then(async e => {
-                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
-                    await m.reply(media, m.from, { sendMediaAsSticker: true })
-                    fs.unlinkSync(`${__dirname}/../attp.txt`)
+                .then(e => {
+                    return
                 })
                 .catch(err => {
                     m.reply(err)
                 })
+                .finally(async () => {
+                    let media = await MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
+                    await m.reply(media, m.from, { sendMediaAsSticker: true })
+                    fs.unlinkSync(`${__dirname}/../src/attp.webp`)
+                    fs.unlinkSync(`${__dirname}/../attp.txt`)
+            })
         }
     }
 }
