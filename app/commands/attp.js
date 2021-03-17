@@ -30,7 +30,7 @@ const handler = {
                 .finally(async () => {
                     let media = await MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
                     await m.reply(media, m.from, { sendMediaAsSticker: true })
-                    // fs.unlinkSync(`${__dirname}/../src/attp.webp`)
+                    fs.unlinkSync(`${__dirname}/../src/attp.gif`)
                     fs.unlinkSync(`${__dirname}/../attp.txt`)
             })
         }
