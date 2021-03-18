@@ -11,7 +11,8 @@ const handler = {
                 const chats = await client.getChats();
                 let contact = [];
                 for (let i = 0; i < chats.length; i++) {
-                    contact.push(chats[i].id._serialized)
+                    let chat = chat.filter(e => !e.isReadOnly)
+                    contact.push(chat[i].id._serialized)
                 }
                 // client.sendMessage(contact[0], args.join(' '))
                 m.reply(`Mengirim pesan broadcast ke ${contact.length} chat.`)

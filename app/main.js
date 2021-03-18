@@ -83,7 +83,7 @@ function Run() {
     client.on('message', message => {
         const PREFIX = ['/', '#', '!']
         logMSG(message, commandsName)
-        // client.sendSeen(message.from)
+        client.sendSeen(message.from)
         // console.log(commands.length);
         if (!PREFIX.includes(message.body.charAt(0))) return;
 

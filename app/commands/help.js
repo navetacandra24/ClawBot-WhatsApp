@@ -18,11 +18,13 @@ const handler = {
     },
     async exec({ m, client }) {
         const commandsDB = require(`${__dirname}/../commands-database`);
-        commandsDB.forEach(cmd => {
-            cmd.help.forEach(e => {
-                commandsHelp.push(e)
-            })
-        });
+        if (commandsHelp.length < 1) {
+            commandsDB.forEach(cmd => {
+                cmd.help.forEach(e => {
+                    commandsHelp.push(e)
+                })
+            });
+        }
 
         let mentions = [];
         let creator = '';
