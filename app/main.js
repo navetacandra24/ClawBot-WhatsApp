@@ -93,7 +93,7 @@ function Run() {
 
         if (commandsName.map(e => e).includes(cmnd)) {
             const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].file);
-            // console.log(c.exports.exec);
+            console.log(c.exec);
             c.exec({
                 m: message,
                 args: args,
