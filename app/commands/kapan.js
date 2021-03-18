@@ -1,11 +1,12 @@
 function pickRandom(list) {
     return list[Math.floor(Math.random() * list.length)]
 };
+const lib = require(`${__dirname}/../lib/r2str`)
 
 const handler = {
-    name: ['kah', ''].map(v => 'kapan' + v),
+    command: /(kapan|kapankah)/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' <pertanyaan>')
+        return lib(this.command).map(v => '#' + v + ' <pertanyaan>')
     },
     async exec({ m, args, client }) {
         const pertanyaan = m.body.slice(1);

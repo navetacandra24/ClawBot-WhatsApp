@@ -1,6 +1,7 @@
 const fs = require('fs');
 const webp = require('webp-converter')
 const attp = require(`${__dirname}/../helper/attp`)
+const lib = require(`${__dirname}/../lib/r2str`)
 
 async function execute(m, args, MessageMedia) {
     // await fs.writeFileSync(`${__dirname}/../attp.txt`, '')
@@ -26,9 +27,9 @@ async function execute(m, args, MessageMedia) {
 }
 
 const handler = {
-    name: ['attp'],
+    command: /attp/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' <text>')
+        return lib(this.command).map(v => '#' + v + ' <text>')
     },
     async exec({ m, args, MessageMedia, client }) {
         // if (fs.existsSync(`${__dirname}/../attp.txt`)) {

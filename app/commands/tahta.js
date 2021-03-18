@@ -1,13 +1,14 @@
 const tahta = require(`${__dirname}/../helper/tahta`);
 const webp = require('webp-converter');
 const fs = require('fs')
+const lib = require(`${__dirname}/../lib/r2str`)
 
 const dir = `${__dirname}/../src/tahta.jpg`
 
 const handler = {
-    name: ['tahta', 'harta'],
+    command: /(harta|tahta)/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' <teks>')
+        return lib(this.command).map(v => '#' + v + ' <teks>')
     },
     async exec({ args, m, MessageMedia, client }) {
         if (checkExist()) {

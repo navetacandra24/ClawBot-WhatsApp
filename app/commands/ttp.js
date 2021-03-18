@@ -1,11 +1,12 @@
 const webp = require('webp-converter');
 const ttp = require(`${__dirname}/../helper/ttp`);
 const fs = require('fs')
+const lib = require(`${__dirname}/../lib/r2str`)
 
 const handler = {
-    name: ['ttp'],
+    command: /ttp/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' <teks>')
+        return lib(this.command).map(v => '#' + v + ' <teks>')
     },
     async exec({ m, args, MessageMedia, client }) {
         if (fs.existsSync(`${__dirname}/../ttp.txt`)) {

@@ -1,4 +1,5 @@
 const fs = require('fs')
+const lib = require(`${__dirname}/../lib/r2str`)
 
 function clockString(ms) {
     let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
@@ -11,9 +12,9 @@ let commandsName = []
 
 
 const handler = {
-    name: ['help', '?', 'menu'],
+    command: /(help|menu|\?)/,
     helper: function () {
-        return this.name.map(v => '#' + v)
+        return lib(this.command).map(v => '#' + v)
     },
     async exec({ m, client }) {
         const commandsFile = fs.readdirSync(`${__dirname}`).filter(files => files.endsWith('.js'));

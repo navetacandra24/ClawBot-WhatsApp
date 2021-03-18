@@ -1,6 +1,6 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-
+const lib = require(`${__dirname}/../lib/r2str`)
 
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
@@ -9,9 +9,9 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    name: ['', 'list'].map(v => 'anime' + v),
+    command: /(anime|animelist)/,
     helper: function () {
-        return this.name.map(v => '#' + v + '<limit list (Max 50, Default 10)>')
+        return lib(this.command).map(v => '#' + v + '<limit list (Max 50, Default 10)>')
     },
     async exec({ m, args}) {
         let req = 10;

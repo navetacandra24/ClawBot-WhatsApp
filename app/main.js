@@ -2,8 +2,9 @@ const { Client, MessageMedia } = require('whatsapp-web.js');
 const fs = require('fs');
 const chalk = require('chalk');
 const logMSG = require('./log');
-const { ClientRequest } = require('http');
+const commandDB = require(`${__dirname}/commands-database`)
 const cr = require(`${__dirname}/credit`)
+const r2str = require(`${__dirname}/lib/r2str`)
 
 
 function Run() {
@@ -72,41 +73,41 @@ function Run() {
         console.log(chalk.red('Bot is ready now.'));
     })
 
-    let commands = [];
+    // let commands = [];
     let commandsName = [] //['anime', 'apakah', 'attp', 'bcgc', 'bc', 'gtranslate', 'help', 'kapan', 'ss', 'speed', 'sticker', 'waifu', 'wiki', 'ttp'];
     const commandsFile = fs.readdirSync(`${__dirname}/commands/`).filter(files => files.endsWith('.js'));
     for(const file of commandsFile) {
         const command = require(`${__dirname}/commands/${file}`);
-        commands.push(command)
-        command.name.forEach(e => {
-            commandsName.push(e)
-        })
+        r2str(command.command).map(e => commandsName.push(e))
     }
 
     client.on('message', message => {
         const PREFIX = ['/', '#', '!']
         logMSG(message, commandsName)
-        client.sendSeen(message.from)
+        // client.sendSeen(message.from)
+        // console.log(commands.length);
         if (!PREFIX.includes(message.body.charAt(0))) return;
 
 
         let args = message.body.slice(1).split(/ +/);
-        const command = args.shift().toLowerCase();
+        const cmnd = args.shift().toLowerCase();
 
-        if (commandsName.map(e => e).includes(command)) {
-            // console.log(commands.filter(v => v.name.includes(command)));
-            commands.filter(cmd => cmd.name.includes(command))[0].exec({
+        if (commandsName.map(e => e).includes(cmnd)) {
+            const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].file);
+            c.exec({
                 m: message,
                 args: args,
                 client: client,
                 MessageMedia: MessageMedia
             });
+            // console.log('lolos');
             // commands.filter(cmd => cmd.name.includes(command))[0].exec({
             //     m: message,
             //     args: args,
             //     client: client,
             //     MessageMedia: MessageMedia
             // });
+
         };
     });
 }

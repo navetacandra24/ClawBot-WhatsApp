@@ -1,10 +1,11 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs')
+const lib = require(`${__dirname}/../lib/r2str`)
 
 const handler = {
-    name: ['web', ''].map(v => 'ss' + v),
+    command: /(ss|ssweb)/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' <url>')
+        return lib(this.command).map(v => '#' + v + ' <url>')
     },
     async exec({ m, MessageMedia, args }) {
         let browser = null;

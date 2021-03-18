@@ -1,7 +1,8 @@
+const lib = require(`${__dirname}/../lib/r2str`)
 const handler = {
-    name: ['sticker', 'stiker'],
+    command: /(stiker|sticker)/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' (Support caption only)')
+        return lib(this.command).map(v => '#' + v + ' (Support caption only)')
     },
     async exec({ m , MessageMedia}) {
         if (m.hasMedia) {

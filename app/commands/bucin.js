@@ -1,7 +1,8 @@
+const lib = require(`${__dirname}/../lib/r2str`)
 const handler = {
-    name: ['bucin'],
+    command: /bucin/,
     helper: function () {
-        return this.name.map(v => '#' + v)
+        return lib(this.command).map(v => '#' + v)
     },
     async exec({ m }) {
         m.reply(pickRandom(bucin))

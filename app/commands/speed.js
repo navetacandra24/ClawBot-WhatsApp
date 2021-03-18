@@ -1,9 +1,10 @@
 const { performance } = require('perf_hooks');
+const lib = require(`${__dirname}/../lib/r2str`)
 
 const handler = {
-    name: ['speed', 'ping'],
+    command: /(speed|ping)/,
     helper: function () {
-        return this.name.map(v => '#' +v)
+        return lib(this.command).map(v => '#' +v)
     },
     async exec({ m }) {
         let old = performance.now();

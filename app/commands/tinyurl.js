@@ -1,9 +1,10 @@
 const fetch = require('node-fetch');
+const lib = require(`${__dirname}/../lib/r2str`)
 
 const handler = {
-    name: ['tinyurl'],
+    command: /tinyurl/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' <url>')
+        return lib(this.command).map(v => '#' + v + ' <url>')
     },
     async exec({ m, args }) {
         let url = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0]

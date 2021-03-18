@@ -1,4 +1,5 @@
 const utranslate = require(`${__dirname}/../helper/utranslate`);
+const lib = require(`${__dirname}/../lib/r2str`)
 
 const lang = {
     Indonesia: 'Indonesia',
@@ -13,9 +14,9 @@ const lang = {
 
 
 const handler = {
-    name: ['utranslate'],
+    command: /utranslate/,
     helper: function () {
-        return this.name.map(v => '#' + v + ' <bahasa asal> <bahasa tujuan> <teks> (Support Inggris & Indonesia only)')
+        return lib(this.command).map(v => '#' + v + ' <bahasa asal> <bahasa tujuan> <teks> (Support Inggris & Indonesia only)')
     },
     async exec({ m, args }) {
 
