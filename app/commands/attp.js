@@ -20,7 +20,7 @@ async function execute(m, args, MessageMedia) {
                 m.reply(err)
             })
             .finally(async () => {
-                setTimeout(() => {
+                setTimeout(async () => {
                     let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
                 await m.reply(media, m.from, { sendMediaAsSticker: true })
                 }, 300);
