@@ -2,6 +2,7 @@ const { Client, MessageMedia } = require('whatsapp-web.js');
 const fs = require('fs');
 const chalk = require('chalk');
 const logMSG = require('./log');
+const { ClientRequest } = require('http');
 const cr = require(`${__dirname}/credit`)
 
 
@@ -60,12 +61,15 @@ function Run() {
         });
     });
 
-    client.on('ready', () => {
+    client.on('ready',async () => {
         // console.log('Bot is ready!')
         console.clear();
         cr()
-        console.log(chalk.blue.bold('Bot is now Runing..'));
-        console.log(commandsName);
+        let ct = await client.getContacts()
+        let cht = await client.getChats();
+        console.log(chalk.cyanBright(`Recieved ${ct.length} Conatcts\nRecieved ${cht.length} Chats\n`));
+        console.log(commandsName, '\n');
+        console.log(chalk.red('Bot is ready now.'));
     })
 
     let commands = [];
@@ -81,7 +85,8 @@ function Run() {
 
     client.on('message', message => {
         const PREFIX = ['/', '#', '!']
-        logMSG(message)
+        logMSG(message, commandsName)
+        client.sendSeen(message.from)
         if (!PREFIX.includes(message.body.charAt(0))) return;
 
 
@@ -106,7 +111,6 @@ function Run() {
     });
 }
 
-// console.log(client.info);
 
 module.exports = {
     Run

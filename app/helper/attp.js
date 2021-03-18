@@ -47,7 +47,7 @@ function maker(text) {
     encoder.finish()
 }
 
-function helper(text) {
+async function helper(text) {
     maker(text)
 }
 

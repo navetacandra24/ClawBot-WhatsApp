@@ -1,12 +1,12 @@
 const chalk = require("chalk");
 
-async function logMSG(m) {
+function logMSG(m, command) {
     let numFrom = m.from.split('@')[0].split('-')[0];
     let numTo = m.to.split('@')[0].split('-')[0];
-    let content = m.body;
-    let d = new Date()
-    let date = `${d.toLocaleDateString('id-ID').replace('/', ' : ')} | ${d.toLocaleTimeString('id-ID').replace('.', ' : ')}`;
-    const format = `\n${chalk.cyan('[ RECEIVED ]')} ${chalk.green('~'+numFrom)} ${chalk.black.bgYellow(date)} to ${chalk.green(numTo)}\n${content}\n`
+    let d = new Date();
+    let _is = command.includes(m.body.toLowerCase().slice(1).split(/ +/)[0])
+    let date = `${d.toLocaleDateString('id-ID').replace(new RegExp('/', 'g'), ' : ')} | ${d.toLocaleTimeString('id-ID').replace('.', ' : ').replace('.', ' : ')}`;
+    const format = `${chalk.cyanBright('[ RECEIVED ]')} ${chalk.green('~' + numFrom)} ${chalk.white.bgYellow(date)} ${m.hasMedia ? `${chalk.bgYellowBright.black(' MEDIA ')}` : ``}\n${_is ? `${chalk.yellow(m.body)}` : `${m.body}`}`
     console.log(format);
 }
 
