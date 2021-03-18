@@ -74,7 +74,7 @@ function Run() {
 
     // let commands = [];
     let commandsName = [] //['anime', 'apakah', 'attp', 'bcgc', 'bc', 'gtranslate', 'help', 'kapan', 'ss', 'speed', 'sticker', 'waifu', 'wiki', 'ttp'];
-    commandDB.forEach(e => commandsName.push(e))
+    commandDB.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
     client.on('message', message => {
         const PREFIX = ['/', '#', '!']
