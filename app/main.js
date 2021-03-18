@@ -92,8 +92,8 @@ function Run() {
         const cmnd = args.shift().toLowerCase();
 
         if (commandsName.map(e => e).includes(cmnd)) {
-            const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].file);
-            console.log(c.exec);
+            const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].require);
+            // console.log(c.exec);
             c.exec({
                 m: message,
                 args: args,
