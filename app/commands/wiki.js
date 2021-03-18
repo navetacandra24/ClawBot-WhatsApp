@@ -1,6 +1,5 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-const lib = require(`${__dirname}/../lib/r2str`)
 
 String.prototype.replaceArray = function(find, replace) {
     var replaceString = this;
@@ -17,10 +16,6 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    command: /wiki/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v + ' <pencarian>')
-    },
     async exec({m, args}) {
 
         const baseWiki = 'https://id.wikipedia.org/wiki/';

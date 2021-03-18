@@ -10,8 +10,8 @@ const handler = {
             if (args.length >= 1) {
                 const chats = await client.getChats();
                 let contact = [];
-                for (let i = 0; i < chats.length; i++) {
-                    let chat = chat.filter(e => !e.isReadOnly)
+                let chat = chats.filter(e => !e.isReadOnly)
+                for (let i = 0; i < chat.length; i++) {
                     contact.push(chat[i].id._serialized)
                 }
                 // client.sendMessage(contact[0], args.join(' '))

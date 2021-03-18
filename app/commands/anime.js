@@ -9,10 +9,6 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 const handler = {
-    command: /(anime|animelist)/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v + '<limit list (Max 50, Default 10)>')
-    },
     async exec({ m, args}) {
         let req = 10;
         if (args.length >= 1) req = Number(args[0]);

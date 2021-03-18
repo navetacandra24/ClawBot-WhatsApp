@@ -74,17 +74,12 @@ function Run() {
 
     // let commands = [];
     let commandsName = [] //['anime', 'apakah', 'attp', 'bcgc', 'bc', 'gtranslate', 'help', 'kapan', 'ss', 'speed', 'sticker', 'waifu', 'wiki', 'ttp'];
-    const commandsFile = fs.readdirSync(`${__dirname}/commands/`).filter(files => files.endsWith('.js'));
-    for(const file of commandsFile) {
-        const command = require(`${__dirname}/commands/${file}`);
-        r2str(command.command).map(e => commandsName.push(e))
-    }
+    commandDB.forEach(e => commandsName.push(e))
 
     client.on('message', message => {
         const PREFIX = ['/', '#', '!']
         logMSG(message, commandsName)
         client.sendSeen(message.from)
-        // console.log(commands.length);
         if (!PREFIX.includes(message.body.charAt(0))) return;
 
 

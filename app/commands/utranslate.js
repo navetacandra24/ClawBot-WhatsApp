@@ -1,5 +1,4 @@
 const utranslate = require(`${__dirname}/../helper/utranslate`);
-const lib = require(`${__dirname}/../lib/r2str`)
 
 const lang = {
     Indonesia: 'Indonesia',

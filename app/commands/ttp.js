@@ -1,25 +1,26 @@
 const webp = require('webp-converter');
 const ttp = require(`${__dirname}/../helper/ttp`);
 const fs = require('fs')
-const lib = require(`${__dirname}/../lib/r2str`)
+
+async function make(m, args, MessageMedia) {
+    await m.reply('Memproses..')
+    const text = args.join(' ');
+    await ttp(text);
+    let media = MessageMedia.fromFilePath(`${__dirname}/../src/ttp.jpg`);
+    await m.reply(media, m.from, { sendMediaAsSticker: true });
+}
 
 const handler = {
-    command: /ttp/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v + ' <teks>')
-    },
     async exec({ m, args, MessageMedia, client }) {
-        if (fs.existsSync(`${__dirname}/../ttp.txt`)) {
-            m.reply(`Sedang dalam prose lain.. ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​\n*Coba lagi nanti*`)
+        if (args.length < 1) {
+            m.reply('Uhmm.. teksnya?')
         } else {
-            await fs.writeFileSync(`${__dirname}/../ttp.txt`, '')
-            await m.reply('Memproses..')
-            const text = args.join(' ');
-            await ttp(text)
-            let media = MessageMedia.fromFilePath(`${__dirname}/../src/ttp.jpg`)
-            await m.reply(media, m.from, { sendMediaAsSticker: true })
-            fs.unlinkSync(`${__dirname}/../src/ttp.jpg`)
-            fs.unlinkSync(`${__dirname}/../ttp.txt`)
+            if (fs.existsSync(`${__dirname}/../src/ttp.jpg`)) {
+                fs.unlinkSync(`${__dirname}/../src/ttp.jpg`)
+                make(m, args, MessageMedia)
+            } else {
+                make(m, args, MessageMedia)
+            }
         }
     }
 }

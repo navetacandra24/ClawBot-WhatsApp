@@ -1,12 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs')
-const lib = require(`${__dirname}/../lib/r2str`)
 
 const handler = {
-    command: /(ss|ssweb)/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v + ' <url>')
-    },
     async exec({ m, MessageMedia, args }) {
         let browser = null;
         let url = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0];

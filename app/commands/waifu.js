@@ -1,12 +1,7 @@
 const generateWaifu = require('waifu-generator');
 const fs = require('fs')
-const lib = require(`${__dirname}/../lib/r2str`)
 
 const handler = {
-    command: /(gachawaifu|waifu)/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v)
-    },
     async exec({ m, MessageMedia, client }) {
 
         const opt = {

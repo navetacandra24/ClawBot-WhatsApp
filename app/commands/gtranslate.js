@@ -1,12 +1,7 @@
 const gtranslate = require(`${__dirname}/../helper/gtranslate`);
-const lib = require(`${__dirname}/../lib/r2str`)
 
 
 const handler = {
-    command: /gtranslate/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v + ' <bahasa asal> <bahasa tujuan> <teks> (Support Inggris & Indonesia only)')
-    },
     async exec({ m, args }) {
 
         if (args.length < 3) {

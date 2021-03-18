@@ -1,9 +1,4 @@
-const lib = require(`${__dirname}/../lib/r2str`)
 const handler = {
-    command: /bcgc/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v + ' <pesan> (Owner only)')
-    },
     async exec({ args, client, m }) {
         
         if (m.from.includes('6285311174928')) {

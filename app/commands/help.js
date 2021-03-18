@@ -12,10 +12,6 @@ let commandsHelp = []
 
 
 const handler = {
-    command: /(help|menu|\?)/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v)
-    },
     async exec({ m, client }) {
         const commandsDB = require(`${__dirname}/../commands-database`);
         if (commandsHelp.length < 1) {

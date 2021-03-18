@@ -4,11 +4,7 @@ function pickRandom(list) {
 };
 
 const handler = {
-    command: /apakah/,
-    helper: function () {
-        return lib(this.command).map(v => '#' + v + ' <pertanyaan>')
-    },
-    async exec({m, args, client}) {
+    async exec({m, client}) {
         const pertanyaan = m.body.slice(1);
         const jawaban = pickRandom(['Ya', 'Mungkin iya', 'Mungkin', 'Mungkin tidak', 'Tidak', 'Tidak mungkin']);
         if (m.mentionedIds) {
