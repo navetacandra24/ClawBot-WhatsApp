@@ -6,7 +6,6 @@ const commandDB = require(`${__dirname}/commands-database`)
 const cr = require(`${__dirname}/credit`)
 const r2str = require(`${__dirname}/lib/r2str`)
 
-
 function Run() {
     const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
     let sessionCfg;
@@ -93,20 +92,14 @@ function Run() {
         const cmnd = args.shift().toLowerCase();
 
         if (commandsName.map(e => e).includes(cmnd)) {
-            const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].file);
-            c.exec({
+            const c = require.cache[commandDB.filter(v => v.commands.includes(cmnd))[0].file];
+            // console.log(c.exports.exec);
+            c.exports.exec({
                 m: message,
                 args: args,
                 client: client,
                 MessageMedia: MessageMedia
             });
-            // console.log('lolos');
-            // commands.filter(cmd => cmd.name.includes(command))[0].exec({
-            //     m: message,
-            //     args: args,
-            //     client: client,
-            //     MessageMedia: MessageMedia
-            // });
 
         };
     });

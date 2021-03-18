@@ -8,7 +8,7 @@ function clockString(ms) {
     return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(' : ')
 };
 
-let commandsName = []
+let commandsHelp = []
 
 
 const handler = {
@@ -17,26 +17,24 @@ const handler = {
         return lib(this.command).map(v => '#' + v)
     },
     async exec({ m, client }) {
-        const commandsFile = fs.readdirSync(`${__dirname}`).filter(files => files.endsWith('.js'));
-        if (commandsName.length < 1) {
-            for(const file of commandsFile) {
-                const command = await require(`${__dirname}/${file}`);
-                let helper = command.helper()
-                helper.forEach(e => {
-                    commandsName.push(e)
-                    
-                })
-            }
-        }
+        const commandsDB = require(`${__dirname}/../commands-database`);
+        commandsDB.forEach(cmd => {
+            cmd.help.forEach(e => {
+                commandsHelp.push(e)
+            })
+        });
+
         let mentions = [];
         let creator = '';
-        // const ct = await m.getContact();
+
         let d = new Date
         let locale = 'id'
-        let gmt = new Date(0).getTime() - new Date('1 January 1970').getTime()
+
         const ct = await m.getContact();
         mentions.push(await client.getContactById(ct.id._serialized));
+        mentions.push(await client.getContactById('6285311174928@c.us'));
         creator += ct.id.user
+
         // let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(Math.pow((((d * 1) + gmt) / 84600000), 1/7))]
         let week = d.toLocaleDateString(locale, { weekday: 'long' })
         let date = d.toLocaleDateString(locale, {
@@ -45,14 +43,16 @@ const handler = {
             year: 'numeric'
         });
         let time = new Date().toLocaleString('id-ID').split(' ')[1].split('.').join(' : ');
+
         let commandsList = [];
-        for (let i = 0; i < commandsName.length; i++) {
-            if (i === commandsName.length - 1) {
-                commandsList.push(`│ • ${commandsName[i]}`)
+        for (let i = 0; i < commandsHelp.length; i++) {
+            if (i === commandsHelp.length - 1) {
+                commandsList.push(`│ • ${commandsHelp[i]}`)
             } else {
-                commandsList.push(`│ • ${commandsName[i]}\n`)
+                commandsList.push(`│ • ${commandsHelp[i]}\n`)
             }
         }
+
         const message = `
 ╭─「 ClawBot 」
 │ Hai, @${creator}!
@@ -63,8 +63,9 @@ const handler = {
 ╰────
 ╭─「 Command 」
 ${commandsList.map(v => v).join('').replace(/,/g, '')}
-╰────`;
-        // console.log(message);
+╰────
+Creator : @6285311174928`;
+        // console.log(mentions);
         m.reply(message, m.from, {mentions: mentions})
     }
 }
