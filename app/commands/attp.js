@@ -7,23 +7,27 @@ async function execute(m, args, MessageMedia) {
     // await fs.writeFileSync(`${__dirname}/../attp.txt`, '')
     await m.reply('Memproses..')
     const text = args.join(' ');
-    await attp(text)
-
-    webp.grant_permission();
-
-    const result = webp.gwebp(`${__dirname}/../src/attp.gif`, `${__dirname}/../src/attp.webp`, "-q 80", logging = "-v");
-    result
-        .then(e => {
-            return
+    attp(text)
+    webp.grant_permission()
+    
+    setTimeout(() => {
+        const result = webp.gwebp(`${__dirname}/../src/attp.gif`, `${__dirname}/../src/attp.webp`, "-q 80", logging = "-v");
+        result
+            .then(e => {
+                return
+            })
+            .catch(err => {
+                m.reply(err)
+            })
+            .finally(async () => {
+                setTimeout(() => {
+                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
+                await m.reply(media, m.from, { sendMediaAsSticker: true })
+                }, 300);
+                // fs.unlinkSync(`${__dirname}/../attp.txt`)
         })
-        .catch(err => {
-            m.reply(err)
-        })
-        .finally(async () => {
-            let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
-            await m.reply(media, m.from, { sendMediaAsSticker: true })
-            // fs.unlinkSync(`${__dirname}/../attp.txt`)
-    })
+    }, 1000);
+
 }
 
 const handler = {
