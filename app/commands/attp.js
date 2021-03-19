@@ -1,47 +1,24 @@
-const fs = require('fs');
-const webp = require('webp-converter')
-const attp = require(`${__dirname}/../helper/attp`)
-const lib = require(`${__dirname}/../lib/r2str`)
-
-async function execute(m, args, MessageMedia) {
-    // await fs.writeFileSync(`${__dirname}/../attp.txt`, '')
-    await m.reply('Memproses..')
-    const text = args.join(' ');
-    attp(text)
-    webp.grant_permission()
-    
-    setTimeout(() => {
-        const result = webp.gwebp(`${__dirname}/../src/attp.gif`, `${__dirname}/../src/attp.webp`, "-q 80", logging = "-v");
-        result
-            .then(e => {
-                return
-            })
-            .catch(err => {
-                m.reply(err)
-            })
-            .finally(async () => {
-                setTimeout(async () => {
-                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/attp.webp`)
-                await m.reply(media, m.from, { sendMediaAsSticker: true })
-                }, 300);
-                // fs.unlinkSync(`${__dirname}/../attp.txt`)
-        })
-    }, 1000);
-
-}
+const fetch = require('node-fetch')
 
 const handler = {
     async exec({ m, args, MessageMedia, client }) {
         if (args.length < 1) {
             m.reply('Uhmm.. teksnya?')
         } else {
-            if (fs.existsSync(`${__dirname}/../src/attp.webp`)) {
-                fs.unlinkSync(`${__dirname}/../src/attp.gif`)
-                fs.unlinkSync(`${__dirname}/../src/attp.webp`)
-                execute(m, args, MessageMedia)
-            } else {
-                execute(m, args, MessageMedia)
-            }
+            // if (fs.existsSync(`${__dirname}/../src/attp.webp`)) {
+            //     fs.unlinkSync(`${__dirname}/../src/attp.gif`)
+            //     fs.unlinkSync(`${__dirname}/../src/attp.webp`)
+            //     execute(m, args, MessageMedia)
+            // } else {
+            //     execute(m, args, MessageMedia)
+            // }
+            // await m.reply()
+            let _fetch = await fetch('http://fierce-brushlands-90323.herokuapp.com/attp?text=' + args.join(' '));
+            let _res = await _fetch.json();
+            let _mimetype = _res.results.data.mimetype;
+            let _base64 = _res.results.data.base64;
+            let media = new MessageMedia(_mimetype, _base64, undefined);
+            m.reply(media, m.from, {sendMediaAsSticker: true})
         }
     }
 }

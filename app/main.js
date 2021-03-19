@@ -62,7 +62,6 @@ function Run() {
     });
 
     client.on('ready',async () => {
-        // console.log('Bot is ready!')
         console.clear();
         cr()
         let ct = await client.getContacts()
@@ -73,7 +72,7 @@ function Run() {
     })
 
     // let commands = [];
-    let commandsName = [] //['anime', 'apakah', 'attp', 'bcgc', 'bc', 'gtranslate', 'help', 'kapan', 'ss', 'speed', 'sticker', 'waifu', 'wiki', 'ttp'];
+    let commandsName = []
     commandDB.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
     client.on('message', message => {

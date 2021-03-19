@@ -49,6 +49,13 @@ let a = [
         tag: 'Tools'
     },
     {
+        commands: ['glitchtext'],
+        file: `${__dirname}\\commands\\glitchtext.js`,
+        require: `${__dirname}/commands/glitchtext`,
+        help: ['glitchtext'].map(v => '#' + v + ' <Teks 1> | <Teks 2>'),
+        tag: 'Tools'
+    },
+    {
         commands: ['help', 'menu', '?'],
         file: `${__dirname}\\commands\\help.js`,
         require: `${__dirname}/commands/help`,
@@ -105,7 +112,7 @@ let a = [
         tag: 'Tools'
     },
     {
-        commands: ['gacha', ''].map(v => 'waifu' + v),
+        commands: ['gacha', ''].map(v => v + 'waifu'),
         file: `${__dirname}\\commands\\waifu.js`,
         require: `${__dirname}/commands/waifu`,
         help: ['#gacha', '#'].map(v => v + 'waifu'),

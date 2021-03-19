@@ -1,26 +1,15 @@
-const webp = require('webp-converter');
-const ttp = require(`${__dirname}/../helper/ttp`);
-const fs = require('fs')
-
-async function make(m, args, MessageMedia) {
-    await m.reply('Memproses..')
-    const text = args.join(' ');
-    await ttp(text);
-    let media = MessageMedia.fromFilePath(`${__dirname}/../src/ttp.jpg`);
-    await m.reply(media, m.from, { sendMediaAsSticker: true });
-}
-
+const fetch = require('node-fetch')
 const handler = {
     async exec({ m, args, MessageMedia, client }) {
         if (args.length < 1) {
             m.reply('Uhmm.. teksnya?')
         } else {
-            if (fs.existsSync(`${__dirname}/../src/ttp.jpg`)) {
-                fs.unlinkSync(`${__dirname}/../src/ttp.jpg`)
-                make(m, args, MessageMedia)
-            } else {
-                make(m, args, MessageMedia)
-            }
+            let _fetch = await fetch('http://fierce-brushlands-90323.herokuapp.com/ttp?text=' + args.join(' '));
+            let _res = await _fetch.json();
+            let _mimetype = _res.results.data.mimetype;
+            let _base64 = _res.results.data.base64;
+            let media = new MessageMedia(_mimetype, _base64, undefined);
+            m.reply(media, m.from, {sendMediaAsSticker: true})
         }
     }
 }
