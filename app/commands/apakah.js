@@ -1,4 +1,3 @@
-const lib = require(`${__dirname}/../lib/r2str`)
 function pickRandom(list) {
     return list[Math.floor(Math.random() * list.length)]
 };

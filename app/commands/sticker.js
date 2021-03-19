@@ -8,6 +8,10 @@ const handler = {
             } else {
                 m.reply('Hanya support untuk gambar!')
             }
+        } else {
+            if (m.hasQuotedMsg) {
+                m.reply('Work caption only!')
+            }
         }
     }
 };

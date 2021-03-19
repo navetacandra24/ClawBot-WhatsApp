@@ -5,7 +5,7 @@ const handler = {
         let url = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0]
         let res;
         try {
-            let _res = await fetch(`https://fierce-brushlands-90323.herokuapp.com/tinyurl?url=${url}`);
+            let _res = await fetch(`https://fierce-brushlands-90323.herokuapp.com/bitly?url=${url}`);
             res = await _res.json()
         } catch (err) {
             m.reply(err)

@@ -1,5 +1,5 @@
-const fs = require('fs')
-const lib = require(`${__dirname}/../lib/r2str`)
+const commandsDB = require(`${__dirname}/../commands-database`);
+const readmore = String.fromCharCode(8206).repeat(4001);
 
 function clockString(ms) {
     let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
@@ -8,19 +8,66 @@ function clockString(ms) {
     return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(' : ')
 };
 
-let commandsHelp = []
+function mapCommand(arrCmd) {
+    let commandsList = [];
+    for (let i = 0; i < arrCmd.length; i++) {
+        if (i === arrCmd.length - 1) {
+            commandsList.push(`│ • ${arrCmd[i]}`)
+        } else {
+            commandsList.push(`│ • ${arrCmd[i]}\n`)
+        }
+    }
+    return commandsList
+}
+function OwnerCommand() {
+    let ownCmd = []
+    if (ownCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Owner').forEach(e => {
+            e.help.map(va => ownCmd.push(va))
+        })
+    }
+    return ownCmd
+}
+function StickerCommand() {
+    let stickerCmd = []
+    if (stickerCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Sticker').forEach(e => {
+            e.help.map(va => stickerCmd.push(va))
+        })
+    }
+    return stickerCmd
+}
+function ToolsCommand() {
+    let toolsCmd = []
+    if (toolsCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Tools').forEach(e => {
+            e.help.map(va => toolsCmd.push(va))
+        })
+    }
+    return toolsCmd
+}
+function MainCommand() {
+    let mainCmd = []
+    if (mainCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Main').forEach(e => {
+            e.help.map(va => mainCmd.push(va))
+        })
+    }
+    return mainCmd
+}
+function KerangCommand() {
+    let kerangCmd = []
+    if (kerangCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Kerang').forEach(e => {
+            e.help.map(va => kerangCmd.push(va))
+        })
+    }
+    return kerangCmd
+}
 
 
 const handler = {
     async exec({ m, client }) {
-        const commandsDB = require(`${__dirname}/../commands-database`);
-        if (commandsHelp.length < 1) {
-            commandsDB.forEach(cmd => {
-                cmd.help.forEach(e => {
-                    commandsHelp.push(e)
-                })
-            });
-        }
 
         let mentions = [];
         let creator = '';
@@ -42,14 +89,6 @@ const handler = {
         });
         let time = new Date().toLocaleString('id-ID').split(' ')[1].split('.').join(' : ');
 
-        let commandsList = [];
-        for (let i = 0; i < commandsHelp.length; i++) {
-            if (i === commandsHelp.length - 1) {
-                commandsList.push(`│ • ${commandsHelp[i]}`)
-            } else {
-                commandsList.push(`│ • ${commandsHelp[i]}\n`)
-            }
-        }
 
         const message = `
 ╭─「 ClawBot 」
@@ -58,12 +97,30 @@ const handler = {
 │ Tanggal: *${week}, ${date}*
 │ Waktu: *${time}*
 │ Uptime: *${clockString(process.uptime() * 1000)}*
-╰────
-╭─「 Command 」
-${commandsList.map(v => v).join('').replace(/,/g, '')}
-╰────
+╰───────${readmore}
+
+╭─「 Main 」
+${mapCommand(MainCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Sticker 」
+${mapCommand(StickerCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Owner 」
+${mapCommand(OwnerCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Tools 」
+${mapCommand(ToolsCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Kerang Ajaib 」
+${mapCommand(KerangCommand()).join('').replace(/,/g, '')}
+╰───────
+
 Creator : @6285311174928`;
-        // console.log(mentions);
+        // console.log(OwnerCommand());
         m.reply(message, m.from, {mentions: mentions})
     }
 }

@@ -74,11 +74,11 @@ function Run() {
     let commandsName = []
     commandDB.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
-    client.on('message', message => {
+    client.on('message',async message => {
         const PREFIX = ['/', '#', '!']
         logMSG(message, commandsName)
         client.sendSeen(message.from)
-        if (!PREFIX.includes(message.body.charAt(0))) return;
+        if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
 
 
         let args = message.body.slice(1).split(/ +/);
@@ -86,8 +86,7 @@ function Run() {
 
         if (commandsName.map(e => e).includes(cmnd)) {
             const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].require);
-            // console.log(c.exec);
-            c.exec({
+            await c.exec({
                 m: message,
                 args: args,
                 client: client,

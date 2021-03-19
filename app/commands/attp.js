@@ -13,7 +13,10 @@ const handler = {
             //     execute(m, args, MessageMedia)
             // }
             // await m.reply()
-            let _fetch = await fetch('http://fierce-brushlands-90323.herokuapp.com/attp?text=' + args.join(' '));
+            let _fetch = await fetch('http://fierce-brushlands-90323.herokuapp.com/attp?text=' + encodeURIComponent(args.join(' ')), {
+                mode: 'no-cors',
+                timeout: 100 * 60 * 60
+            });
             let _res = await _fetch.json();
             let _mimetype = _res.results.data.mimetype;
             let _base64 = _res.results.data.base64;

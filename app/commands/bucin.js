@@ -1,6 +1,6 @@
 const handler = {
     async exec({ m }) {
-        m.reply(pickRandom(bucin))
+        m.reply(`_${pickRandom(bucin)}_`)
     }
 }
 

@@ -5,13 +5,15 @@ const handler = {
         let fullText = args.join(' ');
         let _ft = fullText.split(' | ')
         if (_ft.length >= 2) {
-            await m.reply('Memproses..\n*Mohon tunggu sebentar*')
+            await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
             let link = `http://fierce-brushlands-90323.herokuapp.com/glitch-text?text1=${_ft[0]}&text2=${_ft[1]}`;
             
-            let _fetch = await fetch(link);
+            let _fetch = await fetch(link, {
+                mode: 'no-cors',
+                timeout: 100 * 60 * 60
+            });
             let _res = await _fetch.json();
-            let _base64 = await _res.base64;
-            // console.log(link);
+            let _base64 = await _res.results.data.base64;
             let media = new MessageMedia('image/jpeg', _base64, '');
             m.reply(media)
         } else {

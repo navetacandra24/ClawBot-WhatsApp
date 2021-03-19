@@ -1,5 +1,15 @@
 const gtranslate = require(`${__dirname}/../helper/gtranslate`);
 
+const lang = {
+    Indonesia: 'Indonesia',
+    Indonesian: 'Indonesia',
+    indonesia: 'Indonesia',
+    indonesian: 'Indonesia',
+    Inggris: 'Inggris',
+    inggris: 'Inggris',
+    English: 'Inggris',
+    english: 'Inggris'
+}
 
 const handler = {
     async exec({ m, args }) {
