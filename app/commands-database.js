@@ -10,35 +10,35 @@ let a = [
         commands: ['apakah'],
         file: `${__dirname}\\commands\\apakah.js`,
         require: `${__dirname}/commands/apakah.js`,
-        help: ['apakah'].map(v => '#' + v + ' <pertanyaan>'),
+        help: ['apakah'].map(v => '#' + v + ' <Pertanyaan>'),
         tag: 'Kerang'
     },
     {
         commands: ['attp'],
         file: `${__dirname}\\commands\\attp.js`,
         require: `${__dirname}/commands/attp.js`,
-        help: ['attp'].map(v => '#' + v + ' <teks>'),
+        help: ['attp'].map(v => '#' + v + ' <Teks>'),
         tag: 'Sticker'
     },
     {
         commands: ['bcgc'],
         file: `${__dirname}\\commands\\bcgc.js`,
         require: `${__dirname}/commands/bcgc.js`,
-        help: ['bcgc'].map(v => '#' + v + ' <pesan>  *(OWNER)*'),
+        help: ['bcgc'].map(v => '#' + v + ' <Pesan>'),
         tag: 'Owner'
     },
     {
         commands: ['bc'],
         file: `${__dirname}\\commands\\bc.js`,
         require: `${__dirname}/commands/bc.js`,
-        help: ['bc'].map(v => '#' + v + ' <pesan> *(OWNER)*'),
+        help: ['bc'].map(v => '#' + v + ' <Pesan>'),
         tag: 'Owner'
     },
     {
         commands: ['bitly'],
         file: `${__dirname}\\commands\\bitly.js`,
         require: `${__dirname}/commands/bitly.js`,
-        help: ['bitly'].map(v => '#' + v + ' <url>'),
+        help: ['bitly'].map(v => '#' + v + ' <Url>'),
         tag: 'Tools'
     },
     {
@@ -47,6 +47,13 @@ let a = [
         require: `${__dirname}/commands/bucin.js`,
         help: ['bucin'].map(v => '#' + v),
         tag: 'Quotes'
+    },
+    {
+        commands: ['', 'f'].map(v => 'google' + v),
+        file: `${__dirname}\\commands\\google.js`,
+        require: `${__dirname}/commands/google.js`,
+        help: ['', 'f'].map(v => '#google' + v + ' <Pencarian>'),
+        tag: 'Tools'
     },
     {
         commands: ['gtranslate'],
@@ -73,21 +80,21 @@ let a = [
         commands: ['kah', ''].map(v => 'kapan' + v),
         file: `${__dirname}\\commands\\kapan.js`,
         require: `${__dirname}/commands/kapan.js`,
-        help: ['kah', ''].map(v => '#kapan' + v + ' <pertanyaan>'),
+        help: ['kah', ''].map(v => '#kapan' + v + ' <Pertanyaan>'),
         tag: 'Kerang'
     },
     {
         commands: ['web', ''].map(v => 'ss' + v),
         file: `${__dirname}\\commands\\ss.js`,
         require: `${__dirname}/commands/ss.js`,
-        help: ['web', ''].map(v => '#ss' + v + ' <url>'),
+        help: ['web', ''].map(v => '#ss' + v + ' <Url>'),
         tag: 'Tools'
     },
     {
         commands: ['cker', 'ker'].map(v => 'sti' + v),
         file: `${__dirname}\\commands\\sticker.js`,
         require: `${__dirname}/commands/sticker.js`,
-        help: ['cker', 'ker'].map(v => '#sti' + v + ' (caption)'),
+        help: ['cker', 'ker'].map(v => '#sti' + v + ' (Caption)'),
         tag: 'Sticker'
     },
     {
@@ -105,10 +112,10 @@ let a = [
         tag: 'Tools'
     },
     {
-        commands: ['tinyurl'],
-        file: `${__dirname}\\commands\\tinyurl.js`,
-        require: `${__dirname}/commands/tinyurl.js`,
-        help: ['tinyurl'].map(v => '#' + v + ' <url>'),
+        commands: ['tinyUrl'],
+        file: `${__dirname}\\commands\\tinyUrl.js`,
+        require: `${__dirname}/commands/tinyUrl.js`,
+        help: ['tinyUrl'].map(v => '#' + v + ' <Url>'),
         tag: 'Tools'
     },
     {
