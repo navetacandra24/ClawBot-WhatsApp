@@ -4,7 +4,6 @@ const chalk = require('chalk');
 const logMSG = require('./log');
 const commandDB = require(`${__dirname}/commands-database`)
 const cr = require(`${__dirname}/credit`)
-const r2str = require(`${__dirname}/lib/r2str`)
 
 function Run() {
     const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
