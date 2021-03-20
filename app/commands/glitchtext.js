@@ -10,11 +10,11 @@ const handler = {
             
                 let _fetch = await fetch(link, {
                     mode: 'no-cors',
-                    timeout: 36000*24
+                    timeout: 36000 * 24
                 });
                 let _res = await _fetch.json();
                 let _base64 = await _res.results.data.base64;
-                if (_base64 === '' || !_base64.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD//')) {
+                if (_base64 === '' || !_base64.startsWith('/9')) {
                     m.reply('*Maaf gambar tidak dapat dikirim karena terjadi kesalahan system*')
                 } else {
                     let media = new MessageMedia('image/jpeg', _base64, '');
