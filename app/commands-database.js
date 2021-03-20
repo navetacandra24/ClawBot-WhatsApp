@@ -84,6 +84,13 @@ let a = [
         tag: 'Kerang'
     },
     {
+        commands: ['speed', 'ping'],
+        file: `${__dirname}\\commands\\speed.js`,
+        require: `${__dirname}/commands/speed.js`,
+        help: ['speed', 'ping'].map(v => '#' + v),
+        tag: 'Tools'
+    },
+    {
         commands: ['web', ''].map(v => 'ss' + v),
         file: `${__dirname}\\commands\\ss.js`,
         require: `${__dirname}/commands/ss.js`,
@@ -96,13 +103,6 @@ let a = [
         require: `${__dirname}/commands/sticker.js`,
         help: ['cker', 'ker'].map(v => '#sti' + v + ' (Caption)'),
         tag: 'Sticker'
-    },
-    {
-        commands: ['speed', 'ping'],
-        file: `${__dirname}\\commands\\sticker.js`,
-        require: `${__dirname}/commands/sticker.js`,
-        help: ['speed', 'ping'].map(v => '#' + v),
-        tag: 'Tools'
     },
     {
         commands: ['har', 'tah'].map(v => v + 'ta'),
