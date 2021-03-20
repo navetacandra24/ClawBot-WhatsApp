@@ -4,8 +4,7 @@ const handler = {
     async exec({ m, args, MessageMedia, client }) {
         if (args.length >= 1) {
             await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
-            let link = 'https://fierce-brushlands-90323.herokuapp.com/ytbutton?type=gold&name=' + args.join(' ');
-            // let link = 'http://localhost:443/ytbutton?type=gold&name=' + args.join(' ');
+            let link = 'https://fierce-brushlands-90323.herokuapp.com/ytbutton?type=silver&name=' + args.join(' ');
             let _fetch = await fetch(link, { mode: 'no-cors', timeout: 1000 * 3600 * 24 });
             let _res = await _fetch.json();
             let _mimetype = await _res.results.data.mimetype;

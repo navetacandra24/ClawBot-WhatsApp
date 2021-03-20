@@ -64,6 +64,15 @@ function KerangCommand() {
     }
     return kerangCmd
 }
+function MakerCommand() {
+    let makerCmd = []
+    if (makerCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Maker').forEach(e => {
+            e.help.map(va => makerCmd.push(va))
+        })
+    }
+    return makerCmd
+}
 
 
 const handler = {
@@ -105,6 +114,10 @@ ${mapCommand(MainCommand()).join('').replace(/,/g, '')}
 
 ╭─「 Sticker 」
 ${mapCommand(StickerCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Maker 」
+${mapCommand(MakerCommand()).join('').replace(/,/g, '')}
 ╰───────
 
 ╭─「 Owner 」

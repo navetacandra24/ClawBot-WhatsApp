@@ -7,10 +7,11 @@ const handler = {
             if (_ft.length >= 2) {
                 await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
                 let link = `http://fierce-brushlands-90323.herokuapp.com/glitch-text?text1=${encodeURIComponent(_ft[0])}&text2=${encodeURIComponent(_ft[1])}`;
+                // let link = `http://localhost:443/glitch-text?text1=${encodeURIComponent(_ft[0])}&text2=${encodeURIComponent(_ft[1])}`;
             
                 let _fetch = await fetch(link, {
                     mode: 'no-cors',
-                    timeout: 36000 * 24
+                    timeout: 1000 * 3600 * 24
                 });
                 let _res = await _fetch.json();
                 let _base64 = await _res.results.data.base64;

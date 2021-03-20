@@ -8,7 +8,7 @@ const handler = {
     async exec({ m, args }) {
         if (args.length >= 1) {
             let q = args.join(' ');
-            let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/google?q=${q}`);
+            let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/google?q=${q}`, {mode: 'no-cors', timeout: 1000 * 3600 * 24});
             let _res = await _fetch.json();
             let _stat = await _res.status
             if (_stat === "success") {

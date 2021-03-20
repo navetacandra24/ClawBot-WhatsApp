@@ -67,7 +67,7 @@ let a = [
         file: `${__dirname}\\commands\\glitchtext.js`,
         require: `${__dirname}/commands/glitchtext.js`,
         help: ['glitchtext'].map(v => '#' + v + ' <Teks 1> | <Teks 2>'),
-        tag: 'Tools'
+        tag: 'Maker'
     },
     {
         commands: ['help', 'menu', '?'].map(v => v),
@@ -109,10 +109,10 @@ let a = [
         file: `${__dirname}\\commands\\tahta.js`,
         require: `${__dirname}/commands/tahta.js`,
         help: ['harta', 'tahta'].map(v => '#' + v + ' <Teks>'),
-        tag: 'Tools'
+        tag: 'Maker'
     },
     {
-        commands: ['tinyUrl'],
+        commands: ['tinyurl'],
         file: `${__dirname}\\commands\\tinyUrl.js`,
         require: `${__dirname}/commands/tinyUrl.js`,
         help: ['tinyUrl'].map(v => '#' + v + ' <Url>'),
@@ -151,7 +151,14 @@ let a = [
         file: `${__dirname}\\commands\\ytgold.js`,
         require: `${__dirname}/commands/ytgold.js`,
         help: ['ytgold'].map(v => '#' + v + ' <Nama>'),
-        tag: 'Tools'
+        tag: 'Maker'
+    },
+    {
+        commands: ['ytsilver'],
+        file: `${__dirname}\\commands\\ytsilver.js`,
+        require: `${__dirname}/commands/ytsilver.js`,
+        help: ['ytsilver'].map(v => '#' + v + ' <Nama>'),
+        tag: 'Maker'
     },
 ]
 
