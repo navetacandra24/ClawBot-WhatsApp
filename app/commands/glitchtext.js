@@ -6,7 +6,7 @@ let exist = fs.existsSync(path)
 
 const handler = {
     async exec({ m, args, MessageMedia }) {
-        if (!exist) {
+        if (exist !== true) {
             await fs.writeFileSync(path, '');
             let fullText = args.join(' ');
             let _ft = fullText.split(' | ')
