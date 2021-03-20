@@ -145,7 +145,14 @@ let a = [
         require: `${__dirname}/commands/wiki.js`,
         help: ['wiki'].map(v => '#' + v + ' <Pencarian>'),
         tag: 'Tools'
-    }
+    },
+    {
+        commands: ['ytgold'],
+        file: `${__dirname}\\commands\\ytgold.js`,
+        require: `${__dirname}/commands/ytgold.js`,
+        help: ['ytgold'].map(v => '#' + v + ' <Nama>'),
+        tag: 'Tools'
+    },
 ]
 
 module.exports = a

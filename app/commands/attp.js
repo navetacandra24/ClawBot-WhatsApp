@@ -5,14 +5,6 @@ const handler = {
         if (args.length < 1) {
             m.reply('Uhmm.. teksnya?')
         } else {
-            // if (fs.existsSync(`${__dirname}/../src/attp.webp`)) {
-            //     fs.unlinkSync(`${__dirname}/../src/attp.gif`)
-            //     fs.unlinkSync(`${__dirname}/../src/attp.webp`)
-            //     execute(m, args, MessageMedia)
-            // } else {
-            //     execute(m, args, MessageMedia)
-            // }
-            // await m.reply()
             let _fetch = await fetch('http://fierce-brushlands-90323.herokuapp.com/attp?text=' + encodeURIComponent(args.join(' ')), {
                 mode: 'no-cors',
                 timeout: 100 * 60 * 60

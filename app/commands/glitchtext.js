@@ -1,14 +1,8 @@
 const fetch = require("node-fetch");
-const fs = require('fs')
-
-let path = `${__dirname}/../glitch-proses.txt`
-let exist = fs.existsSync(path)
 
 const handler = {
     async exec({ m, args, MessageMedia }) {
-        if (exist !== true) {
-            await fs.writeFileSync(path, '');
-            let fullText = args.join(' ');
+        let fullText = args.join(' ');
             let _ft = fullText.split(' | ')
             if (_ft.length >= 2) {
                 await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
@@ -23,18 +17,12 @@ const handler = {
                     let _base64 = await _res.results.data.base64;
                     let media = new MessageMedia('image/jpeg', _base64, '');
                     m.reply(media)
-                    fs.unlinkSync(path)
                 } catch (err) {
                     m.reply(err)
-                    fs.unlinkSync(path)
                 }
             } else {
                 m.reply('Masukkan format dengan benar\n*Contoh :* #glitchtext Clawbot | GG Gaming')
-                fs.unlinkSync(path)
             }
-        } else {
-            m.reply('Maaf sedang dalam proses lain\n *Mohon coba lagi nanti!*')
-        }
     }
 }
 
