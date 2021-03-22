@@ -1,11 +1,11 @@
 const handler = {
-    async exec({ args, client, m }) {
+    async exec({ args, client, m, messageFrom }) {
         
         let chat = await client.getChatById(m.from);
         if (chat.isGroup) {
             if (m.mentionedIds) {
                 console.log(m.mentionedIds);
-                if (chat.groupMetadata.participants.filter(e => e.id._serialized === m.author)[0].isAdmin) {
+                if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin) {
                     let botnumber = '6281991115938@c.us';
                     let ownerbot = '6285311174928@c.us';
                     let ownergroup = chat.groupMetadata.participants.filter(e => e.isSuperAdmin);
