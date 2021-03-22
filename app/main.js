@@ -77,7 +77,7 @@ function Run() {
     client.on('message', async message => {
         const PREFIX = ['/', '#', '!'];
         const from = message.author ? message.author : message.from
-        logMSG(message, commandsName)
+        logMSG(message, commandsName, from)
         client.sendSeen(message.from)
         if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
         
@@ -85,6 +85,7 @@ function Run() {
 
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();
+        let chat = await client.getChatById(m.from)
 
         if (commandsName.map(e => e).includes(cmnd)) {
             const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].require);

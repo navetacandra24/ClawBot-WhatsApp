@@ -1,8 +1,7 @@
 const chalk = require("chalk");
 
-function logMSG(m, command) {
-    let numFrom = m.from.split('@')[0].split('-')[0];
-    let numTo = m.to.split('@')[0].split('-')[0];
+function logMSG(m, command, from) {
+    let numFrom = from.split('@')[0];
     let d = new Date();
     let _is = command.includes(m.body.toLowerCase().slice(1).split(/ +/)[0])
     let date = `${d.toLocaleDateString('id-ID').replace(new RegExp('/', 'g'), ' : ')} | ${d.toLocaleTimeString('id-ID').replace('.', ' : ').replace('.', ' : ')}`;
