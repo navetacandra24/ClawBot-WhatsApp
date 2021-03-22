@@ -80,7 +80,7 @@ function Run() {
         client.sendSeen(message.from)
         if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
         
-        console.log(m.author);
+        console.log(message.author);
 
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();

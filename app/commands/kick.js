@@ -9,7 +9,7 @@ const handler = {
             if (m.mentionedIds) {
                 console.log(m.mentionedIds);
                 if (chat.groupMetadata.participants.filter(e => e.id._serialized === m.author)[0].isAdmin) {
-                    let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === '6281991115938@c.us')[0].isAdmin;
+                    let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                     if (isBotAdmin) {
                         if(mentionedIds.includes(ownergroup)){
                             m.reply('Owner group gak boleh dikick!')
