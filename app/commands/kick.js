@@ -8,16 +8,16 @@ const handler = {
                 if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin) {
                     let botnumber = '6281991115938@c.us';
                     let ownerbot = '6285311174928@c.us';
-                    let ownergroup = chat.groupMetadata.participants.filter(e => e.isSuperAdmin);
+                    let ownergroup = chat.groupMetadata.participants.filter(e => e.isSuperAdmin)[0].id._serialized;
                     let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                     if (isBotAdmin) {
                         console.log(chat.groupMetadata.participants);
                         console.log(ownergroup);
-                        /*if(mentionedIds.includes(ownergroup)){
+                        if(m.mentionedIds.includes(ownergroup)){
                             m.reply('Owner group gak boleh dikick!')
-                        }*/ if(mentionedIds.includes(ownerbot)){
+                        } if(m.mentionedIds.includes(ownerbot)){
                             m.reply('Itu ownerku, jadi gk boleh dikick!')
-                        } else if (mentionedIds.includes(botnumber)) {
+                        } else if (m.mentionedIds.includes(botnumber)) {
                             m.reply('Itu nomorku, jadi gk bisa dikick!')
                         } else {
                             chat.removeParticipants(m.mentionedIds)
