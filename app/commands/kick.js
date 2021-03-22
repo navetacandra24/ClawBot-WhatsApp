@@ -24,7 +24,7 @@ const handler = {
                         m.reply('Jadikan bot sebagai admin!')
                     }
                 } else {
-                    m.reply()
+                    m.reply('Kamu siapa? perintah ini khusus *ADMIN Group*')
                 }
             } else {
                 m.reply('Tag orangnya!')
