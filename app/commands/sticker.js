@@ -12,6 +12,7 @@ const handler = {
             if (m.hasQuotedMsg) {
                 m.reply('Work caption only!')
             }
+            m.reply('Mana fotonya kak?🙂')
         }
     }
 };
