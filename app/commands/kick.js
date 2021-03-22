@@ -7,11 +7,14 @@ const handler = {
                 if (m.mentionedIds) {
                     let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id.user === '6281991115938').isAdmin;
                     console.log(chat.groupMetadata.participants);
+                    console.log(isBotAdmin);
                     if (isBotAdmin) {
                         chat.removeParticipants(m.mentionedIds)
                     } else {
                         m.reply('Jadikan bot sebagai admin!')
                     }
+                } else {
+                    m.reply('Tag orangnya!')
                 }
             } else {
                 m.reply('Hanya bisa digunakan digroup!')
