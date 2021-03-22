@@ -48,13 +48,13 @@ let a = [
         help: ['bucin'].map(v => '#' + v),
         tag: 'Quotes'
     },
-    {
-        commands: ['', 'f'].map(v => 'google' + v),
-        file: `${__dirname}\\commands\\google.js`,
-        require: `${__dirname}/commands/google.js`,
-        help: ['', 'f'].map(v => '#google' + v + ' <Pencarian>'),
-        tag: 'Tools'
-    },
+    // {
+    //     commands: ['', 'f'].map(v => 'google' + v),
+    //     file: `${__dirname}\\commands\\google.js`,
+    //     require: `${__dirname}/commands/google.js`,
+    //     help: ['', 'f'].map(v => '#google' + v + ' <Pencarian>'),
+    //     tag: 'Tools'
+    // },
     {
         commands: ['gtranslate'],
         file: `${__dirname}\\commands\\gtranslate.js`,

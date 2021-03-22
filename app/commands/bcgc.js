@@ -17,7 +17,8 @@ const handler = {
                 m.reply('Pesannya?')
             }
         } else {
-            return
+            // return
+            m.reply('Kamu siapa? Perintah ini khusus *OWNER*')
         }
         
     }

@@ -30,7 +30,7 @@ function Run() {
                 '--disable-cache',
                 '--disable-application-cache',
                 '--disk-cache-size=0'
-            ],
+            ]
         },
         session: sessionCfg
     })
@@ -74,7 +74,7 @@ function Run() {
     let commandsName = []
     commandDB.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
-    client.on('message',async message => {
+    client.on('message', async message => {
         const PREFIX = ['/', '#', '!']
         logMSG(message, commandsName)
         client.sendSeen(message.from)
