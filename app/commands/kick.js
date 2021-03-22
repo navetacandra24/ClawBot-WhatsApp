@@ -5,7 +5,7 @@ const handler = {
             let chat = await client.getChatById(m.from);
             if (chat.isGroup) {
                 if (m.mentionedIds) {
-                    let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id.user === '6281991115938').isAdmin;
+                    let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === '6281991115938@c.us')[0].isAdmin;
                     console.log(chat.groupMetadata.participants);
                     console.log(isBotAdmin);
                     if (isBotAdmin) {
@@ -27,3 +27,4 @@ const handler = {
 }
 
 module.exports = handler
+
