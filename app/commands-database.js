@@ -88,7 +88,7 @@ let a = [
         file: `${__dirname}\\commands\\kick.js`,
         require: `${__dirname}/commands/kick.js`,
         help: ['kick', 'usir'].map(v => '#' + v + ' (Beta)'),
-        tag: 'Owner'
+        tag: 'Group'
     },
     {
         commands: ['speed', 'ping'],

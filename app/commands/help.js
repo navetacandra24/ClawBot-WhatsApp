@@ -37,6 +37,15 @@ function StickerCommand() {
     }
     return stickerCmd
 }
+function GroupCommand() {
+    let groupCmd = []
+    if (groupCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Group').forEach(e => {
+            e.help.map(va => groupCmd.push(va))
+        })
+    }
+    return groupCmd
+}
 function ToolsCommand() {
     let toolsCmd = []
     if (toolsCmd.length < 1) {
@@ -122,6 +131,10 @@ ${mapCommand(MakerCommand()).join('').replace(/,/g, '')}
 
 ╭─「 Owner 」
 ${mapCommand(OwnerCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Group 」
+${mapCommand(GroupCommand()).join('').replace(/,/g, '')}
 ╰───────
 
 ╭─「 Tools 」
