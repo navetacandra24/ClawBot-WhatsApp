@@ -12,22 +12,17 @@
   "author": "Naveta Candra",
   "license": "ISC",
   "dependencies": {
-    "brainly-scraper-v2": "^1.1.2",
     "canvas": "^2.7.0",
     "canvas-text-wrapper": "^0.10.2",
     "cfonts": "^2.9.1",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.5",
-    "fetch-base64": "^2.1.2",
-    "gifencoder": "^2.0.1",
     "node-fetch": "^2.6.1",
-    "node-watch": "^0.7.1",
     "perf_hooks": "^0.0.1",
     "puppeteer": "^5.5.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "waifu-generator": "^1.1.1",
-    "webp-converter": "^2.3.3",
     "whatsapp-web.js": "^1.12.5"
   }
 }
