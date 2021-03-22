@@ -84,6 +84,13 @@ let a = [
         tag: 'Kerang'
     },
     {
+        commands: ['kick', 'usir'],
+        file: `${__dirname}\\commands\\kick.js`,
+        require: `${__dirname}/commands/kick.js`,
+        help: ['kick', 'usir'].map(v => '#' + v + ' (Beta)'),
+        tag: 'Owner'
+    },
+    {
         commands: ['speed', 'ping'],
         file: `${__dirname}\\commands\\speed.js`,
         require: `${__dirname}/commands/speed.js`,
