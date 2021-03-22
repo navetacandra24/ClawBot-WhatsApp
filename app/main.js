@@ -85,7 +85,6 @@ function Run() {
 
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();
-        let chat = await client.getChatById(m.from)
 
         if (commandsName.map(e => e).includes(cmnd)) {
             const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].require);
