@@ -75,7 +75,8 @@ function Run() {
     commandDB.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
     client.on('message', async message => {
-        const PREFIX = ['/', '#', '!']
+        const PREFIX = ['/', '#', '!'];
+        const from = message.author ? message.author : message.from
         logMSG(message, commandsName)
         client.sendSeen(message.from)
         if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
@@ -91,7 +92,8 @@ function Run() {
                 m: message,
                 args: args,
                 client: client,
-                MessageMedia: MessageMedia
+                MessageMedia: MessageMedia,
+                messageFrom: from
             });
 
         };
