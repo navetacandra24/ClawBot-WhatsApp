@@ -11,9 +11,9 @@ const handler = {
                     let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                     if (isBotAdmin) {
                         if (m.mentionedIds.includes(ownerbot)) m.reply('Itu ownerku, gak boleh dikick!');
-                        if (m.mentionedIds.includes(ownergroup)) m.reply('Owner group gak boleh dikick!');
-                        if (m.mentionedIds.includes(botnumber)) m.reply('Itu nomorku, gak boleh dikick!');
-                        chat.removeParticipants(m.mentionedIds)
+                        else if (m.mentionedIds.includes(ownergroup)) m.reply('Owner group gak boleh dikick!');
+                        else if (m.mentionedIds.includes(botnumber)) m.reply('Itu nomorku, gak boleh dikick!');
+                        else chat.removeParticipants(m.mentionedIds)
                     } else {
                         m.reply('Jadikan bot sebagai admin!')
                     }
