@@ -8,20 +8,26 @@ const handler = {
             if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
                 let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                 if (isBotAdmin) {
-                    let listNum = []
-                    args.forEach(async e => {
-                        listNum.push(await client.getNumberId(e))
-                    });
-                    // let isvalidNum = [];
-                    listNum.forEach(async r => {
-                        let _p = await client.isRegisteredUser(r);
-                        if (_p) {
-                            // chat.addParticipants([_p])
-                            chat.addParticipants([r])
+                    if (args.length > 1) {
+                        let listNum = []
+                        args.forEach(async e => {
+                            listNum.push(await client.getNumberId(e))
+                        });
+                        // let isvalidNum = [];
+                        listNum.forEach(async function (r)  {
                             console.log(r);
+                            let _p = await client.isRegisteredUser(r);
                             console.log(_p);
-                        }
-                    });
+                            if (_p) {
+                                // chat.addParticipants([_p])
+                                chat.addParticipants(r)
+                            } else {
+                                m.reply(`nomor _${this}_ tidak valid / tidak terdaftar di WhatsApp`)
+                            }
+                        });
+                    } else {
+                        
+                    }
                 } else {
                     m.reply('Jadikan bot sebagai admin!')
                 }
