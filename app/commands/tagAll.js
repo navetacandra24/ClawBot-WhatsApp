@@ -9,7 +9,7 @@ const handler = {
                 let mentions = [];
                 let text = ``;
                 member.forEach(async m => {
-                    mentions.push(await client.getContactById(m.id._serialized));
+                    mentions.push(await client.getContactById(member.id._serialized));
                     text += `@${member.id._serialized.split('@')[0]}\n`
                 });
                 m.reply(text, m.from, {mentions: mentions})
