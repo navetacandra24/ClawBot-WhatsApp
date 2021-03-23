@@ -10,12 +10,16 @@ const handler = {
                 let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                 if (isBotAdmin) {
                     if (args.length >= 1) {
-                        args.map(async (v) => {
-                            let numberId = await client.getNumberId(v)
-                            if (numberId._serialized) {
-                                chat.addParticipants([numberId._serialized])
-                            }
-                        })
+                        if (args.includes('+') || args.includes('-') || args.includes('(') || args.includes(')')) {
+                            m.reply('Masukkan format dengan benar!\nContoh: #add 6281991115938')
+                        } else {
+                            args.map(async (v) => {
+                                let numberId = await client.getNumberId(v)
+                                if (numberId._serialized) {
+                                    chat.addParticipants([numberId._serialized])
+                                }
+                            })
+                        }
                     } else {
                         m.reply('Mana nomornya kak?')
                     }

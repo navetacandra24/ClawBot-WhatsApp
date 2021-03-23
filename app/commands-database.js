@@ -126,6 +126,13 @@ let a = [
         tag: 'Sticker'
     },
     {
+        commands: ['tag-a', 'tagA'].map(v => v + 'll'),
+        file: `${__dirname}\\commands\\tagAll.js`,
+        require: `${__dirname}/commands/tagAll.js`,
+        help: ['tag-a', 'tagA'].map(v => '#' + v + 'll'),
+        tag: 'Group'
+    },
+    {
         commands: ['har', 'tah'].map(v => v + 'ta'),
         file: `${__dirname}\\commands\\tahta.js`,
         require: `${__dirname}/commands/tahta.js`,
