@@ -5,19 +5,20 @@ const handler = {
         let chat = await client.getChatById(m.from);
         let botnumber = '6281991115938@c.us';
         let ownerbot = '6285311174928@c.us';
+        args.map(async (v) => {
+            let a = await client.isRegisteredUser(await client.getNumberId(v));
+            console.log(a);
+            console.log(await client.getNumberId(v));
+        })
         if (chat.isGroup) {
             if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
                 let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                 if (isBotAdmin) {
-                    if (args.length > 1) {
-                        args.map(async (v) => {
-                            let a = await client.isRegisteredUser(await client.getNumberId(v));
-                            console.log(a);
-                            console.log(await client.getNumberId(v));
-                        })
-                    } else {
+                    // if (args.length > 1) {
                         
-                    }
+                    // } else {
+                        
+                    // }
                 } else {
                     m.reply('Jadikan bot sebagai admin!')
                 }
