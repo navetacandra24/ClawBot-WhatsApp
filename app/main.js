@@ -103,6 +103,7 @@ function Run() {
 }
 
 
-module.exports = {
-    Run
-}
+// module.exports = {
+//     Run
+// }
+Run()

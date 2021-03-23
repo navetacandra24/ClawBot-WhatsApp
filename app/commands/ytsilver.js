@@ -1,10 +1,10 @@
 const fetch = require('node-fetch');
 
 const handler = {
-    async exec({ m, args, MessageMedia, client }) {
+    async exec({ m, args, MessageMedia, client, messageFrom }) {
         if (args.length >= 1) {
             await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
-            let link = 'https://fierce-brushlands-90323.herokuapp.com/ytbutton?type=silver&name=' + args.join(' ');
+            let link = `https://fierce-brushlands-90323.herokuapp.com/ytbutton?fname=${messageFrom}&type=silver&name=${args.join(' ')}`;
             let _fetch = await fetch(link, { mode: 'no-cors', timeout: 0});
             let _res = await _fetch.json();
             let _mimetype = await _res.results.data.mimetype;

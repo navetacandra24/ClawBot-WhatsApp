@@ -1,12 +1,12 @@
 const fetch = require("node-fetch");
 
 const handler = {
-    async exec({ m, args, MessageMedia }) {
+    async exec({ m, args, MessageMedia, messageFrom }) {
         let fullText = args.join(' ');
             let _ft = fullText.split(' | ')
             if (_ft.length >= 2) {
                 await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
-                let link = `http://fierce-brushlands-90323.herokuapp.com/glitch-text?text1=${encodeURIComponent(_ft[0])}&text2=${encodeURIComponent(_ft[1])}`;
+                let link = `http://fierce-brushlands-90323.herokuapp.com/glitch-text?text1=${encodeURIComponent(_ft[0])}&text2=${encodeURIComponent(_ft[1])}&fname=${messageFrom}`;
                 // let link = `http://localhost:443/glitch-text?text1=${encodeURIComponent(_ft[0])}&text2=${encodeURIComponent(_ft[1])}`;
             
                 let _fetch = await fetch(link, {
