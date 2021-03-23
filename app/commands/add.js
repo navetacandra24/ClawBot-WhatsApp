@@ -7,8 +7,8 @@ const handler = {
         let ownerbot = '6285311174928@c.us';
         args.map(async (v) => {
             let a = await client.isRegisteredUser(await client.getNumberId(v));
-            console.log(a);
-            console.log(await client.getNumberId(v));
+            console.log('a  ',a);
+            console.log('numberId  ', await client.getNumberId(v));
         })
         if (chat.isGroup) {
             if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
