@@ -9,9 +9,10 @@ const handler = {
                 let text = [];
                 for (let i = 0; i < chat.groupMetadata.participants.length; i++) {
                     mentions.push(await client.getContactById(chat.groupMetadata.participants[i].id._serialized))
-                    text.push(chat.groupMetadata.participants[i].id._serialized.split('@')[0])
+                    text.push( '@' + chat.groupMetadata.participants[i].id._serialized.split('@')[0])
                 }
                 console.log(text);
+                m.reply(`${text.join('\n')}`, m.from, {mentions: mentions})
             } else {
                 m.reply('Kamu siapa? perintah ini khusus *ADMIN Group*')
             }

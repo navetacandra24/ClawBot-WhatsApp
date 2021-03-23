@@ -86,13 +86,17 @@ function Run() {
 
         if (commandsName.map(e => e).includes(cmnd)) {
             const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].require);
-            await c.exec({
-                m: message,
-                args: args,
-                client: client,
-                MessageMedia: MessageMedia,
-                messageFrom: from
-            });
+            try {
+                await c.exec({
+                    m: message,
+                    args: args,
+                    client: client,
+                    MessageMedia: MessageMedia,
+                    messageFrom: from
+                });
+            } catch (err) {
+                m.reply(err)
+            }
 
         };
     });
