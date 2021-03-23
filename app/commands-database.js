@@ -1,5 +1,12 @@
 let a = [
     {
+        commands: ['add', '+'],
+        file: `${__dirname}\\commands\\add.js`,
+        require: `${__dirname}/commands/add.js`,
+        help: ['add', '+'].map(v => '#anime' + v + ' <Nomor>'),
+        tag: 'Group'
+    },
+    {
         commands: ['', 'list'].map(v => 'anime' + v),
         file: `${__dirname}\\commands\\anime.js`,
         require: `${__dirname}/commands/anime.js`,
@@ -84,10 +91,10 @@ let a = [
         tag: 'Kerang'
     },
     {
-        commands: ['kick', 'usir'],
+        commands: ['kick', 'usir', '-'],
         file: `${__dirname}\\commands\\kick.js`,
         require: `${__dirname}/commands/kick.js`,
-        help: ['kick', 'usir'].map(v => '#' + v + ' (Beta)'),
+        help: ['kick', 'usir', '-'].map(v => '#' + v + ' <Tag Nomor>'),
         tag: 'Group'
     },
     {

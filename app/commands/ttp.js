@@ -6,7 +6,7 @@ const handler = {
         } else {
             let _fetch = await fetch('http://fierce-brushlands-90323.herokuapp.com/ttp?text=' + encodeURIComponent(args.join(' ')), {
                 mode: 'no-cors',
-                timeout: 1000 * 3600 * 24
+                timeout: 0
             });
             let _res = await _fetch.json();
             let _mimetype = _res.results.data.mimetype;

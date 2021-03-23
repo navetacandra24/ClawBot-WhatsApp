@@ -10,17 +10,18 @@ const handler = {
                 if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
                     let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                     if (isBotAdmin) {
-                        // console.log(chat.groupMetadata.participants);
-                        console.log(ownergroup);
-                        console.log(chat);
-                        if(m.mentionedIds.includes(ownergroup)){
-                            m.reply('Owner group gak boleh dikick!')
-                        } if(m.mentionedIds.includes(ownerbot)){
-                            m.reply('Itu ownerku, jadi gk boleh dikick!')
-                        } else if (m.mentionedIds.includes(botnumber)) {
-                            m.reply('Itu nomorku, jadi gk bisa dikick!')
+                        if(m.mentionedIds.includes(ownerbot)){
+                            m.reply('Itu ownerku, gak boleh dikick!')
                         } else {
-                            chat.removeParticipants(m.mentionedIds)
+                            if (m.mentionedIds.includes(ownergroup)) {
+                                m.reply('Owner gk bole dikick!')
+                            } else {
+                                if (m.mentionedIds.includes(botnumber)) {
+                                    m.reply('Itu nomorku, gak boleh dikick!')
+                                } else {
+                                    chat.removeParticipants(m.mentionedIds)
+                                }
+                            }
                         }
                     } else {
                         m.reply('Jadikan bot sebagai admin!')

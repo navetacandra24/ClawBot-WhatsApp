@@ -80,8 +80,6 @@ function Run() {
         logMSG(message, commandsName, from)
         client.sendSeen(message.from)
         if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
-        
-        // console.log(message.getInfo);
 
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();

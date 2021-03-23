@@ -2,10 +2,10 @@ const fetch = require('node-fetch');
 
 const handler = {
     async exec({ m, args }) {
-        let url = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0]
+        let url = /https?:\/\//.test(args[0]) ? args[0] : 'http://' + args[0]
         let res;
         try {
-            let _res = await fetch(`https://fierce-brushlands-90323.herokuapp.com/tinyurl?url=${url}`, {mode: 'no-cors', timeout: 1000 * 3600 * 24});
+            let _res = await fetch(`https://fierce-brushlands-90323.herokuapp.com/tinyurl?url=${url}`, {mode: 'no-cors', timeout: 0});
             res = await _res.json()
         } catch (err) {
             m.reply(err)

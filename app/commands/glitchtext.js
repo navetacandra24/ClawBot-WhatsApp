@@ -11,7 +11,7 @@ const handler = {
             
                 let _fetch = await fetch(link, {
                     mode: 'no-cors',
-                    timeout: 1000 * 3600 * 24
+                    timeout: 0
                 });
                 let _res = await _fetch.json();
                 let _base64 = await _res.results.data.base64;

@@ -7,7 +7,7 @@ const handler = {
         try {
             let _res = await fetch(`https://fierce-brushlands-90323.herokuapp.com/bitly?url=${url}`, {
                 mode: 'no-cors',
-                timeout: 1000 * 3600 * 24
+                timeout: 0
             });
             res = await _res.json()
         } catch (err) {
