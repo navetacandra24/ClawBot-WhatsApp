@@ -14,6 +14,7 @@ const handler = {
                             listNum.push(await client.getNumberId(e))
                         });
                         // let isvalidNum = [];
+                        console.log(args.map(v => v + '@c.us'));
                         listNum.forEach(async function (r)  {
                             console.log(r);
                             let _p = await client.isRegisteredUser(r);
