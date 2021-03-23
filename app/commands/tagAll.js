@@ -7,12 +7,12 @@ const handler = {
         if (chat.isGroup) {
             if (member.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
                 let mentions = [];
-                let text = [];
+                let text = ``;
                 member.forEach(async m => {
                     mentions.push(await client.getContactById(m.id._serialized));
-                    text.push(`@${member.id.number}`)
+                    text += `@${member.id.number}\n`
                 });
-                m.reply(text.join('\n'), m.from, {mentions: mentions})
+                m.reply(text, m.from, {mentions: mentions})
             } else {
                 m.reply('Kamu siapa? perintah ini khusus *ADMIN Group*')
             }

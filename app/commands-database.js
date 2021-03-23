@@ -55,6 +55,13 @@ let a = [
         help: ['bucin'].map(v => '#' + v),
         tag: 'Quotes'
     },
+    {
+        commands: ['donasi'],
+        file: `${__dirname}\\commands\\donasi.js`,
+        require: `${__dirname}/commands/donasi.js`,
+        help: ['donasi'].map(v => '#' + v),
+        tag: 'Info'
+    },
     // {
     //     commands: ['', 'f'].map(v => 'google' + v),
     //     file: `${__dirname}\\commands\\google.js`,

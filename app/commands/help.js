@@ -82,6 +82,15 @@ function MakerCommand() {
     }
     return makerCmd
 }
+function InfoCommand() {
+    let infoCmd = []
+    if (infoCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Info').forEach(e => {
+            e.help.map(va => infoCmd.push(va))
+        })
+    }
+    return infoCmd
+}
 
 
 const handler = {
@@ -115,6 +124,7 @@ const handler = {
 │ Tanggal: *${week}, ${date}*
 │ Waktu: *${time}*
 │ Uptime: *${clockString(process.uptime() * 1000)}*
+│ Prefix: 「 ! ,  # ,  / 」
 ╰───────${readmore}
 
 ╭─「 Main 」
@@ -143,6 +153,10 @@ ${mapCommand(ToolsCommand()).join('').replace(/,/g, '')}
 
 ╭─「 Kerang Ajaib 」
 ${mapCommand(KerangCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Info 」
+${mapCommand(InfoCommand()).join('').replace(/,/g, '')}
 ╰───────
 
 Creator : @6285311174928`;
