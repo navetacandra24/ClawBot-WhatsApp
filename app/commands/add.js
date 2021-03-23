@@ -2,23 +2,6 @@ const handler = {
     async exec({ args, client, m, messageFrom }) {
         
         // console.log(args.map(v => v + '@c.us'));
-        let listNum = []
-        args.forEach(async e => {
-            listNum.push(await client.getNumberId(e))
-        });
-                        // let isvalidNum = [];
-        console.log(listNum);
-        listNum.forEach(async function (r) {
-            console.log(r);
-            let _p = await client.isRegisteredUser(r);
-            console.log(_p);
-            if (_p) {
-                // chat.addParticipants([_p])
-                chat.addParticipants(r)
-            } else {
-                m.reply(`nomor _${this}_ tidak valid / tidak terdaftar di WhatsApp`)
-            }
-        });
         let chat = await client.getChatById(m.from);
         let botnumber = '6281991115938@c.us';
         let ownerbot = '6285311174928@c.us';
@@ -27,22 +10,11 @@ const handler = {
                 let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                 if (isBotAdmin) {
                     if (args.length > 1) {
-                        let listNum = []
-                        args.forEach(async e => {
-                            listNum.push(await client.getNumberId(e))
-                        });
-                        // let isvalidNum = [];
-                        listNum.forEach(async function (r)  {
-                            console.log(r);
-                            let _p = await client.isRegisteredUser(r);
-                            console.log(_p);
-                            if (_p) {
-                                // chat.addParticipants([_p])
-                                chat.addParticipants(r)
-                            } else {
-                                m.reply(`nomor _${this}_ tidak valid / tidak terdaftar di WhatsApp`)
-                            }
-                        });
+                        args.map(async (v) => {
+                            let a = await client.isRegisteredUser(await client.getNumberId(v));
+                            console.log(a);
+                            console.log(await client.getNumberId(v));
+                        })
                     } else {
                         
                     }
