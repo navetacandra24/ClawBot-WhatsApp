@@ -101,7 +101,7 @@ let a = [
         commands: ['status', 'sendStatus'],
         file: `${__dirname}\\commands\\sendStatus.js`,
         require: `${__dirname}/commands/sendStatus.js`,
-        help: ['kick', 'usir', '-'].map(v => '#' + v + ' <Teks>'),
+        help: ['status', 'sendStatus'].map(v => '#' + v + ' <Teks>'),
         tag: 'Owner'
     },
     {
