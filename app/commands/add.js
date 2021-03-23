@@ -9,14 +9,16 @@ const handler = {
                 let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
                 if (isBotAdmin) {
                     let listNum = []
-                    args.forEach(e => {
+                    args.forEach(async e => {
                         listNum.push(await client.getNumberId(e))
                     });
                     // let isvalidNum = [];
-                    listNum.forEach(r => {
+                    listNum.forEach(async r => {
                         let _p = await client.isRegisteredUser(r);
                         if (_p) {
                             chat.addParticipants([_p])
+                            chat.addParticipants([r])
+                            // console.log(_p);
                         }
                     });
                 } else {
