@@ -98,6 +98,13 @@ let a = [
         tag: 'Group'
     },
     {
+        commands: ['status', 'sendStatus'],
+        file: `${__dirname}\\commands\\sendStatus.js`,
+        require: `${__dirname}/commands/sendStatus.js`,
+        help: ['kick', 'usir', '-'].map(v => '#' + v + ' <Teks>'),
+        tag: 'Owner'
+    },
+    {
         commands: ['speed', 'ping'],
         file: `${__dirname}\\commands\\speed.js`,
         require: `${__dirname}/commands/speed.js`,
