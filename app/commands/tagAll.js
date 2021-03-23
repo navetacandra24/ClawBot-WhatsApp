@@ -8,9 +8,9 @@ const handler = {
             if (member.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
                 let mentions = [];
                 let text = ``;
-                member.forEach(async m => {
-                    mentions.push(await client.getContactById(member.id._serialized));
-                    text += `@${member.id._serialized.split('@')[0]}\n`
+                member.forEach(async mb => {
+                    mentions.push(await client.getContactById(mb.id._serialized));
+                    text += `@${mb.id.number}\n`
                 });
                 m.reply(text, m.from, {mentions: mentions})
             } else {
