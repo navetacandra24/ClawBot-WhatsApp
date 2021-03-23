@@ -3,7 +3,7 @@ let a = [
         commands: ['add', '+'],
         file: `${__dirname}\\commands\\add.js`,
         require: `${__dirname}/commands/add.js`,
-        help: ['add', '+'].map(v => '#anime' + v + ' <Nomor>'),
+        help: ['add', '+'].map(v => '#' + v + ' <Nomor>'),
         tag: 'Group'
     },
     {

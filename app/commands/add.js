@@ -16,9 +16,10 @@ const handler = {
                     listNum.forEach(async r => {
                         let _p = await client.isRegisteredUser(r);
                         if (_p) {
-                            chat.addParticipants([_p])
+                            // chat.addParticipants([_p])
                             chat.addParticipants([r])
-                            // console.log(_p);
+                            console.log(r);
+                            console.log(_p);
                         }
                     });
                 } else {
