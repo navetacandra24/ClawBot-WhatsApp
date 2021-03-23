@@ -10,7 +10,7 @@ const handler = {
                 let text = ``;
                 member.forEach(async m => {
                     mentions.push(await client.getContactById(m.id._serialized));
-                    text += `@${member.id.number}\n`
+                    text += `@${member.id._serialized.split('@')[0]}\n`
                 });
                 m.reply(text, m.from, {mentions: mentions})
             } else {
