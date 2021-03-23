@@ -1,6 +1,7 @@
 const handler = {
     async exec({ args, client, m, messageFrom }) {
         
+        console.log(args.map(v => v + '@c.us'));
         let chat = await client.getChatById(m.from);
         let botnumber = '6281991115938@c.us';
         let ownerbot = '6285311174928@c.us';
@@ -14,7 +15,6 @@ const handler = {
                             listNum.push(await client.getNumberId(e))
                         });
                         // let isvalidNum = [];
-                        console.log(args.map(v => v + '@c.us'));
                         listNum.forEach(async function (r)  {
                             console.log(r);
                             let _p = await client.isRegisteredUser(r);
