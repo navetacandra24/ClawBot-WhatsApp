@@ -5,7 +5,7 @@ const handler = {
         if (args.length >= 1) {
             await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
             // let link = `https://fierce-brushlands-90323.herokuapp.com/ytbutton?fname=${messageFrom}&type=gold&name=${args.join(' ')}`;
-            let link = `https://shielded-hollows-79689.herokuapp.com//ytbutton?fname=${messageFrom}&type=gold&name=${args.join(' ')}`;
+            let link = `https://shielded-hollows-79689.herokuapp.com/ytbutton?fname=${messageFrom}&type=gold&name=${args.join(' ')}`;
             // let link = 'http://localhost:443/ytbutton?type=gold&name=' + args.join(' ');
             let _fetch = await fetch(link, { mode: 'no-cors', timeout: 0});
             let _res = await _fetch.json();
