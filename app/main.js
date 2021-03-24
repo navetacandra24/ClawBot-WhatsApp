@@ -6,6 +6,12 @@ const commandDB = require(`${__dirname}/commands-database`)
 const cr = require(`${__dirname}/credit`)
 
 function Run() {
+    global.API = {
+        heroku1: 'https://fierce-brushlands-90323.herokuapp.com',
+        heroku2: 'https://shielded-hollows-79689.herokuapp.com'
+    };
+    global.ownerId = '6285311174928@c.us';
+    global.botId = '6281991115938@c.us';
     const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
     let sessionCfg;
     if (fs.existsSync(SESSION_FILE_PATH)) {

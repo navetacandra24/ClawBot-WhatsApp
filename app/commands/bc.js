@@ -2,6 +2,10 @@ const handler = {
     async exec({ args, client, m, messageFrom }) {
         
         if (messageFrom.includes('6285311174928')) {
+            console.log('heroku1 : ', global.API.heroku1);
+            console.log('heroku2 : ', global.API.heroku2);
+            console.log('bot Id : ', global.botId);
+            console.log('owner Id : ', global.ownerId);
             if (args.length >= 1) {
                 const chats = await client.getChats();
                 let contact = [];
