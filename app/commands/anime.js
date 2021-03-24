@@ -1,6 +1,5 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-const lib = require(`${__dirname}/../lib/r2str`)
 
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;

@@ -30,7 +30,8 @@ function Run() {
                 '--disable-cache',
                 '--disable-application-cache',
                 '--disk-cache-size=0'
-            ]
+            ],
+            timeout: 0
         },
         session: sessionCfg
     })

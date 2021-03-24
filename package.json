@@ -19,7 +19,6 @@
     "cheerio": "^1.0.0-rc.5",
     "node-fetch": "^2.6.1",
     "perf_hooks": "^0.0.1",
-    "puppeteer": "^5.5.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "waifu-generator": "^1.1.1",
