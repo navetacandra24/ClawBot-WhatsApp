@@ -105,6 +105,13 @@ let a = [
         tag: 'Group'
     },
     {
+        commands: ['owner', 'creator'],
+        file: `${__dirname}\\commands\\owner.js`,
+        require: `${__dirname}/commands/owner.js`,
+        help: ['owner', 'creator'].map(v => '#' + v + ' (beta)'),
+        tag: 'Owner'
+    },
+    {
         commands: ['status', 'sendStatus'],
         file: `${__dirname}\\commands\\sendStatus.js`,
         require: `${__dirname}/commands/sendStatus.js`,
@@ -150,7 +157,7 @@ let a = [
         commands: ['tinyurl'],
         file: `${__dirname}\\commands\\tinyUrl.js`,
         require: `${__dirname}/commands/tinyUrl.js`,
-        help: ['tinyUrl'].map(v => '#' + v + ' <Url>'),
+        help: ['tinyurl'].map(v => '#' + v + ' <Url>'),
         tag: 'Tools'
     },
     {

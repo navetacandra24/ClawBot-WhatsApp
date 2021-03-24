@@ -14,9 +14,9 @@ const handler = {
             });
             let _res = await _fetch.json();
             // let _mimetype = _res.results.data.mimetype;
-            let _mimetype = 'image/webp';
+            let _mimetype = 'image/png';
             // let _base64 = _res.results.data.base64;
-            let _base64 = _res.result;
+            let _base64 = _res.result.replace('data:image/png;base64,');
             let media = new MessageMedia(_mimetype, _base64, undefined);
             m.reply(media, m.from, {sendMediaAsSticker: true})
         }
