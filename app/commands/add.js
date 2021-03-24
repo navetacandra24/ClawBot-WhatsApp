@@ -17,6 +17,8 @@ const handler = {
                                 let numberId = await client.getNumberId(v)
                                 if (numberId._serialized) {
                                     chat.addParticipants([numberId._serialized])
+                                } else {
+                                    m.reply('Nomor tidak valid / tidak terdaftar!')
                                 }
                             })
                         }
