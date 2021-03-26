@@ -133,7 +133,7 @@ const handler = {
             year: 'numeric'
         });
         let time = new Date().toLocaleString('id-ID').split(' ')[1].split('.');
-	time[0] = time[0] + 7;
+	time[0] = `${Number(time[0]) + 7}`;
 	let times = time.join(' : ')
 
 
