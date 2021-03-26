@@ -2,7 +2,7 @@ const commandsDB = require(`${__dirname}/../commands-database`);
 const readmore = String.fromCharCode(8206).repeat(4001);
 
 function clockString(ms) {
-    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) + 7
+    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
     let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
     let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
     return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(' : ')
@@ -132,7 +132,9 @@ const handler = {
             month: 'long',
             year: 'numeric'
         });
-        let time = new Date().toLocaleString('id-ID').split(' ')[1].split('.').join(' : ');
+        let time = new Date().toLocaleString('id-ID').split(' ')[1].split('.');
+	time[0] = time[0] + 7;
+	let times = time.join(' : ')
 
 
         const message = `
@@ -140,7 +142,7 @@ const handler = {
 │ Hai, @${creator}!
 │
 │ Tanggal: *${week}, ${date}*
-│ Waktu: *${time}*
+│ Waktu: *${times}*
 │ Uptime: *${clockString(process.uptime() * 1000)}*
 │ Prefix: 「 ! ,  # ,  / 」
 ╰───────${readmore}
