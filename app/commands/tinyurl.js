@@ -1,19 +1,12 @@
-const fetch = require('node-fetch');
+const TinyURL = require('tinyurl');
 
 const handler = {
     async exec({ m, args }) {
         let url = /https?:\/\//.test(args[0]) ? args[0] : 'http://' + args[0]
-        let res;
-        try {
-            let _res = await fetch(`https://fierce-brushlands-90323.herokuapp.com/tinyurl?url=${url}`, {mode: 'no-cors', timeout: 0});
-            res = await _res.json()
-        } catch (err) {
-            m.reply(err)
-        }
-        finally {
-            let msg = res.status === "error" ? res.message : res.result
-            await m.reply(msg, m.from, {linkPreview: false})
-        }
+        await TinyURL.shorten(url)
+            .then(v => m.reply(v, m.from, { linkPreview: false }))
+            .catch(err => m.reply(err))
+        // await m.reply(msg, m.from, {linkPreview: false})
 
     }
 };

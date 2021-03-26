@@ -26,10 +26,8 @@ const handler = {
             try {
                 let translated = await gtranslate(from, to, _text);
                 let result = `*${lang[from]} :* ${_text}\n*${lang[to]} :* ${translated.result.translated}`;
-                // console.log(result);
                 m.reply(result)
             } catch (err) {
-                // console.log(err);
                 m.reply(err)
             }
         }

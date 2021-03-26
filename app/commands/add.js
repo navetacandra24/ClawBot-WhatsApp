@@ -3,11 +3,9 @@ const handler = {
         
         // console.log(args.map(v => v + '@c.us'));
         let chat = await client.getChatById(m.from);
-        let botnumber = '6281991115938@c.us';
-        let ownerbot = '6285311174928@c.us';
         if (chat.isGroup) {
-            if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
-                let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === botnumber)[0].isAdmin;
+            if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === global.ownerId) {
+                let isBotAdmin = chat.groupMetadata.participants.filter(e => e.id._serialized === global.botId)[0].isAdmin;
                 if (isBotAdmin) {
                     if (args.length >= 1) {
                         if (args.includes('+') || args.includes('-') || args.includes('(') || args.includes(')')) {
@@ -18,7 +16,7 @@ const handler = {
                                 if (numberId._serialized) {
                                     chat.addParticipants([numberId._serialized])
                                 } else {
-                                    m.reply('Nomor tidak valid / tidak terdaftar!')
+                                    m.reply('Nomor tidak valid / tidak terdaftar di WhatsApp')
                                 }
                             })
                         }
