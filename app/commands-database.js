@@ -112,10 +112,10 @@ let a = [
         tag: 'Education'
     },
     {
-        commands: ['kick', 'usir', '-'],
+        commands: ['kick', 'usir', '-', 'remove'],
         file: `${__dirname}\\commands\\kick.js`,
         require: `${__dirname}/commands/kick.js`,
-        help: ['kick', 'usir', '-'].map(v => '#' + v + ' <Tag Nomor>'),
+        help: ['kick', 'usir', '-', 'remove'].map(v => '#' + v + ' <Tag Nomor>'),
         tag: 'Group'
     },
     {

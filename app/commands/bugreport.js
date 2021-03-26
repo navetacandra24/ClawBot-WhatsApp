@@ -1,11 +1,10 @@
 const handler = {
     async exec({ m, args, MessageMedia, client, messageFrom }) {
         if (args.length >= 1) {
-            await m.reply('Laporan akan dikirimkan ke owner, Laporan main-main = BLOCK!');
+            await m.reply('Laporan akan dikirimkan ke owner, \nLaporan main-main = BLOCK!');
             client.sendMessage(
                 '6285311174928@c.us',
-                `${args.join(' ')}\nBug Report dari : @${messageFrom.split('@')[0]}`,
-                { mentions: [await client.getContactById(messageFrom)] }
+                `${args.join(' ')}\nBug Report dari : https://wa.me/${messageFrom.split('@')[0]}`,
             )
         } else {
             m.reply('Apa yang mau dilapor kak?')

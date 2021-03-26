@@ -91,6 +91,15 @@ function InfoCommand() {
     }
     return infoCmd
 }
+function EduCommand() {
+    let eduCmd = []
+    if (eduCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Education').forEach(e => {
+            e.help.map(va => eduCmd.push(va))
+        })
+    }
+    return eduCmd
+}
 
 
 const handler = {
@@ -145,6 +154,10 @@ ${mapCommand(OwnerCommand()).join('').replace(/,/g, '')}
 
 ╭─「 Group 」
 ${mapCommand(GroupCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Education 」
+${mapCommand(EduCommand()).join('').replace(/,/g, '')}
 ╰───────
 
 ╭─「 Tools 」
