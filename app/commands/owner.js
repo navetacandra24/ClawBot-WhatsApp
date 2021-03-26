@@ -6,6 +6,7 @@ const handler = {
 │ https://wa.me/6285311174928
 │
 ╰───────`
+    m.reply(msg)
     }
 }
 

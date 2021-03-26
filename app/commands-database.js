@@ -56,6 +56,13 @@ let a = [
         tag: 'Quotes'
     },
     {
+        commands: ['bugreport'],
+        file: `${__dirname}\\commands\\bugreport.js`,
+        require: `${__dirname}/commands/bugreport.js`,
+        help: ['bugreport'].map(v => '#' + v + ' <Laporan>'),
+        tag: 'Info'
+    },
+    {
         commands: ['donasi'],
         file: `${__dirname}\\commands\\donasi.js`,
         require: `${__dirname}/commands/donasi.js`,
@@ -74,7 +81,7 @@ let a = [
         file: `${__dirname}\\commands\\gtranslate.js`,
         require: `${__dirname}/commands/gtranslate.js`,
         help: ['gtranslate'].map(v => '#' + v + ' <B. Asal> <B. Tujuan> <Teks>'),
-        tag: 'Tools'
+        tag: 'Education'
     },
     {
         commands: ['glitchtext'],
@@ -98,10 +105,24 @@ let a = [
         tag: 'Kerang'
     },
     {
+        commands: ['kbbi'],
+        file: `${__dirname}\\commands\\kbbi.js`,
+        require: `${__dirname}/commands/kbbi.js`,
+        help: ['kbbi'].map(v => '#' + v + ' <Kata>'),
+        tag: 'Education'
+    },
+    {
         commands: ['kick', 'usir', '-'],
         file: `${__dirname}\\commands\\kick.js`,
         require: `${__dirname}/commands/kick.js`,
         help: ['kick', 'usir', '-'].map(v => '#' + v + ' <Tag Nomor>'),
+        tag: 'Group'
+    },
+    {
+        commands: ['kickall', 'removeall'],
+        file: `${__dirname}\\commands\\kickall.js`,
+        require: `${__dirname}/commands/kickall.js`,
+        help: ['kickall', 'removeall'].map(v => '#' + v),
         tag: 'Group'
     },
     {
@@ -172,7 +193,7 @@ let a = [
         file: `${__dirname}\\commands\\utranslate.js`,
         require: `${__dirname}/commands/utranslate.js`,
         help: ['utranslate'].map(v => '#' + v + ' <B. Asal> <B. Tujuan> <Teks>'),
-        tag: 'Tools'
+        tag: 'Education'
     },
     {
         commands: ['gacha', ''].map(v => v + 'waifu'),

@@ -11,7 +11,7 @@ function Run() {
         heroku2: 'https://shielded-hollows-79689.herokuapp.com'
     };
     global.ownerId = '6285311174928@c.us';
-    global.botId = '6281991115938@c.us';
+    global.botId = '6285718234965@c.us';
     const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
     let sessionCfg;
     if (fs.existsSync(SESSION_FILE_PATH)) {
@@ -93,17 +93,13 @@ function Run() {
 
         if (commandsName.map(e => e).includes(cmnd)) {
             const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].require);
-            try {
-                await c.exec({
-                    m: message,
-                    args: args,
-                    client: client,
-                    MessageMedia: MessageMedia,
-                    messageFrom: from
-                });
-            } catch (err) {
-                message.reply(err)
-            }
+            c.exec({
+                m: message,
+                args: args,
+                client: client,
+                MessageMedia: MessageMedia,
+                messageFrom: from
+            });
 
         };
     });
