@@ -1,5 +1,5 @@
 const handler = {
-    async exec({ m, args, MessageMedia, client }) {
+    async exec({ m, args, MessageMedia, client, messageFrom, dbid }) {
         
     }
 }

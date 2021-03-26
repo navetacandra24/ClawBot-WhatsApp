@@ -9,7 +9,7 @@ const handler = {
         //         mode: 'no-cors',
         //         timeout: 0
         //     });
-            let _fetch = await fetch(`${global.API.heroku1}/attp?text=${encodeURIComponent(args.join(' '))}`, {
+            let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/attp?text=${encodeURIComponent(args.join(' '))}`, {
                 mode: 'no-cors',
                 timeout: 0
             });

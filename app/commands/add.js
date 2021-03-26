@@ -14,7 +14,11 @@ const handler = {
                         } else {
                             args.map(async (v) => {
                                 let numberId = await client.getNumberId(v)
-                                chat.addParticipants([numberId._serialized])
+                                if (numberId) {
+                                    chat.addParticipants([numberId._serialized])
+                                } else {
+                                    m.reply('Nomor tidak valid/tidak terdaftar di WhatsApp')
+                                }
                             })
                         }
                     } else {

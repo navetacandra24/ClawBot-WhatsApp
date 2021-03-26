@@ -63,6 +63,13 @@ let a = [
         tag: 'Info'
     },
     {
+        commands: ['dompet', 'atm', 'bal'],
+        file: `${__dirname}\\commands\\dompet.js`,
+        require: `${__dirname}/commands/dompet.js`,
+        help: ['dompet', 'atm', 'bal'].map(v => '#' + v + ' <Tag (Optional)>'),
+        tag: 'Info'
+    },
+    {
         commands: ['donasi'],
         file: `${__dirname}\\commands\\donasi.js`,
         require: `${__dirname}/commands/donasi.js`,
@@ -129,8 +136,8 @@ let a = [
         commands: ['owner', 'creator'],
         file: `${__dirname}\\commands\\owner.js`,
         require: `${__dirname}/commands/owner.js`,
-        help: ['owner', 'creator'].map(v => '#' + v + ' (beta)'),
-        tag: 'Owner'
+        help: ['owner', 'creator'].map(v => '#' + v),
+        tag: 'Info'
     },
     {
         commands: ['status', 'sendStatus'],
@@ -161,11 +168,11 @@ let a = [
         tag: 'Sticker'
     },
     {
-        commands: ['tag-a', 'taga'].map(v => v + 'll'),
-        file: `${__dirname}\\commands\\tagAll.js`,
-        require: `${__dirname}/commands/tagAll.js`,
-        help: ['tag-a', 'taga'].map(v => '#' + v + 'll'),
-        tag: 'Group'
+        commands: ['suit'],
+        file: `${__dirname}\\commands\\suit.js`,
+        require: `${__dirname}/commands/suit.js`,
+        help: ['suit'].map(v => '#' + v + ' <pilihan>'),
+        tag: 'Game'
     },
     {
         commands: ['har', 'tah'].map(v => v + 'ta'),

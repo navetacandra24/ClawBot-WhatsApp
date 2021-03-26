@@ -100,6 +100,15 @@ function EduCommand() {
     }
     return eduCmd
 }
+function GameCommand() {
+    let gameCmd = []
+    if (gameCmd.length < 1) {
+        commandsDB.filter(v => v.tag === 'Game').forEach(e => {
+            e.help.map(va => gameCmd.push(va))
+        })
+    }
+    return gameCmd
+}
 
 
 const handler = {
@@ -150,6 +159,10 @@ ${mapCommand(MakerCommand()).join('').replace(/,/g, '')}
 
 ╭─「 Owner 」
 ${mapCommand(OwnerCommand()).join('').replace(/,/g, '')}
+╰───────
+
+╭─「 Game 」
+${mapCommand(GameCommand()).join('').replace(/,/g, '')}
 ╰───────
 
 ╭─「 Group 」

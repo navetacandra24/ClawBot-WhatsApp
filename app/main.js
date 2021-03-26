@@ -3,15 +3,16 @@ const fs = require('fs');
 const chalk = require('chalk');
 const logMSG = require('./log');
 const commandDB = require(`${__dirname}/commands-database`)
-const cr = require(`${__dirname}/credit`)
+const cr = require(`${__dirname}/credit`);
+const db = require(`${__dirname}/helper/database`)
+
+async function getDb(uid) {
+    let _a = global.db.ref('users/' + uid);
+    let _b = await _a.get();
+    return _b.val()
+}
 
 function Run() {
-    global.API = {
-        heroku1: 'https://fierce-brushlands-90323.herokuapp.com',
-        heroku2: 'https://shielded-hollows-79689.herokuapp.com'
-    };
-    global.ownerId = '6285311174928@c.us';
-    global.botId = '6285718234965@c.us';
     const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
     let sessionCfg;
     if (fs.existsSync(SESSION_FILE_PATH)) {
@@ -82,9 +83,12 @@ function Run() {
 
     client.on('message', async message => {
         const PREFIX = ['/', '#', '!'];
-        const from = message.author ? message.author : message.from
-        logMSG(message, commandsName, from)
+        const from = message.author ? message.author : message.from;
+        let dbId = from.split('@')[0]
+        logMSG(message, commandsName, from, PREFIX)
         client.sendSeen(message.from)
+        let mDb = await db.GETUser(dbId)
+        mDb ? '' : await db.POSTUser(dbId)
         if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
 
         let args = message.body.slice(1).split(/ +/);
@@ -97,7 +101,8 @@ function Run() {
                 args: args,
                 client: client,
                 MessageMedia: MessageMedia,
-                messageFrom: from
+                messageFrom: from,
+                dbid: dbId
             });
 
         };
