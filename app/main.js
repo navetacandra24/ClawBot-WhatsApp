@@ -1,8 +1,6 @@
 const { Client, MessageMedia } = require('whatsapp-web.js');
 const fs = require('fs');
 const chalk = require('chalk');
-let a = require(`${__dirname}/core/commands-database`);
-a()
 const cr = require(`${__dirname}/credit`);
 const msg = require(__dirname + '/core/message')
 
