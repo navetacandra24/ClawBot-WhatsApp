@@ -1,3 +1,4 @@
+const fs = require('fs');
 const db = require(`${__dirname}/../helper/database`);
 const logMSG = require(`${__dirname}/../log`);
 
@@ -25,10 +26,10 @@ module.exports = function (client, commandsName, media) {
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();
 
-        let cooldown = []
+        let cooldown = require(`${__dirname}/cooldown.json`)
         
         if (commandsName.map(e => e).includes(cmnd)) {
-            cooldown.push(from)
+            let newCd = cooldown.cd.push(from)
             const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
             c.exec({
                 m: message,
@@ -38,7 +39,10 @@ module.exports = function (client, commandsName, media) {
                 messageFrom: from,
                 dbid: dbId
             });
-            console.log(cooldown);
+            // console.log(cooldown);
+            console.log('old ',cooldown);
+            fs.writeFileSync(`${__dirname}/cooldown.json`, JSON.stringify(newCd));
+            console.log('new ',newCd);
         };
     });
 }
