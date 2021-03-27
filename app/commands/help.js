@@ -113,7 +113,7 @@ function GameCommand() {
 
 async function user() {
     let _a = await db.GETUser();
-    return Object.keys(_a).length
+    return Object.keys(await _a).length
 }
 
 
@@ -150,7 +150,7 @@ const handler = {
 │ Tanggal: *${week}, ${date}*
 │ Waktu: *${times}*
 │ Uptime: *${clockString(process.uptime() * 1000)}*
-│ Total Users: *${user()}*
+│ Total Users: *${await user()}*
 │ Prefix: 「 ! ,  # ,  / 」
 ╰───────${readmore}
 
