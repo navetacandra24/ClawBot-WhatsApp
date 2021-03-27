@@ -4,6 +4,7 @@ const handler = {
         if (chat.isGroup) {
             if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === global.ownerId) {
                 if (args.length >= 1) {
+                    console.log(chat.groupMetadata);
                     let allMember = chat.groupMetadata.participants.filter(e => e.id._serialized !== global.botId);
                     for (let i = 0; i < allMember.length; i++) {
                         client.sendMessage(allMember[i].id._serialized, args.join(' '))
