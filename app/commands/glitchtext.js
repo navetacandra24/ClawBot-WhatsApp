@@ -16,7 +16,7 @@ const handler = {
                 let _res = await _fetch.json();
                 let mt = _res.results.data.mimetype;
                 let b64 = _res.results.data.base64;
-                if (b64.startsWith('/9j')) {
+                if (b64.startsWith('/')) {
                     let media = new MessageMedia(mt, b64, '')
                     m.reply(media)
                 } else {
