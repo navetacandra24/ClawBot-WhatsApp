@@ -14,19 +14,31 @@ const handler = {
         for (let j = 0; j < 30; j++) {
             percentage.push(j)
         }
+        let botsuit = []
+        for (let j = 0; j < 60; j++) {
+            botsuit.push('kertas')
+            botsuit.push('batu')
+            botsuit.push('guntig')
+        }
         if (args.length >= 1) {
             let pilihanSuit = ['kertas', 'batu', 'gunting'];
             if (pilihanSuit.includes(args[0].toLowerCase())) {
                 let player = args[0].toLowerCase();
-                let bot = pickRandom(pilihanSuit);
+                let bot = pickRandom(botsuit);
                 let data = await getDb(dbid);
                 let coinsRes = data.coins * pickRandom(percentage) / 100;
                 if (player === bot) {
-                    m.reply(`*Hasil :* SERI / DRAW\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${(data.coins - coinsRes) * 1.5}`)
+                    let res = ((data.coins - coinsRes) * .025) + ddata.coins
+                    m.reply(`*Hasil :* SERI / DRAW\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`);
+                    db.UPDATEUser(dbid, res, data.bank)
                 } else if (player === 'kertas' && bot === 'batu' || player === 'batu' && bot === 'gunting' || player === 'gunting' && bot === 'kertas') {
-                    m.reply(`*Hasil :* Menang\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${(data.coins + coinsRes)}`)
+                    let res = (data.coins + coinsRes)
+                    m.reply(`*Hasil :* Menang\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`);
+                    db.UPDATEUser(dbid, res, data.bank)
                 } else if (bot === 'kertas' && player === 'batu' || bot === 'batu' && player === 'gunting' || bot === 'gunting' && player === 'kertas') {
+                    let res = (data.coins - coinsRes)
                     m.reply(`*Hasil :* Kalah\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${(data.coins - coinsRes)}`)
+                    db.UPDATEUser(dbid, res, data.bank)
                 }
             } else {
                 m.reply('Kamu hanya bisa memilih Kertas, Batu, ataupun Gunting!')

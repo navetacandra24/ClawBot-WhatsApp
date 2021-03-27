@@ -63,11 +63,11 @@ let a = [
         tag: 'Info'
     },
     {
-        commands: ['dompet', 'atm', 'bal'],
+        commands: ['dompet', 'atm', 'saldo'],
         file: `${__dirname}\\commands\\dompet.js`,
         require: `${__dirname}/commands/dompet.js`,
-        help: ['dompet', 'atm', 'bal'].map(v => '#' + v + ' <Tag (Optional)>'),
-        tag: 'Info'
+        help: ['dompet', 'atm', 'saldo'].map(v => '#' + v + ' <Tag (Optional)>'),
+        tag: 'Game'
     },
     {
         commands: ['donasi'],
