@@ -1,4 +1,3 @@
-const commandsDB = require(`${__dirname}/../commands-database`);
 const readmore = String.fromCharCode(8206).repeat(4001);
 
 function clockString(ms) {
@@ -22,7 +21,7 @@ function mapCommand(arrCmd) {
 function OwnerCommand() {
     let ownCmd = []
     if (ownCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Owner').forEach(e => {
+        global.commands.filter(v => v.tag === 'Owner').forEach(e => {
             e.help.map(va => ownCmd.push(va))
         })
     }
@@ -31,7 +30,7 @@ function OwnerCommand() {
 function StickerCommand() {
     let stickerCmd = []
     if (stickerCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Sticker').forEach(e => {
+        global.commands.filter(v => v.tag === 'Sticker').forEach(e => {
             e.help.map(va => stickerCmd.push(va))
         })
     }
@@ -40,7 +39,7 @@ function StickerCommand() {
 function GroupCommand() {
     let groupCmd = []
     if (groupCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Group').forEach(e => {
+        global.commands.filter(v => v.tag === 'Group').forEach(e => {
             e.help.map(va => groupCmd.push(va))
         })
     }
@@ -49,7 +48,7 @@ function GroupCommand() {
 function ToolsCommand() {
     let toolsCmd = []
     if (toolsCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Tools').forEach(e => {
+        global.commands.filter(v => v.tag === 'Tools').forEach(e => {
             e.help.map(va => toolsCmd.push(va))
         })
     }
@@ -58,7 +57,7 @@ function ToolsCommand() {
 function MainCommand() {
     let mainCmd = []
     if (mainCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Main').forEach(e => {
+        global.commands.filter(v => v.tag === 'Main').forEach(e => {
             e.help.map(va => mainCmd.push(va))
         })
     }
@@ -67,7 +66,7 @@ function MainCommand() {
 function KerangCommand() {
     let kerangCmd = []
     if (kerangCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Kerang').forEach(e => {
+        global.commands.filter(v => v.tag === 'Kerang').forEach(e => {
             e.help.map(va => kerangCmd.push(va))
         })
     }
@@ -76,7 +75,7 @@ function KerangCommand() {
 function MakerCommand() {
     let makerCmd = []
     if (makerCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Maker').forEach(e => {
+        global.commands.filter(v => v.tag === 'Maker').forEach(e => {
             e.help.map(va => makerCmd.push(va))
         })
     }
@@ -85,7 +84,7 @@ function MakerCommand() {
 function InfoCommand() {
     let infoCmd = []
     if (infoCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Info').forEach(e => {
+        global.commands.filter(v => v.tag === 'Info').forEach(e => {
             e.help.map(va => infoCmd.push(va))
         })
     }
@@ -94,7 +93,7 @@ function InfoCommand() {
 function EduCommand() {
     let eduCmd = []
     if (eduCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Education').forEach(e => {
+        global.commands.filter(v => v.tag === 'Education').forEach(e => {
             e.help.map(va => eduCmd.push(va))
         })
     }
@@ -103,7 +102,7 @@ function EduCommand() {
 function GameCommand() {
     let gameCmd = []
     if (gameCmd.length < 1) {
-        commandsDB.filter(v => v.tag === 'Game').forEach(e => {
+        global.commands.filter(v => v.tag === 'Game').forEach(e => {
             e.help.map(va => gameCmd.push(va))
         })
     }
