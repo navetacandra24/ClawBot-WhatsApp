@@ -7,23 +7,23 @@ const handler = {
             await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
             let fname = `ytgold-${new Date().getTime()}-${messageFrom.split('@')[0]}`;
             await ytb('gold', args.join(' '), fname)
-            setTimeout(() => {
-                try {
-                    // let _exist = fs.existsSync(`${__dirname}/../src/${filename}.jpg`)
-                    // if (_exist) {
-                    //     let media = MessageMedia.fromFilePath(`${__dirname}/../src/${fname}.jpg`);
-                    //     m.reply(media, m.from, { caption: 'Anjay youtuber :v' });
-                    // } else {
-                    //     m.reply('*Maaf gambar tidak dapat dikirim karena terjadi kesalahan system*')
-                    // }
-                    setTimeout(() => {
-                        let media = MessageMedia.fromFilePath(`${__dirname}/../src/${filename}.jpg`);
-                        m.reply(media)
-                    }, 2000);
-                } catch (err) {
-                    m.reply(err)
-                }
-            }, 2000);
+            try {
+                // let _exist = fs.existsSync(`${__dirname}/../src/${filename}.jpg`)
+                // if (_exist) {
+                //     let media = MessageMedia.fromFilePath(`${__dirname}/../src/${fname}.jpg`);
+                //     m.reply(media, m.from, { caption: 'Anjay youtuber :v' });
+                // } else {
+                //     m.reply('*Maaf gambar tidak dapat dikirim karena terjadi kesalahan system*')
+                // }
+                setTimeout(() => {
+                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/${filename}.jpg`);
+                    m.reply(media)
+                }, 20000);
+            } catch (err) {
+                m.reply(err)
+            }
+            // setTimeout(() => {
+            // }, 2000);
             
         } else {
             m.reply('Uhmm.. namanya?')
