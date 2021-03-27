@@ -190,8 +190,8 @@ let a = [
     },
     {
         commands: ['tinyurl'],
-        file: `${__dirname}\\commands\\tinyUrl.js`,
-        require: `${__dirname}/commands/tinyUrl.js`,
+        file: `${__dirname}\\commands\\tinyurl.js`,
+        require: `${__dirname}/commands/tinyurl.js`,
         help: ['tinyurl'].map(v => '#' + v + ' <Url>'),
         tag: 'Tools'
     },

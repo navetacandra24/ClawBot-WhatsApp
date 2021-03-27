@@ -1,33 +1,31 @@
 const fs = require('fs');
-const ytb = require(`${__dirname}/../helper/ytbtn`);
+const fetch = require('node-fetch');
 
 const handler = {
-    async exec({ m, args, MessageMedia, client, messageFrom }) {
+    async exec({ m, args, MessageMedia, messageFrom, dbid }) {
         if (args.length >= 1) {
-            await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*')
-            let fname = `ytgold-${new Date().getTime()}-${messageFrom.split('@')[0]}`;
-            await ytb('gold', args.join(' '), fname)
+            await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*');
+            // await execute(_ft, messageFrom, filename)
             try {
-                // let _exist = fs.existsSync(`${__dirname}/../src/${filename}.jpg`)
-                // if (_exist) {
-                //     let media = MessageMedia.fromFilePath(`${__dirname}/../src/${fname}.jpg`);
-                //     m.reply(media, m.from, { caption: 'Anjay youtuber :v' });
-                // } else {
-                //     m.reply('*Maaf gambar tidak dapat dikirim karena terjadi kesalahan system*')
-                // }
-                setTimeout(() => {
-                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/${fname}.jpg`);
+                let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com.herokuapp.com/yt-button?type=gold&name=${encodeURIComponent(args.join(' '))}&fname=${dbid}`,{
+                    mode: 'no-cors',
+                    timeout: 0
+                })
+                let _res = await _fetch.json();
+                let mt = _res.results.data.mimetype;
+                let b64 = _res.results.data.base64;
+                if (b64.startsWith('/9j')) {
+                    let media = new MessageMedia(mt, b64, '')
                     m.reply(media)
-                }, 20000);
+                } else {
+                    m.reply('*Gambar tidak dapat terkirim, karena terjadi kesalahan sistem.*')
+                }
             } catch (err) {
                 m.reply(err)
             }
-            // setTimeout(() => {
-            // }, 2000);
-            
-        } else {
-            m.reply('Uhmm.. namanya?')
-        }
+            } else {
+                m.reply('Namanya?')
+            }
     }
 }
 
