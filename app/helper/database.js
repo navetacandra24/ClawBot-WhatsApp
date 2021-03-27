@@ -8,14 +8,14 @@ module.exports = {
     },
     POSTUser: async function (uid) {
         global.db.ref('users/' + uid).update({
-            coins: '5000',
-            bank: '0'
+            coins: 5000,
+            bank: 0
         })
     },
     UPDATEUser: async function (uid, coins, bank) {
         global.db.ref('users/' + uid).update({
-            coins: `${Number(coins)}`,
-            bank: `${Number(bank)}`
+            coins: Number(coins),
+            bank: Number(coins)
         })
     },
     GET: async function (path) {
