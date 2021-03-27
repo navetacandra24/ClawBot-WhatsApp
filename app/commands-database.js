@@ -49,13 +49,6 @@ let a = [
         tag: 'Tools'
     },
     {
-        commands: ['brainly'],
-        file: `${__dirname}\\commands\\brainly.js`,
-        require: `${__dirname}/commands/brainly.js`,
-        help: ['brainly'].map(v => '#' + v + ' <Soal>'),
-        tag: 'Education'
-    },
-    {
         commands: ['bucin'],
         file: `${__dirname}\\commands\\bucin.js`,
         require: `${__dirname}/commands/bucin.js`,
@@ -145,6 +138,13 @@ let a = [
         require: `${__dirname}/commands/owner.js`,
         help: ['owner', 'creator'].map(v => '#' + v),
         tag: 'Info'
+    },
+    {
+        commands: ['pengumuman'],
+        file: `${__dirname}\\commands\\pengumuman.js`,
+        require: `${__dirname}/commands/pengumuman.js`,
+        help: ['pengumuman'].map(v => '#' + v + ' <pesan>'),
+        tag: 'Group'
     },
     {
         commands: ['status', 'sendStatus'],
