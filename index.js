@@ -154,10 +154,10 @@ global.commands = [
         tag: 'Info'
     },
     {
-        commands: ['pengumuman'],
+        commands: ['pengumuman', 'announcement'],
         file: `${__dirname}\\app\\commands\\pengumuman.js`,
         require: `${__dirname}/app/commands/pengumuman.js`,
-        help: ['pengumuman'].map(v => '#' + v + ' <pesan>'),
+        help: ['pengumuman', 'announcement'].map(v => '#' + v + ' <pesan>'),
         tag: 'Group'
     },
     {
