@@ -13,7 +13,7 @@ const handler = {
                     mode: 'no-cors',
                     timeout: 0
                 })
-                let _res = await _fetch;
+                let _res = await _fetch.json();
                 let mt = _res.results.data.mimetype;
                 let b64 = _res.results.data.base64;
                 if (b64.startsWith('/9j')) {
