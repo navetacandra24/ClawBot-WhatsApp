@@ -22,7 +22,7 @@ const handler = {
             });
         
         // return arti
-            m.reply(`${title}\n\n${arti.map(v => '- ' + v).join('\n')}`)
+            m.reply(`*${title}*\n\n${arti.map(v => '- ' + v).join('\n')}`)
         } else {
             m.reply(`Arti "_${args.join(' ')}_" tidak ditemukan.`)
         }
