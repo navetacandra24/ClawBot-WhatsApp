@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const puppeteer = require('puppeteer')
 
 async function helper(from, to, text) {
     let lang_from = from.toLowerCase();

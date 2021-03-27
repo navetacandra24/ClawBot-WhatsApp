@@ -19,16 +19,18 @@ const handler = {
         } else {
             let from = args[0]
             let to = args[1]
-            args.splice(0, 2);
-            let _text = args.join(' ');
-            // console.log(text_b);
-
-            try {
-                let translated = await gtranslate(from, to, _text);
-                let result = `*${lang[from]} :* ${_text}\n*${lang[to]} :* ${translated.result.translated}`;
-                m.reply(result)
-            } catch (err) {
-                m.reply(err)
+            if (lang[from] && lang[to]) {
+                args.splice(0, 2);
+                let _text = args.join(' ');
+                try {
+                    let translated = await gtranslate(from, to, _text);
+                    let result = `*${lang[from]} :* ${_text}\n*${lang[to]} :* ${translated.result.translated}`;
+                    m.reply(result)
+                } catch (err) {
+                    m.reply(err)
+                }
+            } else {
+                m.reply('Hanya support bahasa Indonesia dan Inggris')
             }
         }
 
