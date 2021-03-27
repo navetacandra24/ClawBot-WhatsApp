@@ -29,20 +29,26 @@ module.exports = function (client, commandsName, media) {
         let cooldown = require(`${__dirname}/cooldown.json`)
         
         if (commandsName.map(e => e).includes(cmnd)) {
-            let newCd = cooldown.cd.push(from)
-            const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
-            c.exec({
-                m: message,
-                args: args,
-                client: client,
-                MessageMedia: media,
-                messageFrom: from,
-                dbid: dbId
-            });
-            // console.log(cooldown);
-            console.log('old ',cooldown);
-            fs.writeFileSync(`${__dirname}/cooldown.json`, JSON.stringify(newCd));
-            console.log('new ',newCd);
+            if (!cooldown.cd.includes(from)) {
+                let newCd = cooldown.cd.push(from)
+                const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
+                c.exec({
+                    m: message,
+                    args: args,
+                    client: client,
+                    MessageMedia: media,
+                    messageFrom: from,
+                    dbid: dbId
+                });
+                fs.writeFileSync(`${__dirname}/cooldown.json`, JSON.stringify(newCd));
+                let Ncooldown = require(`${__dirname}/cooldown.json`);
+                setTimeout(() => {
+                    let _cd = rm(Ncooldown.cd, from)
+                    fs.writeFileSync(`${__dirname}/cooldown.json`, JSON.stringify(_cd));
+                }, 2000);
+            } else {
+                m.reply('Kamu sedang dalam cooldown,\nMohon coba lagi nanti.\n(Default cooldown: 2 detik.)')
+            }
         };
     });
 }
