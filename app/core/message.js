@@ -28,23 +28,17 @@ module.exports = function (client, commandsName, media) {
         let cooldown = []
         
         if (commandsName.map(e => e).includes(cmnd)) {
-            if (!cooldown.includes(from)) {
-                await cooldown.push(from)
-                const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
-                await c.exec({
-                    m: message,
-                    args: args,
-                    client: client,
-                    MessageMedia: media,
-                    messageFrom: from,
-                    dbid: dbId
-                });
-                setTimeout(() => {
-                    rm(cooldown, from)
-                }, 2000);
-            } else {
-                m.reply('Kamu terdeteksi melakukan *SPAM*!\nMohon coba lagi nanti')
-            }
+            cooldown.push(from)
+            const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
+            c.exec({
+                m: message,
+                args: args,
+                client: client,
+                MessageMedia: media,
+                messageFrom: from,
+                dbid: dbId
+            });
+            console.log(cooldown);
         };
     });
 }

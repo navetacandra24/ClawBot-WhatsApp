@@ -148,7 +148,7 @@ const handler = {
 │ Hai, @${creator}!
 │
 │ Tanggal: *${week}, ${date}*
-│ Waktu: *${times}*
+│ Waktu: *${times}* _(GMT +0:00)_
 │ Uptime: *${clockString(process.uptime() * 1000)}*
 │ Total Users: *${await user()}*
 │ Prefix: 「 ! ,  # ,  / 」
