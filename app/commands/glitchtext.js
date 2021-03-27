@@ -54,13 +54,16 @@ const handler = {
             let filename = `glitchtext-${new Date().getTime()}-${messageFrom.split('@')[0]}`
             await execute(_ft, messageFrom, filename)
             try {
-                let _exist = fs.existsSync(`${__dirname}/../src/${filename}.jpg`)
-                if (_exist) {
+                // let _exist = fs.existsSync(`${__dirname}/../src/${filename}.jpg`)
+                // if (_exist) {
+                    
+                // } else {
+                //     m.reply('*Maaf gambar tidak dapat dikirim karena terjadi kesalahan system*')
+                // }
+                setTimeout(() => {
                     let media = MessageMedia.fromFilePath(`${__dirname}/../src/${filename}.jpg`);
                     m.reply(media)
-                } else {
-                    m.reply('*Maaf gambar tidak dapat dikirim karena terjadi kesalahan system*')
-                }
+                }, 2000);
             } catch (err) {
                 m.reply(err)
             }

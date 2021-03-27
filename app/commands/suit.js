@@ -1,9 +1,9 @@
+const db = require(`${__dirname}/../helper/database`);
 function pickRandom(list) {
     return list[Math.floor(list.length * Math.random())]
 };
 
 async function getDb(uid) {
-    const db = require(`${__dirname}/../helper/database`);
     let a = await db.GETUser(uid);
     return a
 }

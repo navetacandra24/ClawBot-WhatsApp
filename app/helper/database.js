@@ -15,7 +15,7 @@ module.exports = {
     UPDATEUser: async function (uid, coins, bank) {
         global.db.ref('users/' + uid).update({
             coins: Number(coins),
-            bank: Number(coins)
+            bank: Number(bank)
         })
     },
     GET: async function (path) {
