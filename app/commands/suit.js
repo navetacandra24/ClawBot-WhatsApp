@@ -30,15 +30,15 @@ const handler = {
                 if (player === bot) {
                     let res = ((data.coins - coinsRes) * .025) + data.coins
                     m.reply(`*Hasil :* SERI / DRAW\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
-                    db.UPDATEUser(dbid, res, data.bank)
+                    db.UPDATEUser(dbid, Math.round(res), data.bank)
                 } else if (player === 'kertas' && bot === 'batu' || player === 'batu' && bot === 'gunting' || player === 'gunting' && bot === 'kertas') {
                     let res = (data.coins + coinsRes)
                     m.reply(`*Hasil :* Menang\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
-                    db.UPDATEUser(dbid, res, data.bank)
+                    db.UPDATEUser(dbid, Math.round(res), data.bank)
                 } else if (bot === 'kertas' && player === 'batu' || bot === 'batu' && player === 'gunting' || bot === 'gunting' && player === 'kertas') {
                     let res = (data.coins - coinsRes)
                     m.reply(`*Hasil :* Kalah\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${(data.coins - coinsRes)}`, m.from, {mentions: [await client.getContactById(messageFrom)]})
-                    db.UPDATEUser(dbid, res, data.bank)
+                    db.UPDATEUser(dbid, Math.round(res), data.bank)
                 }
             } else {
                 m.reply('Kamu hanya bisa memilih Kertas, Batu, ataupun Gunting!')

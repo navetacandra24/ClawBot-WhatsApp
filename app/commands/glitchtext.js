@@ -18,12 +18,12 @@ const handler = {
                 let b64 = _res.results.data.base64;
                 if (b64.startsWith('/9j')) {
                     let media = new MessageMedia(mt, b64, '')
-                    return m.reply(media)
+                    m.reply(media)
                 } else {
-                    return m.reply('*Gambar tidak dapat terkirim, karena terjadi kesalahan sistem.*')
+                    m.reply('*Gambar tidak dapat terkirim, karena terjadi kesalahan sistem.*')
                 }
             } catch (err) {
-                return m.reply(err)
+                m.reply(err)
             }
             } else {
                 m.reply('Masukkan format dengan benar\n*Contoh :* #glitchtext Clawbot | GG Gaming')
