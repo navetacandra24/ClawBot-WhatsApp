@@ -49,6 +49,13 @@ let a = [
         tag: 'Tools'
     },
     {
+        commands: ['brainly'],
+        file: `${__dirname}\\commands\\brainly.js`,
+        require: `${__dirname}/commands/brainly.js`,
+        help: ['brainly'].map(v => '#' + v + ' <Soal>'),
+        tag: 'Education'
+    },
+    {
         commands: ['bucin'],
         file: `${__dirname}\\commands\\bucin.js`,
         require: `${__dirname}/commands/bucin.js`,

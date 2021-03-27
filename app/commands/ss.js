@@ -11,7 +11,7 @@ const handler = {
                 let _mime = await _res.results.data.mimetype;
                 let _base64 = await _res.results.data.base64;
                 let media = new MessageMedia(_mime, _base64, undefined);
-                m.reply(media, m.from, {caption: url})
+                m.reply(media, m.from, { caption: url, linkPreview: false})
             } catch (err) {
                 m.reply(err)
             }

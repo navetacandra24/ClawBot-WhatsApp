@@ -1,7 +1,7 @@
 const handler = {
     async exec({ args, client, m, messageFrom }) {
         
-        if (messageFrom.includes('6285311174928')) {
+        if (messageFrom === global.ownerId) {
             if (args.length >= 1) {
                 const chats = await client.getChats();
                 let contact = [];
