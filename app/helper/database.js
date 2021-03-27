@@ -3,8 +3,13 @@ module.exports = {
         return global.db.ref(path)
     },
     GETUser: async function (uid) {
-        let _a = await this.ref('users/' + uid).get();
-        return _a.val()
+        if (uid) {
+            let _a = await this.ref('users/' + uid).get();
+            return _a.val()
+        } else {
+            let _a = await this.ref('users').get();
+            return _a.val()
+        }
     },
     POSTUser: async function (uid) {
         global.db.ref('users/' + uid).update({

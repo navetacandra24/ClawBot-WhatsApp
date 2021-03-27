@@ -1,4 +1,5 @@
 const readmore = String.fromCharCode(8206).repeat(4001);
+const db = require(__dirname + '/../helper/database')
 
 function clockString(ms) {
     let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
@@ -110,6 +111,12 @@ function GameCommand() {
 }
 
 
+async function user() {
+    let _a = await db.GETUser();
+    return Object.keys(_a).length
+}
+
+
 const handler = {
     async exec({ m, client }) {
 
@@ -131,9 +138,9 @@ const handler = {
             month: 'long',
             year: 'numeric'
         });
-        let time = new Date().toLocaleString('id-ID').split(' ')[1].split('.');
-	time[0] = `${Number(time[0]) + 7 >= 24 ? Number(time[0]) + 7 - 24 : Number(time[0]) + 7}`;
-	let times = time.join(' : ')
+        let time = new Date().toLocaleString('id').split(' ')[1].split('.');
+	// time[0] = `${Number(time[0]) + 7 >= 24 ? Number(time[0]) + 7 - 24 : Number(time[0]) + 7}`;
+	    let times = time.join(' : ')
 
 
         const message = `
@@ -143,6 +150,7 @@ const handler = {
 │ Tanggal: *${week}, ${date}*
 │ Waktu: *${times}*
 │ Uptime: *${clockString(process.uptime() * 1000)}*
+│ Total Users: *${user()}*
 │ Prefix: 「 ! ,  # ,  / 」
 ╰───────${readmore}
 
