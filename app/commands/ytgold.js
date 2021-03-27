@@ -7,7 +7,7 @@ const handler = {
             await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*');
             // await execute(_ft, messageFrom, filename)
             try {
-                let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com.herokuapp.com/yt-button?type=gold&name=${encodeURIComponent(args.join(' '))}&fname=${dbid}`,{
+                let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com.herokuapp.com/ytbutton?type=gold&name=${encodeURIComponent(args.join(' '))}&fname=${dbid}`,{
                     mode: 'no-cors',
                     timeout: 0
                 })

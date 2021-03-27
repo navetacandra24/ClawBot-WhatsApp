@@ -1,10 +1,9 @@
 const { Client, MessageMedia } = require('whatsapp-web.js');
 const fs = require('fs');
 const chalk = require('chalk');
-const logMSG = require('./log');
-const commandDB = require(`${__dirname}/commands-database`)
+require(`${__dirname}/core/commands-database`)();
 const cr = require(`${__dirname}/credit`);
-const db = require(`${__dirname}/helper/database`)
+const msg = require(__dirname + '/core/message')
 
 async function getDb(uid) {
     let _a = global.db.ref('users/' + uid);
@@ -79,34 +78,35 @@ function Run() {
 
     // let commands = [];
     let commandsName = []
-    commandDB.forEach(e => e.commands.forEach(r => commandsName.push(r)))
+    global.commands.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
-    client.on('message', async message => {
-        const PREFIX = ['/', '#', '!'];
-        const from = message.author ? message.author : message.from;
-        let dbId = from.split('@')[0]
-        logMSG(message, commandsName, from, PREFIX)
-        client.sendSeen(message.from)
-        let mDb = await db.GETUser(dbId)
-        mDb ? '' : await db.POSTUser(dbId)
-        if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
+    // client.on('message', async message => {
+    //     const PREFIX = ['/', '#', '!'];
+    //     const from = message.author ? message.author : message.from;
+    //     let dbId = from.split('@')[0]
+    //     logMSG(message, commandsName, from, PREFIX)
+    //     client.sendSeen(message.from)
+    //     let mDb = await db.GETUser(dbId)
+    //     mDb ? '' : await db.POSTUser(dbId)
+    //     if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
 
-        let args = message.body.slice(1).split(/ +/);
-        const cmnd = args.shift().toLowerCase();
+    //     let args = message.body.slice(1).split(/ +/);
+    //     const cmnd = args.shift().toLowerCase();
 
-        if (commandsName.map(e => e).includes(cmnd)) {
-            const c = require(commandDB.filter(v => v.commands.includes(cmnd))[0].require);
-            c.exec({
-                m: message,
-                args: args,
-                client: client,
-                MessageMedia: MessageMedia,
-                messageFrom: from,
-                dbid: dbId
-            });
+    //     if (commandsName.map(e => e).includes(cmnd)) {
+    //         const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
+    //         c.exec({
+    //             m: message,
+    //             args: args,
+    //             client: client,
+    //             MessageMedia: MessageMedia,
+    //             messageFrom: from,
+    //             dbid: dbId
+    //         });
 
-        };
-    });
+    //     };
+    // });
+    msg(client, commandsName, MessageMedia)
 }
 
 
