@@ -16,7 +16,7 @@ const handler = {
                 //     m.reply('*Maaf gambar tidak dapat dikirim karena terjadi kesalahan system*')
                 // }
                 setTimeout(() => {
-                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/${filename}.jpg`);
+                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/${fname}.jpg`);
                     m.reply(media)
                 }, 20000);
             } catch (err) {

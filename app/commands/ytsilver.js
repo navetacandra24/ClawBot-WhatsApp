@@ -22,7 +22,7 @@ const handler = {
             // }, 2000);
             try {
                 setTimeout(() => {
-                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/${filename}.jpg`);
+                    let media = MessageMedia.fromFilePath(`${__dirname}/../src/${fname}.jpg`);
                     m.reply(media)
                 }, 20000);
             } catch (err) {

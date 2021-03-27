@@ -4,7 +4,7 @@ const handler = {
         let chat = await client.getChatById(m.from);
         let ownerbot = '6285311174928@c.us';
         if (chat.isGroup) {
-            if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === ownerbot) {
+            if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === global.ownerId) {
                 let mentions = [];
                 let text = [];
                 for (let i = 0; i < chat.groupMetadata.participants.length; i++) {

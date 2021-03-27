@@ -24,7 +24,7 @@ const handler = {
             let pilihanSuit = ['kertas', 'batu', 'gunting'];
             if (pilihanSuit.includes(args[0].toLowerCase())) {
                 let player = args[0].toLowerCase();
-                let bot = pickRandom(botsuit);
+                let bot = pickRandom(pilihanSuit);
                 let data = await getDb(dbid);
                 let coinsRes = data.coins * pickRandom(percentage) / 100;
                 if (player === bot) {
