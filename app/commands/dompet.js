@@ -4,12 +4,10 @@ const handler = {
         if (m.mentionedIds.length >= 1) {
             let mentionId = m.mentionedIds[0].split('@')[0]
             let _a = await db.GETUser(mentionId);
-            _a ? '' : await db.POSTUser(mentionId);
-            let _b = await db.GETUser(mentionId);
             m.reply(`
 ╭─「 Saldo @${mentionId} 」
-│ Coins : ${Number(_b.coins)}
-│ Bank : ${Number(_b.bank)}
+│ Coins : ${Number(_a.coins)}
+│ Bank : ${Number(_a.bank)}
 ╰───────
             `, m.from, { mentions: [await client.getContactById(m.mentionedIds[0])] })
         } else {
