@@ -4,13 +4,9 @@ const chalk = require('chalk');
 const cr = require(`${__dirname}/credit`);
 const msg = require(__dirname + '/core/message')
 
-async function getDb(uid) {
-    let _a = global.db.ref('users/' + uid);
-    let _b = await _a.get();
-    return _b.val()
-}
-
 function Run() {
+
+
     const SESSION_FILE_PATH = `${__dirname}/whatsapp-session.json`;
     let sessionCfg;
     if (fs.existsSync(SESSION_FILE_PATH)) {
@@ -75,36 +71,10 @@ function Run() {
         console.log(chalk.red('Bot is ready now.'));
     })
 
-    // let commands = [];
+
     let commandsName = []
     global.commands.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
-    // client.on('message', async message => {
-    //     const PREFIX = ['/', '#', '!'];
-    //     const from = message.author ? message.author : message.from;
-    //     let dbId = from.split('@')[0]
-    //     logMSG(message, commandsName, from, PREFIX)
-    //     client.sendSeen(message.from)
-    //     let mDb = await db.GETUser(dbId)
-    //     mDb ? '' : await db.POSTUser(dbId)
-    //     if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
-
-    //     let args = message.body.slice(1).split(/ +/);
-    //     const cmnd = args.shift().toLowerCase();
-
-    //     if (commandsName.map(e => e).includes(cmnd)) {
-    //         const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
-    //         c.exec({
-    //             m: message,
-    //             args: args,
-    //             client: client,
-    //             MessageMedia: MessageMedia,
-    //             messageFrom: from,
-    //             dbid: dbId
-    //         });
-
-    //     };
-    // });
     msg(client, commandsName, MessageMedia)
 }
 

@@ -1,51 +1,54 @@
-const fs = require('fs');
 const fetch = require('node-fetch');
 
+const glitchTextCD = {
+    list: async function () {
+        let _a = await global.db.ref('cooldown/ytgold').get();
+        let _b = _a.val();
+        return Object.keys(_b)
+    },
+    update: async function (uid, data) {
+        await global.db.ref(`cooldown/ytgold/${uid}`).set(data);
+    }
+}
+
 const handler = {
-    async exec({ m, args, MessageMedia, messageFrom, dbid }) {
-        const cooldown = require(`${__dirname}/../core/cooldown.json`);
-        const cd = cooldown['ytgold-cd']
-        if (!cd.includes(messageFrom)) {
+    async exec({ m, args, MessageMedia, dbid }) {
+        let cdList = await glitchTextCD.list();
+        if (!cdList.includes(dbid)) {
             if (args.length >= 1) {
-                await cd.push(messageFrom);
-                await fs.writeFileSync(`${__dirname}/../core/cooldown.json`, JSON.stringify(cd));
+                await glitchTextCD.update(dbid, {is: '1'})
                 await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*');
+                // await execute(_ft, messageFrom, filename)
                 try {
-                    let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/ytbutton?type=gold&name=${encodeURIComponent(args.join(' '))}&fname=${dbid}`, {
-                        mode: 'no-cors',
-                        timeout: 0
-                    })
+                    let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/ytbutton?type=gold&name=${encodeURIComponent(args.join(' '))}&fname=${dbid}`,{
+                            mode: 'no-cors',
+                            timeout: 0
+                        })
+                    if (_fetch.status !== 200) {
+                        await glitchTextCD.update(dbid, {})
+                        m.reply('*Gambar tidak dapat terkirim* _( Timeout )_\nMohon coba lagi nanti.');
+                    }
                     let _res = await _fetch.json();
                     let mt = _res.results.data.mimetype;
                     let b64 = _res.results.data.base64;
-                    if (b64.startsWith('/9j')) {
+                    if (b64.startsWith('/')) {
                         let media = new MessageMedia(mt, b64, '')
+                        await glitchTextCD.update(dbid, {})
                         m.reply(media)
-                        const _cooldown = require(`${__dirname}/../core/cooldown.json`);
-                        const _cd = _cooldown['ytgold-cd']
-                        _cd.splice(_cd.indexOf(messageFrom), 1)
-                        fs.writeFileSync(`${__dirname}/../core/cooldown.json`, JSON.stringify(_cd))
                     } else {
+                        await glitchTextCD.update(dbid, {})
                         m.reply('*Gambar tidak dapat terkirim, karena terjadi kesalahan sistem.*')
-                        const _cooldowns = require(`${__dirname}/../core/cooldown.json`);
-                        const _cds = _cooldowns['ytgold-cd']
-                        _cds.splice(_cds.indexOf(messageFrom), 1)
-                        fs.writeFileSync(`${__dirname}/../core/cooldown.json`, JSON.stringify(_cds))
                     }
                 } catch (err) {
                     m.reply(err)
-                    const _cooldownss = require(`${__dirname}/../core/cooldown.json`);
-                    const _cdss = _cooldownss['ytgold-cd']
-                    _cdss.splice(_cdss.indexOf(messageFrom), 1)
-                    fs.writeFileSync(`${__dirname}/../core/cooldown.json`, JSON.stringify(_cdss))
                 }
             } else {
                 m.reply('Namanya?')
             }
         } else {
-            m.reply('Kamu sedang dalam cooldown!\nMohon coba lagi nanti.')
+            m.reply('Kamu sedang cooldown, coba lagi nanti!')
         }
     }
-};
+}
 
 module.exports = handler

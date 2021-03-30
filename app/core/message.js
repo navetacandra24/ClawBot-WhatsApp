@@ -25,13 +25,9 @@ module.exports = function (client, commandsName, media) {
     
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();
-
-        let cooldown = require(`${__dirname}/cooldown.json`)
         
         if (commandsName.map(e => e).includes(cmnd)) {
-            if (!cooldown.cd.includes(from)) {
-                let newCd = cooldown.cd.push(from)
-                const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
+            const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
                 c.exec({
                     m: message,
                     args: args,
@@ -40,10 +36,6 @@ module.exports = function (client, commandsName, media) {
                     messageFrom: from,
                     dbid: dbId
                 });
-                fs.writeFileSync(`${__dirname}/cooldown.json`, JSON.stringify(newCd));
-            } else {
-                m.reply('Kamu sedang dalam cooldown,\nMohon coba lagi nanti.\n(Default cooldown: 2 detik.)')
-            }
         };
     });
 }
