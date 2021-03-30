@@ -196,6 +196,13 @@ global.commands = [
         tag: 'Game'
     },
     {
+        commands: ['taga', 'tag-a'].map(v => v + 'll'),
+        file: `${__dirname}\\app\\commands\\tagAll.js`,
+        require: `${__dirname}/app/commands/tagAll.js`,
+        help: ['taga', 'tag-a'].map(v => '#' + v + 'll'),
+        tag: 'Game'
+    },
+    {
         commands: ['har', 'tah'].map(v => v + 'ta'),
         file: `${__dirname}\\app\\commands\\tahta.js`,
         require: `${__dirname}/app/commands/tahta.js`,
