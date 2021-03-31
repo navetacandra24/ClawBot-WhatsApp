@@ -79,10 +79,11 @@ function Run() {
 
     setInterval(async () => {
         let chat = await client.getChats();
-        chat.forEach(e => {
-            setTimeout(async () => {
-                await e.clearMessages()
-            }, 1000 * 60);
+        chat.forEach(async e => {
+            // setTimeout(async () => {
+            //     await e.clearMessages()
+            // }, 1000 * 60);
+            await e.sendSeen()
         })
     }, 3600 * 100);
 

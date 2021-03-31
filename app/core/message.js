@@ -34,12 +34,12 @@ module.exports = function (client, commandsName, media) {
         if (!PREFIX.includes(message.body.charAt(0)) || message.from === 'status@broadcast') return;
 
         /* Spam Detector */
-        let _isSpam = await spamDetector(from, await message.timestamp);
-    
+        
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();
         
         if (commandsName.map(e => e).includes(cmnd)) {
+            let _isSpam = await spamDetector(from, await message.timestamp);
             if (_isSpam) {
                 message.reply(`*「 SPAM DETECTION 」*\n\n@${dbId} terlalu sering melakukan request. Mohon coba lagi nanti!`,
                     message.from, { mentions: [await client.getContactById(from)] })

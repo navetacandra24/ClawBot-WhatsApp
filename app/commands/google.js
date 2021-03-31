@@ -10,7 +10,7 @@ const handler = {
             try {
                 let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/google?q=${encodeURIComponent(args.join(' '))}`,
                     { mode: 'no-cors', timeout: 0 });
-                if (_fetch.status !== 200) m.reply('pencarian tidak dapat terkirim _( Timeout )_\nMohon coba lagi nanti.')
+                if (_fetch.status !== 200) m.reply('Pencarian tidak dapat terkirim _( Timeout )_\nMohon coba lagi nanti.')
                 let _res = await _fetch.json();
                 if (_res.results.length >= 1) {
                     let _items = await _res.results // array

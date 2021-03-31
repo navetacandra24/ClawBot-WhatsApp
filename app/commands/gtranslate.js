@@ -1,15 +1,14 @@
-const gtranslate = require(`${__dirname}/../helper/gtranslate`);
+const fetch = require('node-fetch');
 
 const lang = {
-    Indonesia: 'Indonesia',
-    Indonesian: 'Indonesia',
     indonesia: 'Indonesia',
     indonesian: 'Indonesia',
-    Inggris: 'Inggris',
+    indo: 'Indonesia',
+    indo: 'Indonesia',
     inggris: 'Inggris',
-    English: 'Inggris',
     english: 'Inggris'
 }
+
 
 const handler = {
     async exec({ m, args }) {
@@ -19,18 +18,18 @@ const handler = {
         } else {
             let from = args[0]
             let to = args[1]
-            if (lang[from] && lang[to]) {
-                args.splice(0, 2);
-                let _text = args.join(' ');
-                try {
-                    let translated = await gtranslate(from, to, _text);
-                    let result = `*${lang[from]} :* ${_text}\n*${lang[to]} :* ${translated.result.translated}`;
-                    m.reply(result)
-                } catch (err) {
-                    m.reply(err)
-                }
-            } else {
-                m.reply('Hanya support bahasa Indonesia dan Inggris')
+            args.splice(0, 2);
+            let _text = args.join(' ').replace(/\n/g, ' ');
+            try {
+                let _fetch = await fetch(`https://shielded-hollows-79689.herokuapp.com/translate/google?lang_from=${lang[from].toLowerCase()}&lang_target=${lang[to].toLowerCase()}&text=${_text}`, { mode: 'no-cors', timeout: 0 });
+                if (_fetch.status !== 200) m.reply('Hasil tidak dapat terkirim _( Timeout )_\nMohon coba lagi nanti.')
+                let translated = await _fetch.json()
+
+                let result = `*${lang[from.toLowerCase()]} :* ${_text}\n*${lang[to.toLowerCase()]} :* ${translated.results.translated}`;
+                m.reply(result)
+            } catch (err) {
+                // console.log(err);
+                m.reply(err)
             }
         }
 
