@@ -37,7 +37,9 @@ module.exports = function (client, commandsName, media) {
         
         let args = message.body.slice(1).split(/ +/);
         const cmnd = args.shift().toLowerCase();
-        
+
+
+
         if (commandsName.map(e => e).includes(cmnd)) {
             let _isSpam = await spamDetector(from, await message.timestamp);
 

@@ -35,8 +35,9 @@ async function GETUser(uid) {
 
 async function POSTUser(uid) {
     global.db.ref('users/' + uid).update({
-        coins: 5000,
-        bank: 0
+        _c: 5000,
+        _b: 0,
+        _t: 5000
     })
 }
 
@@ -50,8 +51,9 @@ async function POSTUser(uid) {
  */
 async function UPDATEUser(uid, coins, bank) {
     global.db.ref('users/' + uid).update({
-        coins: Number(coins),
-        bank: Number(bank)
+        _c: Number(coins),
+        _b: Number(bank),
+        _t: Number(coins) + Number(bank)
     })
 }
 
@@ -71,7 +73,7 @@ async function GET(path) {
  * @param {String} path
  * @example
  * 
- * POST('users/USER_ID', {coins: 5000, bank:0})
+ * POST('users/USER_ID', {_c: 5000, _b:0})
  */
 
 async function POST(path, data = {}) {
@@ -85,5 +87,5 @@ module.exports = {
     GETUser,
     UPDATEUser,
     POST,
-    POSTUser
+    POSTUser,
 }

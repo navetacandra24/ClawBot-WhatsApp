@@ -8,7 +8,7 @@ const handler = {
                 let jumlah = Number(args[1]);
                 let penerimaDb = await db.GETUser(nomor);
                 if (penerimaDb) {
-                    await db.UPDATEUser(nomor, penerimaDb.coins + jumlah, penerimaDb.bank)
+                    await db.UPDATEUser(nomor, penerimaDb._c + jumlah, penerimaDb._b)
                     let id = await client.getNumberId(nomor);
                     await m.reply(`Coins berhasil ditambahkan ke @${nomor}`, m.from, {mentions: [await client.getContactById(id._serialized)]})
                 } else {

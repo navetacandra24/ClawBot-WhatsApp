@@ -6,15 +6,15 @@ const handler = {
             if (m.mentionedIds.length >= 1) {
                 if (!args[1].includes('@')) {
                     let userDb = await db.GETUser(dbid);
-                    let numPay = args[1].toLowerCase() === 'all' ? userDb.coins : Number(args[1]);
+                    let numPay = args[1].toLowerCase() === 'all' ? userDb._c : Number(args[1]);
                     if (!isNaN(numPay)) {
-                        if (userDb.coins >= numPay) {
+                        if (userDb._c >= numPay) {
                             let penerima = m.mentionedIds[0].split('@')[0];
                             let penerimaDb = await db.GETUser(penerima);
-                            let resCoinsSend = userDb.coins - numPay;
-                            let resCoinsPenerima = penerimaDb.coins + numPay;
-                            await db.UPDATEUser(dbid, resCoinsSend, userDb.bank)
-                            await db.UPDATEUser(penerima, resCoinsPenerima, penerimaDb.bank)
+                            let resCoinsSend = userDb._c - numPay;
+                            let resCoinsPenerima = penerimaDb._c + numPay;
+                            await db.UPDATEUser(dbid, resCoinsSend, userDb._b)
+                            await db.UPDATEUser(penerima, resCoinsPenerima, penerimaDb._b)
                             await m.reply(`Saldo berhasil dikirm ke @${penerima}`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]});
                         } else {
                             m.reply('Coins anda tidak cukup!');

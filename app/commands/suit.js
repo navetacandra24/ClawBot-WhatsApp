@@ -26,19 +26,19 @@ const handler = {
                 let player = args[0].toLowerCase();
                 let bot = pickRandom(pilihanSuit);
                 let data = await getDb(dbid);
-                let coinsRes = data.coins * pickRandom(percentage) / 100;
+                let coinsRes = data._c * pickRandom(percentage) / 100;
                 if (player === bot) {
-                    let res = Math.round(((data.coins - coinsRes) * .025) + data.coins)
+                    let res = Math.round(((data._c - coinsRes) * .025) + data._c)
                     m.reply(`*Hasil :* SERI / DRAW\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
-                    db.UPDATEUser(dbid, res, data.bank)
+                    db.UPDATEUser(dbid, res, data._b)
                 } else if (player === 'kertas' && bot === 'batu' || player === 'batu' && bot === 'gunting' || player === 'gunting' && bot === 'kertas') {
-                    let res = Math.round((data.coins + coinsRes))
+                    let res = Math.round((data._c + coinsRes))
                     m.reply(`*Hasil :* Menang\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
-                    db.UPDATEUser(dbid, res, data.bank)
+                    db.UPDATEUser(dbid, res, data._b)
                 } else if (bot === 'kertas' && player === 'batu' || bot === 'batu' && player === 'gunting' || bot === 'gunting' && player === 'kertas') {
-                    let res = Math.floor((data.coins - (coinsRes * .75)))
+                    let res = Math.floor((data._c - (coinsRes * .75)))
                     m.reply(`*Hasil :* Kalah\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]})
-                    db.UPDATEUser(dbid, res, data.bank)
+                    db.UPDATEUser(dbid, res, data._b)
                 }
             } else {
                 m.reply('Kamu hanya bisa memilih Kertas, Batu, ataupun Gunting!')

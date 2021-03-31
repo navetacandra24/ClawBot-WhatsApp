@@ -5,8 +5,10 @@ const handler = {
             if (chat.groupMetadata.participants.filter(e => e.id._serialized === messageFrom)[0].isAdmin || messageFrom === global.ownerId) {
                 if (args.length >= 1) {
                     let allMember = chat.groupMetadata.participants.filter(e => e.id._serialized !== global.botId);
+                    let mentions = [];
+                    mentions.push(await client.getContactById(messageFrom))
                     for (let i = 0; i < allMember.length; i++) {
-                        client.sendMessage(allMember[i].id._serialized, `${args.join(' ')}\n\nMessage from : @${dbid}  || https://wa.me/${dbid}`, m.from, {mentions: [await client.getContactById(messageFrom)]})
+                        client.sendMessage(allMember[i].id._serialized, `${args.join(' ')}\n\nMessage from : @${dbid}  || https://wa.me/${dbid}`, m.from, {mentions: mentions})
                     }
                 } else {
                     m.reply('Pesannya?')

@@ -128,7 +128,7 @@ const handler = {
 
         const ct = await m.getContact();
         mentions.push(await client.getContactById(ct.id._serialized));
-        mentions.push(await client.getContactById('6285311174928@c.us'));
+        mentions.push(await client.getContactById(global.ownerId));
         creator += ct.id.user
 
         // let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(Math.pow((((d * 1) + gmt) / 84600000), 1/7))]
@@ -139,12 +139,12 @@ const handler = {
             year: 'numeric'
         });
         let time = new Date().toLocaleString('id').split(' ')[1].split('.');
-	// time[0] = `${Number(time[0]) + 7 >= 24 ? Number(time[0]) + 7 - 24 : Number(time[0]) + 7}`;
-	    let times = time.join(' : ')
+        let times = time.join(' : ');
+        let package = require(`${__dirname}/../../package.json`)
 
 
         const message = `
-╭─「 ClawBot 」
+╭─「 ${package.name} 」
 │ Hai, @${creator}!
 │
 │ Tanggal: *${week}, ${date}*
@@ -152,8 +152,8 @@ const handler = {
 │ Uptime: *${clockString(process.uptime() * 1000)}*
 │ Total Users: *${await user()}*
 │ Prefix: 「 ! ,  # ,  / 」
-╰───────${readmore}
-
+╰───────
+${readmore}
 ╭─「 Main 」
 ${mapCommand(MainCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────

@@ -1,45 +1,22 @@
+const fetch = require('node-fetch')
+
 const handler = {
     async exec({ m, args }) {
         if (args.length >= 1) {
-            let url = args[0]
-            const browser = await puppeteer.launch({
-                headless: true,
-                ignoreHTTPSErrors: true,
-                args: [
-                    '--no-sandbox',
-                    '--disable-setuid-sandbox',
-                    '--disable-dev-shm-usage',
-                    '--disable-accelerated-2d-canvas',
-                    '--no-first-run',
-                    '--no-zygote',
-                    '--disable-gpu',
-                    '--aggressive-cache-discard',
-                    '--disable-cache',
-                    '--disable-application-cache',
-                    '--disk-cache-size=0'
-                ],
-                product: 'chrome'
-            });
-            const page = await browser.newPage();
-            await page.setDefaultNavigationTimeout(0)
-            await page.goto('https://bitly.com/', {
-                waitUntil: 'networkidle2'
-            })
-                .then(async () => {
-                    await page.type('#shorten_url', url, {delay: 0});
-                    await page.click('#shorten_btn');
-                    await new Promise(resolve => setTimeout(resolve, 2000))
-        
-                    const element = await page.$('#shortened_url');
-                    const shortened = await (await element.getProperty('value')).jsonValue();
-                    if (shortened !== "") {
-                        m.reply(shortened)
-                    } else {
-                        m.reply('Link tidak dapat di-konversi.')
-                    }
-                })
-                .catch(err => m.reply(err))
-            await browser.close()
+            let url = /https?:\/\//.test(args[0]) ? args[0] : 'http://' + args[0];
+            try {
+                let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/bitly?url=${url}`, { mode: 'no-cors', timeout: 0 });
+                if(_fetch.status !== 200) m.reply('Hasil tidak dapat terkirim _( Timeout )_\nMohon coba lagi nanti.')
+                let _res = await _fetch.json();
+                let _data = await _res.result;
+                if (_data !== '') {
+                    m.reply(`Link asal : ${url}\nLink hasil : ${_data}`, m.from, { linkPreview: false})
+                } else {
+                    m.reply('Link tidak dapat dikonversi!')
+                }
+            } catch (err) {
+                m.reply(err)
+            }
         } else {
             m.reply('Mana URL-nya kak!')
         }

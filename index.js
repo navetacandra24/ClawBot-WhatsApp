@@ -6,7 +6,6 @@ global.API = {
 };
 global.ownerId = '6285311174928@c.us';
 global.ownerContact = [`Clawbot's Owner`, '+62 853-1117-4928']
-global.botId = '6285718234965@c.us';
 require('firebase/database')
 
 global.f.initializeApp({
@@ -152,6 +151,12 @@ global.commands = [
         require: `${__dirname}/app/commands/kickall.js`,
         help: ['kickall', 'removeall'].map(v => '#' + v),
         tag: 'Group'
+    },
+    {
+        commands: ['leaderboard', 'lb'],
+        require: `${__dirname}/app/commands/leaderboard.js`,
+        help: ['leaderboard', 'lb'].map(v => '#' + v),
+        tag: 'Game'
     },
     {
         commands: ['owner', 'creator'],

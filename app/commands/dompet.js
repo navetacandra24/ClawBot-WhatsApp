@@ -6,16 +6,16 @@ const handler = {
             let _a = await db.GETUser(mentionId);
             m.reply(`
 ╭─「 Saldo @${mentionId} 」
-│ Coins : ${Number(_a.coins)}
-│ Bank : ${Number(_a.bank)}
+│ Coins : ${Number(_a._c)}
+│ Bank : ${Number(_a._b)}
 ╰───────
             `, m.from, { mentions: [await client.getContactById(m.mentionedIds[0])] })
         } else {
             let _a = await db.GETUser(dbid);
             m.reply(`
 ╭─「 Saldo @${dbid} 」
-│ Coins : ${Number(_a.coins)}
-│ Bank : ${Number(_a.bank)}
+│ Coins : ${Number(_a._c)}
+│ Bank : ${Number(_a._b)}
 ╰───────
             `, m.from, { mentions: [await client.getContactById(messageFrom)] })
         }

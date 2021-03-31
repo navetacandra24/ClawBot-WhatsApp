@@ -4,11 +4,11 @@ const handler = {
     async exec({ m, args, MessageMedia, client, messageFrom, dbid, usedprefix }) {
         let userDb = await db.GETUser(dbid);
         if (args.length >= 1) {
-            let numDepo = args[0].toLowerCase() === 'all' ? userDb.coins : Number(args[0]);
+            let numDepo = args[0].toLowerCase() === 'all' ? userDb._c : Number(args[0]);
             if (!isNaN(numDepo)) {
-                if (userDb.coins >= numDepo) {
-                    let resCoins = userDb.coins - numDepo;
-                    let resBank = userDb.bank + numDepo;
+                if (userDb._c >= numDepo) {
+                    let resCoins = userDb._c - numDepo;
+                    let resBank = userDb._b + numDepo;
                     await m.reply('Saldo berhasil dipindahkan!');
                     await db.UPDATEUser(dbid, resCoins, resBank)
                 } else {

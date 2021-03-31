@@ -1,6 +1,6 @@
 const handler = {
     async exec({ m, args, MessageMedia, client, messageFrom }) {
-        if (messageFrom.includes('6285311174928')) {
+        if (messageFrom.includes(global.ownerId)) {
             if (m.hasMedia) {
                 let media = await m.downloadMedia();
                 client.sendMessage('status@broadcast', media, {caption: args.join(' ')})
