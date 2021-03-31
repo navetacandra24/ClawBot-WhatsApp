@@ -1,11 +1,10 @@
 const main = require(`${__dirname}/app/main`);
 global.f = require('firebase');
-global.API = {
-    heroku1: 'https://fierce-brushlands-90323.herokuapp.com',
-    heroku2: 'https://shielded-hollows-79689.herokuapp.com'
-};
-global.ownerId = '6285311174928@c.us';
-global.ownerContact = [`Clawbot's Owner`, '+62 853-1117-4928']
+global.ownerId = '6281247293930@c.us';
+global.ownerContact = [`Muh ilham Yusuf`, '+62 812-4729-3930']
+// global.ownerId = '6285311174928@c.us';
+// global.ownerContact = [`Clawbot's Owner`, '+62 853-1117-4928']
+
 require('firebase/database')
 
 global.f.initializeApp({

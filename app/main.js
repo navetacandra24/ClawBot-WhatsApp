@@ -68,22 +68,21 @@ function Run() {
         console.log(chalk.cyanBright(`Recieved ${ct.length} Conatcts\nRecieved ${cht.length} Chats\n`));
         console.log(commandsName, '\n');
         console.log(chalk.red('Bot is ready now.'));
+        setInterval(async () => {
+            let chat = await client.getChats();
+            chat.forEach(async e => {
+                await e.sendSeen()
+            })
+        }, 1000 * 60);
     })
 
 
     let commandsName = []
     global.commands.forEach(e => e.commands.forEach(r => commandsName.push(r)))
-    global.botId = '6285718234965@c.us'
+    global.botId = '13164440560@c.us'
 
     msg(client, commandsName, MessageMedia)
 
-
-    setInterval(async () => {
-        let chat = await client.getChats();
-        chat.forEach(async e => {
-            await e.sendSeen()
-        })
-    }, 1000 * 60);
     // client.sendMessage(global.ownerId, '')
 
 }
