@@ -25,7 +25,6 @@ function Run() {
                 '--disable-accelerated-2d-canvas',
                 '--no-first-run',
                 '--no-zygote',
-                '--single-process', // <- this one doesn't works in Windows
                 '--disable-gpu',
                 '--aggressive-cache-discard',
                 '--disable-cache',
@@ -76,6 +75,17 @@ function Run() {
     global.commands.forEach(e => e.commands.forEach(r => commandsName.push(r)))
 
     msg(client, commandsName, MessageMedia)
+
+
+    setInterval(async () => {
+        let chat = await client.getChats();
+        chat.forEach(e => {
+            setTimeout(async () => {
+                await e.clearMessages()
+            }, 1000 * 60);
+        })
+    }, 3600 * 100);
+
 }
 
 

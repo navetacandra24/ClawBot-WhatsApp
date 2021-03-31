@@ -7,25 +7,39 @@ let data = [];
 const handler = {
     async exec({ m, args }) {
         if (args.length >= 1) {
-            let q = args.join(' ');
-            let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/google?q=${q}`, {mode: 'no-cors', timeout: 1000 * 3600 * 24});
-            let _res = await _fetch.json();
-            let _stat = await _res.status
-            if (_stat === "success") {
-                let _items = await _res.results // array
-                _items.forEach(e => {
-                    title.push(e.title)
-                    link.push(e.link)
-                    snippet.push(e.snippet)
-                });
-                for (let i = 0; i < _items.length; i++) {
-                    data.push("*" + title[i] + "*\n" + link[i] + "\n```" + snippet[i] + "```");
+            try {
+                let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/google?q=${encodeURIComponent(args.join(' '))}`,
+                    { mode: 'no-cors', timeout: 0 });
+                if (_fetch.status !== 200) m.reply('pencarian tidak dapat terkirim _( Timeout )_\nMohon coba lagi nanti.')
+                let _res = await _fetch.json();
+                if (_res.results.length >= 1) {
+                    let _items = await _res.results // array
+                    _items.forEach(e => {
+                        title.push(e.title)
+                        link.push(e.link)
+                        snippet.push(e.snippet)
+                    });
+                    for (let i = 0; i < _items.length; i++) {
+                        data.push(link[i] + "\n*" + title[i] + "*\n" + "```" + snippet[i] + "```");
+                    }
+                    m.reply(data.join('\n\n'))
+                    link = []
+                    title = []
+                    snippet = []
+                    data = []
+                } else {
+                    link = []
+                    title = []
+                    snippet = []
+                    data = []
+                    m.reply('Pencarian tidak ditemukan!')
                 }
-                m.reply(data.join('\n\n'))
-            } else {
-                m.reply('Pencarian tidak ditemukan!')
+            } catch (err) {
+                data = []
+                m.reply(err)
             }
         } else {
+            data = []
             m.reply('Mohon isi pencarian!')
         }
     }

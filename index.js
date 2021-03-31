@@ -52,14 +52,14 @@ global.commands = [
         commands: ['bcgc'],
         file: `${__dirname}\\app\\commands\\bcgc.js`,
         require: `${__dirname}/app/commands/bcgc.js`,
-        help: ['bcgc'].map(v => '#' + v + ' <Pesan>'),
+        help: ['bcgc'].map(v => '#' + v + ' <Pesan> *( Dangerous )*'),
         tag: 'Owner'
     },
     {
         commands: ['bc'],
         file: `${__dirname}\\app\\commands\\bc.js`,
         require: `${__dirname}/app/commands/bc.js`,
-        help: ['bc'].map(v => '#' + v + ' <Pesan>'),
+        help: ['bc'].map(v => '#' + v + ' <Pesan> *( Dangerous )*'),
         tag: 'Owner'
     },
     {
@@ -96,6 +96,13 @@ global.commands = [
         require: `${__dirname}/app/commands/donasi.js`,
         help: ['donasi'].map(v => '#' + v),
         tag: 'Info'
+    },
+    {
+        commands: ['google'],
+        file: `${__dirname}\\app\\commands\\google.js`,
+        require: `${__dirname}/app/commands/google.js`,
+        help: ['google'].map(v => '#' + v + ' <Pencarian>'),
+        tag: 'Tools'
     },
     {
         commands: ['gtranslate'],
@@ -264,5 +271,6 @@ main.Run()
 // main.client.clea
 
 process.on('exit', () => {
-    console.clear()
+    // console.clear()
+    console.log('ENDED!');
 })

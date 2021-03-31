@@ -4,7 +4,7 @@ const handler = {
             let media = await m.downloadMedia();
             if (media.mimetype.includes('image/')) {
                 const med = new MessageMedia(media.mimetype, media.data, media.filename)
-                m.reply(med, m.from, {sendMediaAsSticker: true})
+                m.reply(media, m.from, {sendMediaAsSticker: true})
             } else {
                 m.reply('Hanya support untuk gambar!')
             }
