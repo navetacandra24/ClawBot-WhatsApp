@@ -40,10 +40,12 @@ module.exports = function (client, commandsName, media) {
         
         if (commandsName.map(e => e).includes(cmnd)) {
             let _isSpam = await spamDetector(from, await message.timestamp);
+
             if (_isSpam) {
                 message.reply(`*「 SPAM DETECTION 」*\n\n@${dbId} terlalu sering melakukan request. Mohon coba lagi nanti!`,
                     message.from, { mentions: [await client.getContactById(from)] })
             } else {
+                let usedPrefix = message.body.charAt(0)
                 const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
                 c.exec({
                     m: message,
@@ -51,7 +53,8 @@ module.exports = function (client, commandsName, media) {
                     client: client,
                     MessageMedia: media,
                     messageFrom: from,
-                    dbid: dbId
+                    dbid: dbId,
+                    usedprefix: usedPrefix
                 });
             }
         };

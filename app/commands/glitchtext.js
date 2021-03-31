@@ -12,7 +12,7 @@ const glitchTextCD = {
 }
 
 const handler = {
-    async exec({ m, args, MessageMedia, dbid }) {
+    async exec({ m, args, MessageMedia, dbid, usedprefix }) {
         let fullText = args.join(' ');
         let _ft = fullText.split(' | ')
         let cdList = await glitchTextCD.list();
@@ -45,7 +45,8 @@ const handler = {
                     m.reply(err)
                 }
             } else {
-                m.reply('Masukkan format dengan benar\n*Contoh :* #glitchtext Clawbot | GG Gaming')
+                // m.reply('Masukkan format dengan benar\n*Contoh :* #glitchtext Clawbot | GG Gaming')
+                m.reply(`Masukkan format dengan benar\n*Contoh :* ${usedprefix}glitchtext Clawbot | GG Gaming`)
             }
         } else {
             m.reply('Kamu sedang cooldown, coba lagi nanti!')

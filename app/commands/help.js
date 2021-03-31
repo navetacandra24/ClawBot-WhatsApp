@@ -118,7 +118,7 @@ async function user() {
 
 
 const handler = {
-    async exec({ m, client }) {
+    async exec({ m, client, usedprefix }) {
 
         let mentions = [];
         let creator = '';
@@ -155,43 +155,43 @@ const handler = {
 ╰───────${readmore}
 
 ╭─「 Main 」
-${mapCommand(MainCommand()).join('').replace(/,/g, '')}
+${mapCommand(MainCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Sticker 」
-${mapCommand(StickerCommand()).join('').replace(/,/g, '')}
+${mapCommand(StickerCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Maker 」
-${mapCommand(MakerCommand()).join('').replace(/,/g, '')}
+${mapCommand(MakerCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Owner 」
-${mapCommand(OwnerCommand()).join('').replace(/,/g, '')}
+${mapCommand(OwnerCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Game 」
-${mapCommand(GameCommand()).join('').replace(/,/g, '')}
+${mapCommand(GameCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Group 」
-${mapCommand(GroupCommand()).join('').replace(/,/g, '')}
+${mapCommand(GroupCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Education 」
-${mapCommand(EduCommand()).join('').replace(/,/g, '')}
+${mapCommand(EduCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Tools 」
-${mapCommand(ToolsCommand()).join('').replace(/,/g, '')}
+${mapCommand(ToolsCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Kerang Ajaib 」
-${mapCommand(KerangCommand()).join('').replace(/,/g, '')}
+${mapCommand(KerangCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 ╭─「 Info 」
-${mapCommand(InfoCommand()).join('').replace(/,/g, '')}
+${mapCommand(InfoCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
 Creator : @6285311174928`;

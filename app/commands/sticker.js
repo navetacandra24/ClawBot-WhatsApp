@@ -9,10 +9,8 @@ const handler = {
                 m.reply('Hanya support untuk gambar!')
             }
         } else {
-            if (m.hasQuotedMsg) {
-                m.reply('Work caption only!')
-            }
-            m.reply('Mana fotonya kak?🙂')
+            if (m.hasQuotedMsg) m.reply('Work caption only!')
+            else m.reply('Mana fotonya kak?🙂')
         }
     }
 };

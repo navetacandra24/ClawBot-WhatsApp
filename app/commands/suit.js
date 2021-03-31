@@ -36,8 +36,8 @@ const handler = {
                     m.reply(`*Hasil :* Menang\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
                     db.UPDATEUser(dbid, res, data.bank)
                 } else if (bot === 'kertas' && player === 'batu' || bot === 'batu' && player === 'gunting' || bot === 'gunting' && player === 'kertas') {
-                    let res = Math.floor((data.coins - coinsRes))
-                    m.reply(`*Hasil :* Kalah\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${(data.coins - coinsRes)}`, m.from, {mentions: [await client.getContactById(messageFrom)]})
+                    let res = Math.floor((data.coins - (coinsRes * .75)))
+                    m.reply(`*Hasil :* Kalah\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]})
                     db.UPDATEUser(dbid, res, data.bank)
                 }
             } else {

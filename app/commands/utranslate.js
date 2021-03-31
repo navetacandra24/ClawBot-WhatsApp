@@ -14,7 +14,7 @@ const handler = {
     async exec({ m, args }) {
 
         if (args.length < 3) {
-            m.reply(`Masukkan parameter dengan benar, Contoh: \n#utranslate indonesia inggris Halo dunia`)
+            m.reply(`Masukkan parameter dengan benar, Contoh: \n${usedprefix}utranslate indonesia inggris Halo dunia`)
         } else {
             let from = args[0]
             let to = args[1]

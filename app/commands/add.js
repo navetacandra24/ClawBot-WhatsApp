@@ -17,7 +17,7 @@ const handler = {
                                 if (numberId) {
                                     chat.addParticipants([numberId._serialized])
                                 } else {
-                                    m.reply('Nomor tidak valid/tidak terdaftar di WhatsApp')
+                                    m.reply(`Nomor tidak valid/tidak terdaftar di WhatsApp *${v}*`)
                                 }
                             })
                         }
