@@ -1,10 +1,11 @@
 
 const handler = {
     async exec({ m }) {
+        let donateNum = process.env.DONATE_NUM.split('|')
         m.reply(`
 ╭─「 Donasi 」
-│ Telkomsel ( Owner ) ( 085311174928 )
-│ Indosat ( BOT ) ( 085718234965 )
+│ Telkomsel ( ${donateNum[0]} )
+│ Indosat ( ${donateNum[1]} )
 ╰───────
         `)
     }
