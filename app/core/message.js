@@ -18,7 +18,7 @@ module.exports = function (client, commandsName, media) {
         const from = message.author ? message.author : message.from;
 
         let dbId = from.split('@')[0];
-        await client.sendSeen(m.from)
+        await client.sendSeen(message.from)
 
         /* Logging Message from */
         logMSG(message, commandsName, from, PREFIX)
