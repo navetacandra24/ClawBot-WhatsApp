@@ -140,11 +140,10 @@ const handler = {
         });
         let time = new Date().toLocaleString('id').split(' ')[1].split('.');
         let times = time.join(' : ');
-        let package = require(`${__dirname}/../../package.json`)
 
 
         const message = `
-╭─「 ${package.name} 」
+╭─「 ${global.botName} 」
 │ Hai, @${creator}!
 │
 │ Tanggal: *${week}, ${date}*
@@ -194,7 +193,7 @@ ${mapCommand(KerangCommand()).join('').replace(/,/g, '').replace(/\#/g, usedpref
 ${mapCommand(InfoCommand()).join('').replace(/,/g, '').replace(/\#/g, usedprefix)}
 ╰───────
 
-Creator : @6285311174928`;
+Creator : @${global.ownerId.split('@')[0]}`;
         // console.log(OwnerCommand());
         m.reply(message, m.from, {mentions: mentions})
     }

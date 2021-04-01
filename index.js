@@ -3,7 +3,8 @@ require('dotenv').config()
 global.f = require('firebase');
 global.ownerId = process.env.owner_id;
 global.ownerContact = [process.env.owner_name, process.env.owner_num];
-global.botId = process.env.bot_id
+global.botId = process.env.bot_id;
+global.botName = process.env.bot_name;
 global.API_URL = process.env.API_URL
 // global.ownerId = '6285311174928@c.us';
 // global.ownerContact = [`Clawbot's Owner`, '+62 853-1117-4928']

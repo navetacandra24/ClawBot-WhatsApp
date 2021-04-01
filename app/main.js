@@ -68,12 +68,6 @@ function Run() {
         console.log(chalk.cyanBright(`Recieved ${ct.length} Conatcts\nRecieved ${cht.length} Chats\n`));
         console.log(commandsName, '\n');
         console.log(chalk.red('Bot is ready now.'));
-        setInterval(async () => {
-            let chat = await client.getChats();
-            chat.forEach(async e => {
-                await e.sendSeen()
-            })
-        }, 1000 * 60);
     })
 
 

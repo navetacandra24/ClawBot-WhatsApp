@@ -22,9 +22,6 @@ module.exports = function (client, commandsName, media) {
         /* Logging Message from */
         logMSG(message, commandsName, from, PREFIX)
 
-        
-        client.sendSeen(message.from)
-
         /* Register User to DB */
         let uDb = await db.GETUser(dbId)
         message.mentionedIds.length < 1 ? '' : message.mentionedIds.map(async v => await db.GETUser(v.split('@')[0]) ? '' : await db.POSTUser(v.split('@')[0]))
