@@ -22,7 +22,7 @@ const handler = {
                 await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*');
                 // await execute(_ft, messageFrom, filename)
                 try {
-                    let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/glitch-text?text1=${encodeURIComponent(_ft[0])}&text2=${encodeURIComponent(_ft[1])}&fname=${dbid}`,{
+                    let _fetch = await fetch(`https://${global.API_URL}/glitch-text?text1=${encodeURIComponent(_ft[0])}&text2=${encodeURIComponent(_ft[1])}&fname=${dbid}`,{
                             mode: 'no-cors',
                             timeout: 0
                         })

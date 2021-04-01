@@ -1,21 +1,35 @@
 const main = require(`${__dirname}/app/main`);
+require('dotenv').config()
 global.f = require('firebase');
-// global.ownerId = '6281247293930@c.us';
-// global.ownerContact = [`Muh ilham Yusuf`, '+62 812-4729-3930']
-global.ownerId = '6285311174928@c.us';
-global.ownerContact = [`Clawbot's Owner`, '+62 853-1117-4928']
+global.ownerId = process.env.owner_id;
+global.ownerContact = [process.env.owner_name, process.env.owner_num];
+global.botId = process.env.bot_id
+global.API_URL = process.env.API_URL
+// global.ownerId = '6285311174928@c.us';
+// global.ownerContact = [`Clawbot's Owner`, '+62 853-1117-4928']
 
 require('firebase/database')
 
+// global.f.initializeApp({
+//     apiKey: "AIzaSyAQNt4nlwjwEGkt9OQ3bM9vb4MWwmTJlfA",
+//     authDomain: "clawbot-wa.firebaseapp.com",
+//     databaseURL: "https://clawbot-wa-default-rtdb.firebaseio.com",
+//     projectId: "clawbot-wa",
+//     storageBucket: "clawbot-wa.appspot.com",
+//     messagingSenderId: "885803455129",
+//     appId: "1:885803455129:web:96c2b1ca49ddc31ec31e08",
+//     measurementId: "G-4MHQCWVB50"
+// });
+
 global.f.initializeApp({
-    apiKey: "AIzaSyAQNt4nlwjwEGkt9OQ3bM9vb4MWwmTJlfA",
-    authDomain: "clawbot-wa.firebaseapp.com",
-    databaseURL: "https://clawbot-wa-default-rtdb.firebaseio.com",
-    projectId: "clawbot-wa",
-    storageBucket: "clawbot-wa.appspot.com",
-    messagingSenderId: "885803455129",
-    appId: "1:885803455129:web:96c2b1ca49ddc31ec31e08",
-    measurementId: "G-4MHQCWVB50"
+    apiKey: process.env.APIKEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DB_URL,
+    projectId: process.env.P_ID,
+    storageBucket: process.env.S_BUCKET,
+    messagingSenderId: process.env.MS_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.M_ID,
 });
 global.db = global.f.database();
 global.commands = [

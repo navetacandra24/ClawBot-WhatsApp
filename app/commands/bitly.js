@@ -5,7 +5,7 @@ const handler = {
         if (args.length >= 1) {
             let url = /https?:\/\//.test(args[0]) ? args[0] : 'http://' + args[0];
             try {
-                let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/bitly?url=${url}`, { mode: 'no-cors', timeout: 0 });
+                let _fetch = await fetch(`https://${global.API_URL}/bitly?url=${url}`, { mode: 'no-cors', timeout: 0 });
                 if(_fetch.status !== 200) m.reply('Hasil tidak dapat terkirim _( Timeout )_\nMohon coba lagi nanti.')
                 let _res = await _fetch.json();
                 let _data = await _res.result;

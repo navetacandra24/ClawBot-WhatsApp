@@ -79,7 +79,6 @@ function Run() {
 
     let commandsName = []
     global.commands.forEach(e => e.commands.forEach(r => commandsName.push(r)))
-    global.botId = '6285718234965@c.us'
     // global.botId = '13164440560@c.us'
 
     msg(client, commandsName, MessageMedia)

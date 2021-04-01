@@ -5,7 +5,7 @@ const handler = {
             m.reply('Uhmm.. teksnya?')
         } else {
             try {
-                let _fetch = await fetch(`https://fierce-brushlands-90323.herokuapp.com/ttp?text=${encodeURIComponent(args.join(' '))}`, {
+                let _fetch = await fetch(`https://${global.API_URL}/ttp?text=${encodeURIComponent(args.join(' '))}`, {
                     mode: 'no-cors',
                     timeout: 0
                 });
