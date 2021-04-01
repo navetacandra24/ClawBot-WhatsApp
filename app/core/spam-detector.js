@@ -19,8 +19,10 @@ module.exports = async function (from, time) {
         if (logTimeL >= 2) {
             // let timeL = userLog[0].timestamp[logTimeL - 1] - userLog[0].timestamp[logTimeL - 2];
             let timeL = time - userLog[0].timestamp[logTimeL - 1];
-            let res = timeL <= 2.5 ? true : false;
+            let res = timeL <= 3 ? true : false;
             if (res) {
+                log.timestamp.push(time);
+                fs.writeFileSync(`${__dirname}/logs.json`, JSON.stringify(_log))
                 return res
             } else {
                 log.timestamp.push(time);

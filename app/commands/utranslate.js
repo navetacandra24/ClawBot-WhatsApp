@@ -11,7 +11,7 @@ const lang = {
 
 
 const handler = {
-    async exec({ m, args }) {
+    async exec({ m, args, usedprefix }) {
 
         if (args.length < 3) {
             m.reply(`Masukkan parameter dengan benar, Contoh: \n${usedprefix}utranslate indonesia inggris Halo dunia`)
