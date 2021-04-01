@@ -2,10 +2,10 @@
 const handler = {
     async exec({ m }) {
         let donateNum = process.env.DONATE_NUM.split('|')
+	let _dM = donateNum.map(v => '│ •' + v)
         m.reply(`
 ╭─「 Donasi 」
-│ Telkomsel ( ${donateNum[0]} )
-│ Indosat ( ${donateNum[1]} )
+${_dM.join('\n')}
 ╰───────
         `)
     }

@@ -143,7 +143,7 @@ const handler = {
 
 
         const message = `
-╭─「 ${global.botName} 」
+╭─「 *${global.botName}* 」
 │ Hai, @${creator}!
 │
 │ Tanggal: *${week}, ${date}*

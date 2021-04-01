@@ -6,21 +6,9 @@ global.ownerContact = [process.env.owner_name, process.env.owner_num];
 global.botId = process.env.bot_id;
 global.botName = process.env.bot_name;
 global.API_URL = process.env.API_URL
-// global.ownerId = '6285311174928@c.us';
-// global.ownerContact = [`Clawbot's Owner`, '+62 853-1117-4928']
 
 require('firebase/database')
 
-// global.f.initializeApp({
-//     apiKey: "AIzaSyAQNt4nlwjwEGkt9OQ3bM9vb4MWwmTJlfA",
-//     authDomain: "clawbot-wa.firebaseapp.com",
-//     databaseURL: "https://clawbot-wa-default-rtdb.firebaseio.com",
-//     projectId: "clawbot-wa",
-//     storageBucket: "clawbot-wa.appspot.com",
-//     messagingSenderId: "885803455129",
-//     appId: "1:885803455129:web:96c2b1ca49ddc31ec31e08",
-//     measurementId: "G-4MHQCWVB50"
-// });
 
 global.f.initializeApp({
     apiKey: process.env.APIKEY,
@@ -173,6 +161,12 @@ global.commands = [
         tag: 'Game'
     },
     {
+        commands: ['ngemis'],
+        require: `${__dirname}/app/commands/ngemis.js`,
+        help: ['ngemis'].map(v => '#' + v),
+        tag: 'Game'
+    },
+    {
         commands: ['owner', 'creator'],
         require: `${__dirname}/app/commands/owner.js`,
         help: ['owner', 'creator'].map(v => '#' + v),
@@ -185,10 +179,10 @@ global.commands = [
         tag: 'Game'
     },
     {
-        commands: ['pengumuman', 'announcement'],
-        require: `${__dirname}/app/commands/pengumuman.js`,
-        help: ['pengumuman', 'announcement'].map(v => '#' + v + ' <pesan>'),
-        tag: 'Group'
+        commands: ['rank'],
+        require: `${__dirname}/app/commands/rank.js`,
+        help: ['rank'].map(v => '#' + v),
+        tag: 'Game'
     },
     {
         commands: ['rob', 'curi'],
@@ -197,9 +191,9 @@ global.commands = [
         tag: 'Game'
     },
     {
-        commands: ['status', 'sendStatus'],
+        commands: ['status', 'sendstatus'],
         require: `${__dirname}/app/commands/sendStatus.js`,
-        help: ['status', 'sendStatus'].map(v => '#' + v + ' <Teks>'),
+        help: ['status', 'sendstatus'].map(v => '#' + v + ' <Teks>'),
         tag: 'Owner'
     },
     {

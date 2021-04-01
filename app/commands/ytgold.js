@@ -33,8 +33,10 @@ const handler = {
                     let b64 = _res.results.data.base64;
                     if (b64.startsWith('/')) {
                         let media = new MessageMedia(mt, b64, '')
-                        await glitchTextCD.update(dbid, {})
                         m.reply(media)
+                        setTimeout(async () => {
+                            await glitchTextCD.update(dbid, {})
+                        }, 5000);
                     } else {
                         await glitchTextCD.update(dbid, {})
                         m.reply('*Gambar tidak dapat terkirim, karena terjadi kesalahan sistem.*')

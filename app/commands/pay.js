@@ -15,7 +15,7 @@ const handler = {
                             let resCoinsPenerima = penerimaDb._c + numPay;
                             await db.UPDATEUser(dbid, resCoinsSend, userDb._b)
                             await db.UPDATEUser(penerima, resCoinsPenerima, penerimaDb._b)
-                            await m.reply(`Saldo berhasil dikirm ke @${penerima}`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]});
+                            await m.reply(`Saldo berhasil dikirm ke @${penerima}, Sebesar © ${numPay}`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]});
                         } else {
                             m.reply('Coins anda tidak cukup!');
                         }

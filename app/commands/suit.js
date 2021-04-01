@@ -28,16 +28,16 @@ const handler = {
                 let data = await getDb(dbid);
                 let coinsRes = data._c * pickRandom(percentage) / 100;
                 if (player === bot) {
-                    let res = Math.round(((data._c - coinsRes) * .025) + data._c)
-                    m.reply(`*Hasil :* SERI / DRAW\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
+                    let res = Math.floor(Math.round(((data._c - coinsRes) * .025) + data._c))
+                    m.reply(`*Hasil :* SERI / DRAW\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* © ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
                     db.UPDATEUser(dbid, res, data._b)
                 } else if (player === 'kertas' && bot === 'batu' || player === 'batu' && bot === 'gunting' || player === 'gunting' && bot === 'kertas') {
-                    let res = Math.round((data._c + coinsRes))
-                    m.reply(`*Hasil :* Menang\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
+                    let res = Math.floor(Math.round((data._c + coinsRes)))
+                    m.reply(`*Hasil :* Menang\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* © ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]});
                     db.UPDATEUser(dbid, res, data._b)
                 } else if (bot === 'kertas' && player === 'batu' || bot === 'batu' && player === 'gunting' || bot === 'gunting' && player === 'kertas') {
-                    let res = Math.floor((data._c - (coinsRes * .75)))
-                    m.reply(`*Hasil :* Kalah\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]})
+                    let res = Math.round(Math.floor((data._c - (coinsRes * .75))))
+                    m.reply(`*Hasil :* Kalah\n*ClawBot :* ${bot}\n@${dbid} : ${args[0]}\n*Sisa coins kamu :* © ${res}`, m.from, {mentions: [await client.getContactById(messageFrom)]})
                     db.UPDATEUser(dbid, res, data._b)
                 }
             } else {

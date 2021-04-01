@@ -3,7 +3,7 @@ const handler = {
         if (args.length >= 1) {
             await m.reply('Laporan akan dikirimkan ke owner, \nLaporan main-main = BLOCK!');
             client.sendMessage(
-                '6285311174928@c.us',
+                global.ownerId,
                 `${args.join(' ')}\nBug Report dari : https://wa.me/${messageFrom.split('@')[0]}`,
             )
         } else {

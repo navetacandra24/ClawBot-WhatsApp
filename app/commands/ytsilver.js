@@ -18,7 +18,6 @@ const handler = {
             if (args.length >= 1) {
                 await glitchTextCD.update(dbid, {is: '1'})
                 await m.reply('Memproses..\n*Mohon tunggu sekitar 1 menit.*');
-                // await execute(_ft, messageFrom, filename)
                 try {
                     let _fetch = await fetch(`https://${global.API_URL}/ytbutton?type=silver&name=${encodeURIComponent(args.join(' '))}&fname=${dbid}`,{
                             mode: 'no-cors',
@@ -33,8 +32,10 @@ const handler = {
                     let b64 = _res.results.data.base64;
                     if (b64.startsWith('/')) {
                         let media = new MessageMedia(mt, b64, '')
-                        await glitchTextCD.update(dbid, {})
                         m.reply(media)
+                        setTimeout(async () => {
+                            glitchTextCD.update(dbid, {})
+                        }, 5000);
                     } else {
                         await glitchTextCD.update(dbid, {})
                         m.reply('*Gambar tidak dapat terkirim, karena terjadi kesalahan sistem.*')

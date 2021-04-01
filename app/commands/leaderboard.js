@@ -15,14 +15,14 @@ const handler = {
                     return b.data._t - a.data._t
                 })
                 let mentioneds = [];
-                let msg = [];
+                let msg = ['|「」「 *ClawBot Leaderboard* 」「」|\n'];
                 
 
                 for (let i = 0; i < desc.length; i++) {
                     (async function () {
                         let id = await client.getContactById(desc[i].id + '@c.us')
                         mentioneds.push(id);
-                        msg.push(`@${desc[i].id}  With total points : ${desc[i].data._t}`)
+                        msg.push(`@${desc[i].id}  Dengan total points : ${desc[i].data._t}`)
                         if (msg.length === desc.length) {
                             m.reply(msg.join('\n'), m.from, {mentions: mentioneds})
                         } else {

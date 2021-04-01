@@ -37,17 +37,17 @@ const handler = {
                                 let ygdicuri = Math.floor(((tujuanDb._c - (coinsRes * .5)) * pickRandom(percentage1) / 100));
                                 await db.UPDATEUser(dbid, userDb._c + ygdicuri, userDb._b)
                                 await db.UPDATEUser(tujuan, tujuanDb._c - ygdicuri, tujuanDb._b);
-                                m.reply(`Kamu berhasil mecuri ${ygdicuri} Coins, dari @${tujuan}`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]})
+                                m.reply(`Kamu berhasil mecuri © ${ygdicuri} Coins, dari @${tujuan}`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]})
                             } else {
                                 let coinsRes = tujuanDb._c * pickRandom(percentage) / 100;
                                 let gagalmencuri = Math.floor((tujuanDb._c - (coinsRes * .75)));
                                 let denda = gagalmencuri * .4
                                 await db.UPDATEUser(dbid, userDb._c - denda, userDb._b)
                                 await db.UPDATEUser(tujuan, tujuanDb._c + (denda / .25), tujuanDb._b);
-                                m.reply(`Kamu gagal mecuri ${gagalmencuri} Coins, dari @${tujuan}\nKamu mendapat denda sebesar ${denda}`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]})
+                                m.reply(`Kamu gagal mecuri ${gagalmencuri} Coins, dari @${tujuan}\nKamu mendapat denda sebesar © ${denda} Coins`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]})
                             }
                         } else {
-                            m.reply('Orang yang ingin dicuri harus memiliki setidaknya 1000 Coins!')
+                            m.reply('Orang yang ingin dicuri harus memiliki setidaknya © 1000 Coins!')
                         }
                     } else {
                         m.reply('Bot mana bisa di rob!!')
@@ -59,7 +59,7 @@ const handler = {
                 m.reply('Tag orang yang ingin dicuri!')
             }
         } else {
-            m.reply('Kamu harus memiliki setidaknya 1000 Coins!')
+            m.reply('Kamu harus memiliki setidaknya © 1000 Coins!')
         }
 
     }
