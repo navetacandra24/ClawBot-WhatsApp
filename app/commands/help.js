@@ -138,8 +138,7 @@ const handler = {
             month: 'long',
             year: 'numeric'
         });
-        let time = new Date().toLocaleString('id').split(' ')[1].split('.');
-        let times = time.join(' : ');
+        let time = new Date().toLocaleTimeString('id').replace(/\./g, ' : ')
 
 
         const message = `
@@ -147,7 +146,7 @@ const handler = {
 │ Hai, @${creator}!
 │
 │ Tanggal: *${week}, ${date}*
-│ Waktu: *${times}* _(GMT +0:00)_
+│ Waktu: *${time}*
 │ Uptime: *${clockString(process.uptime() * 1000)}*
 │ Total Users: *${await user()}*
 │ Prefix: 「 ! ,  # ,  / 」

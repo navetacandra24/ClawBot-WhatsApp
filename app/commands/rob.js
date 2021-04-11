@@ -34,7 +34,7 @@ const handler = {
                         if (tujuanDb._c >= 1000) {
                             if (_isGet) {
                                 let coinsRes = tujuanDb._c * pickRandom(percentage) / 100;
-                                let ygdicuri = Math.floor(((tujuanDb._c - (coinsRes * .5)) * pickRandom(percentage1) / 100));
+                                let ygdicuri = Math.floor((tujuanDb._c - (coinsRes * .5)) * pickRandom(percentage1) / 100);
                                 await db.UPDATEUser(dbid, userDb._c + ygdicuri, userDb._b)
                                 await db.UPDATEUser(tujuan, tujuanDb._c - ygdicuri, tujuanDb._b);
                                 m.reply(`Kamu berhasil mecuri © ${ygdicuri} Coins, dari @${tujuan}`, m.from, {mentions: [await client.getContactById(m.mentionedIds[0])]})

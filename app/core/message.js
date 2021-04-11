@@ -2,6 +2,8 @@ const fs = require('fs');
 const db = require(`${__dirname}/../helper/database`);
 const logMSG = require(`${__dirname}/../log`);
 const spamDetector = require('./spam-detector')
+const antiOverload1 = require('./anti-overload1')
+const antiOverload2 = require('./anti-overload2')
 
 function rm(array, v){
     for (let i = 0; i < array.length; i++) {
@@ -16,6 +18,10 @@ module.exports = function (client, commandsName, media) {
     client.on('message', async message => {
         const PREFIX = ['/', '#', '!'];
         const from = message.author ? message.author : message.from;
+
+        if(message.hasMedia){
+            console.log(await message.downloadMedia());
+        }
 
         let dbId = from.split('@')[0];
         await client.sendSeen(message.from)
@@ -40,22 +46,37 @@ module.exports = function (client, commandsName, media) {
 
         if (commandsName.map(e => e).includes(cmnd)) {
             let _isSpam = await spamDetector(from, await message.timestamp);
-
+            let anti = await antiOverload1(message.from, message.id._serialized)
+            
+            
             if (_isSpam) {
-                message.reply(`*「 SPAM DETECTION 」*\n\n@${dbId} terlalu sering melakukan request. Mohon coba lagi nanti!`,
+                if (anti._is) {
+                    let anti1 = await antiOverload2(message.from, message.id._serialized)
+                    console.log(anti1);
+                    if (anti1._is) {
+                        client.sendMessage(anti1.from, `*「 ${global.botName} Anti-Overload Message 」*\n\nMohon kirim ulang pesan anda nanti.`, {quotedMessageId: anti.chatId})
+                    } else {
+                        client.sendMessage(anti1.from, `*「 ${global.botName} Anti-Overload Message 」*\n\nMohon kirim ulang pesan anda nanti.`, {quotedMessageId: anti.chatId})
+                    }
+                } else {
+                    message.reply(`*「 SPAM DETECTION 」*\n\n@${dbId} terlalu sering melakukan request. Mohon coba lagi nanti!`,
                     message.from, { mentions: [await client.getContactById(from)] })
+                }
             } else {
-                let usedPrefix = message.body.charAt(0)
-                const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
-                c.exec({
-                    m: message,
-                    args: args,
-                    client: client,
-                    MessageMedia: media,
-                    messageFrom: from,
-                    dbid: dbId,
-                    usedprefix: usedPrefix
-                });
+                if (anti._is) {
+                    client.sendMessage(anti.from, `*「 ${global.botName} Anti-Overload Message 」*\n\nMohon kirim ulang pesan anda nanti.`, {quotedMessageId: anti.chatId})
+                } else {
+                    const c = require(global.commands.filter(v => v.commands.includes(cmnd))[0].require);
+                    c.exec({
+                        m: message,
+                        args: args,
+                        client: client,
+                        MessageMedia: media,
+                        messageFrom: from,
+                        dbid: dbId,
+                        usedprefix: message.body.charAt(0)
+                    });
+                }
             }
         };
     });
